@@ -17,7 +17,7 @@ public class SignUpServlet extends HttpServlet {
         User user = createUserBasedOnType(userType);
 
         // Set common attributes
-        user.setUsername(request.getParameter("name"));
+        user.setName(request.getParameter("name"));
         user.setRole(request.getParameter("role"));
         user.setPassword(request.getParameter("password")); // if possible this data should be hidden and/or encrypted idk how to do that yet
         // maybe for security purposes password is separate to each page so it does not have to be carried over into the next page in the session
