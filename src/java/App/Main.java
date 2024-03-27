@@ -1,7 +1,9 @@
 package App;
 
 import dataaccesslayer.DataSource;
+import dataaccesslayer.ItemDAOImpl;
 import dataaccesslayer.UserDAOImpl;
+import transferobjects.ItemDTO;
 import transferobjects.UserDTO;
 
 import java.sql.Connection;

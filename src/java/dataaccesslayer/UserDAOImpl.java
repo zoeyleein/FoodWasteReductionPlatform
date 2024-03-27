@@ -31,6 +31,8 @@ public class UserDAOImpl implements UserDAO {
             pstmt.setString(10, user.getPreference());
             pstmt.executeUpdate();
             System.out.println("User inserted successfully");
+        }catch (SQLException e) {
+            e.printStackTrace();
         } catch (Exception SQLIntegrityConstraintViolation){
             System.out.println("User already in the database. Failed to insert.");
         }
