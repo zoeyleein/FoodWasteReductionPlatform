@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>User Registration Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>User Registration Form</div>
+            <form action="registerUser.jsp" method="post">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br>
+                <label for="userType">User Type:</label><br>
+                <input type="text" id="userType" name="userType"><br>
+                <label for="role">Role:</label><br>
+                <select name="role" id="role">
+                    <option>Customer</option>
+                    <option>Retailer</option>
+                    <option>Charities</option>
+                </select><br>
+                <label for="phone">Phone:</label><br>
+                <input type="text" id="phone" name="phone"><br>
+                <label for="location">Location:</label><br>
+                                <select name="location" id="location">
+                    <option>Nepean</option>
+                    <option>Barhaveen</option>
+                    <option>Kanata</option>
+                </select><br>
+                <label for="balance">Balance:</label><br>
+                <input type="number" id="balance" name="balance"><br><br>
+                <input type="submit" value="Register">
+            </form>
+    </body>
+</html>
