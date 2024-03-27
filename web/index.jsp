@@ -12,11 +12,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <body>
         <h1>Food Waste Reduction Platform</h1>
         <p>Please enter your credentials</p>
-        <FORM ACTION="AuthorsServlet" METHOD="POST">
+        <FORM ACTION="LoginServlet" METHOD="POST">
             User:
-            <INPUT TYPE="TEXT" NAME="firstName" ><BR>
+            <INPUT TYPE="TEXT" NAME="name" ><BR>
             Password:
-            <INPUT TYPE="TEXT" NAME="lastName" ><P>
+            <INPUT TYPE="password" NAME="password" ><P>
                 <INPUT TYPE="SUBMIT"> <!-- Press this button to submit form -->
         </FORM>
         <p>If you are not logged click <a href="./views/user_registration.html" target="_blank">here </a>to register</p>

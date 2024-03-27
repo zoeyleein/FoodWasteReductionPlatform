@@ -4,7 +4,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String userType;
+//    private String userType;
     private String role;
     private String phone;
     private String location;
@@ -14,12 +14,11 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String password, String userType, String role, String phone, String location, double balance) {
+    public User(String name, String email, String password, String role, String phone, String location, double balance) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.userType = userType;
         this.role = role;
         this.phone = phone;
         this.location = location;
@@ -59,13 +58,13 @@ public class User {
         this.password = password;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+//    public String getUserType() {
+//        return userType;
+//    }
+//
+//    public void setUserType(String userType) {
+//        this.userType = userType;
+//    }
 
     public String getRole() {
         return role;

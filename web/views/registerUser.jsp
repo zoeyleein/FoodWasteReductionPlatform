@@ -22,17 +22,17 @@
         String password = request.getParameter("password");
         String role = request.getParameter("role");
         String email = request.getParameter("email");
-        String userType = request.getParameter("userType");
         String phone = request.getParameter("phone");
         String location = request.getParameter("location");
         double balance = Double.parseDouble(request.getParameter("balance"));
 
          // Check if all fields are provided
-        if (name == null || email == null || password == null || userType == null || role == null || phone == null || location == null) {
+        if (name == null || email == null || password == null || role == null || phone == null || location == null) {
             out.println("Please fill all the fields.");
         } else {
             // Create a new User object
-            User user = new User(name, email, password, userType, role, phone, location, balance);
+            User user = new User(name, email, password, role, phone, location, balance);
+            
 //
 //            // Save the user to the database or perform necessary actions
 //            // For demonstration purposes, assuming you have a UserDAO class to handle database operations
