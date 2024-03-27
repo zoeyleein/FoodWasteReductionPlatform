@@ -1,12 +1,7 @@
 package App;
 
-import dataaccesslayer.DataSource;
-import dataaccesslayer.ItemDAOImpl;
-import dataaccesslayer.RetailerInventoryDAOImpl;
-import dataaccesslayer.UserDAOImpl;
-import transferobjects.ItemDTO;
-import transferobjects.RetailerInventoryDTO;
-import transferobjects.UserDTO;
+import dataaccesslayer.*;
+import transferobjects.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
