@@ -1,36 +1,66 @@
-/* File: SwingMVCDemo.java
- * Author: Stanley Pieda
- * Date: 2015
- * Description: Demonstration of DAO Design Pattern, MVC Design Pattern
- * References:
- * Ram N. (2013).  Data Access Object Design Pattern or DAO Pattern [blog] Retrieved from
- * http://ramj2ee.blogspot.in/2013/08/data-access-object-design-pattern-or.html
- */
 package dataaccesslayer;
 
+/**
+ * Version: 2
+ * Author: Mayank Arora
+ */
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import java.util.Properties;
+/**
+ * DataSource is a singleton class to connect to MySQL database.
+ *
+ */
 public class DataSource {
+    private static Properties dbProperties = new Properties();
+    private static Connection connection = null;
+    private static String url;
+    private static String username;
+    private static String password;
 
-    private Connection connection = null;
-    private String url = "jdbc:mysql://localhost:3306/books?useSSL=false&allowPublicKeyRetrieval=true";
-    private String username = "root";
-    private String password = "ididntpo";
 
-    public DataSource() {
+    /**
+     * Sets database properties using the db.properties file.
+     * Allows users to edit the file based on their configuration.
+     */
+
+    private static void loadDBProperties() {
+        try (InputStream input = new FileInputStream("./db.properties")) {
+
+            dbProperties.load(input);
+            String dbType = dbProperties.getProperty("db");
+            String name = dbProperties.getProperty("name");
+            String host = dbProperties.getProperty("host");
+            String port = dbProperties.getProperty("port");
+
+            url = "jdbc:" + dbType + "://" + host + ":" + port + "/" + name;
+            username = dbProperties.getProperty("user");
+            password = dbProperties.getProperty("pass");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
-    /*
- * Only use one connection for this application, prevent memory leaks.
+    /**
+     * Creates a database connection after loading the properties.
+     * The method prints "DB connected as a confirmation" or "
+     * "Cannot create new connection, one exists already" if the database
+     * is already connected.
      */
-    public Connection createConnection() throws SQLException {
+
+    public static Connection createConnection() throws SQLException {
         try {
-            if (connection != null) {
-                System.out.println("Cannot create new connection, one exists already");
-            } else {
+            if (connection == null || connection.isClosed()) {
+                loadDBProperties();
                 connection = DriverManager.getConnection(url, username, password);
+                System.out.printf("DB connected");
+            } else {
+                System.out.println("Cannot create new connection, one exists already");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -38,4 +68,6 @@ public class DataSource {
         }
         return connection;
     }
+
+
 }
