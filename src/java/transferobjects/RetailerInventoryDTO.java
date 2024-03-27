@@ -60,4 +60,17 @@ public class RetailerInventoryDTO {
     public void setFinalPrice(double finalPrice) {
         this.finalPrice = finalPrice;
     }
+
+    public String toString() {
+        return "RetailerInventoryDTO{" +
+                "id=" + id +
+                ", usersId=" + usersId +
+                ", itemId=" + itemId +
+                ", batch=" + batch +
+                ", expiryDate=" + expiryDate +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                ", finalPrice=" + finalPrice +
+                '}';
+    }
 }
