@@ -4,8 +4,15 @@
  */
 package controller;
 
+import dataaccesslayer.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -103,6 +110,60 @@ public class LoginServlet extends HttpServlet {
     private boolean validateUser(String username, String password) {
         // Dummy validation logic, replace with actual implementation
         return username.equals("admin") && password.equals("admin123");
-    }
+//        Path currentDirectory = Paths.get(".").toAbsolutePath().normalize();
+//        System.out.println("Current directory: " + currentDirectory);
+//        try (Connection conn = DataSource.createConnection()) {
+//        String sql = "SELECT * FROM users WHERE name = ? AND password = ?";
+//        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+//           statement.setString(1, "1"); 
+//            statement.setString(2, username);
+//            statement.setString(3, password);
+//            try (ResultSet resultSet = statement.executeQuery()) {
+//                return resultSet.next(); // Returns true if there's at least one row
+//            }
+//        }
+//    } catch (SQLException ex) {
+//        ex.printStackTrace();
+//    }
+//    return true;
+//    }
 
+//    boolean isValid = false;
+//    Connection connection = null;
+//    PreparedStatement statement = null;
+//    ResultSet resultSet = null;
+//
+//    try {
+//        // Establish a connection to the database
+//        connection = DataSource.createConnection();
+//
+//        // Prepare a statement to query the database
+//        String query = "SELECT COUNT(*) AS count FROM users WHERE username = ? AND password = ?";
+//        statement = connection.prepareStatement(query);
+//        statement.setString(1, username);
+//        statement.setString(2, password);
+//
+//        // Execute the query
+//        resultSet = statement.executeQuery();
+//
+//        // Check if there is a matching user with the provided username and password
+//        if (resultSet.next()) {
+//            int count = resultSet.getInt("count");
+//            isValid = count > 0; // If count > 0, the user exists and credentials are valid
+//        }
+//    } catch (SQLException ex) {
+//        ex.printStackTrace();
+//    } finally {
+//        // Close ResultSet, PreparedStatement, and Connection
+//        try {
+//            if (resultSet != null) resultSet.close();
+//            if (statement != null) statement.close();
+//            if (connection != null) connection.close();
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
+//
+//    return isValid;
+}
 }
