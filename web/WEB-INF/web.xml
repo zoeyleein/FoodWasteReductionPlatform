@@ -13,6 +13,7 @@
         <servlet-name>SingInServlet</servlet-name>
         <servlet-class>controller.SingInServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>controller.AuthorsServlet</servlet-name>
         <url-pattern>/AuthorsServlet</url-pattern>
