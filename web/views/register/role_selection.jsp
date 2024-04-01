@@ -7,15 +7,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <p>Select your user type:</p>
-        <p><a href="Customer_registration.jsp">Customer</a></p>
-        <p><a href="Retailer_registration.jsp">Retailer</a></p>
-        <p><a href="Charity_registration.jsp">Charity</a></p>
-    </body>
+<head>
+    <title>Select User Type</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="${pageContext.request.contextPath}/SelectUserTypeServlet" method="POST">
+    <label for="userType">Select what type of user you are:</label><br>
+    <select name="userType" id="userType">
+        <option value="Customer">Customer</option>
+        <option value="Retailer">Retailer</option>
+        <option value="Charity">Charity/Food Bank</option>
+    </select>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+</body>
 </html>
