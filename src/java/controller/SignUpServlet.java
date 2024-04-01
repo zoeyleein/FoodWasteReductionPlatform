@@ -25,7 +25,7 @@ public class SignUpServlet extends HttpServlet {
         // User user = (User) session.getAttribute("currentUser"); <-> code to get the previously stored object from the session
 
         // idk how this works yet but go to separate jsp pages based on user type
-        if (user instanceof Consumer) {
+        if (user instanceof Consumer) { // if (button="consumer") then go to consumerSignUp.jsp
             request.getRequestDispatcher("consumer.jsp").forward(request, response);
         } else if (user instanceof Retailer) {
             request.getRequestDispatcher("retailer.jsp").forward(request, response);

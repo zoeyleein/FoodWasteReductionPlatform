@@ -17,12 +17,18 @@ public class User {
     public User(String name, String email, String password, String role, String phone, String location, double balance) {
         this.id = id;
         this.name = name;
-        this.email = email;
+        this.email = email; //delete
         this.password = password;
+        this.userType = userType;
+        this.role = role; //delete
+        this.phone = phone;//delete
+        this.location = location;//delete
+        this.balance = balance;//delete
         this.role = role;
         this.phone = phone;
         this.location = location;
         this.balance = balance;
+
     }
 
     // Getter and setter methods
