@@ -82,4 +82,29 @@ public class UserDTO {
     public void setPreference(String preference) {
         this.preference = preference;
     }
+
+    public boolean getSubscribeToPhone() {
+        return subscribeToPhone;
+    }
+
+    public boolean getSubscribeToEmail() {
+        return subscribeToEmail;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", subscribeToPhone=" + subscribeToPhone +
+                ", subscribeToEmail=" + subscribeToEmail +
+                ", location='" + location + '\'' +
+                ", role='" + role + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mail='" + mail + '\'' +
+                ", preference='" + preference + '\'' +
+                '}';
+    }
+
 }

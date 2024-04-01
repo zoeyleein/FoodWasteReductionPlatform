@@ -32,7 +32,7 @@ public class SignUpServlet extends HttpServlet {
         } else if (user instanceof Charities) {
             request.getRequestDispatcher("charities.jsp").forward(request, response);
         } // copilot suggested the above code so i dont know if it works but the idea is to redirect to a different page based on user type
-
+//We will have a factory to manage the role type and create an instance of each accordingly
         // then save the user (to the database, session, etc.) once they have typed in all the new info
 
 
