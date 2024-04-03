@@ -32,8 +32,8 @@ public class SelectUserTypeServlet extends HttpServlet {
                 response.sendRedirect("views/register/Charity_registration.jsp");
                 break;
             default:
+                throw new ServletException("Error: Unexpected outcome");
                 // idk if we need a default case here, combo box should limit it to 3 options
-                break;
         }
     }
 }
