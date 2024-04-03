@@ -1,5 +1,9 @@
 package controller;
 
+/**
+ * @Author aaronthomp
+ */
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +19,7 @@ public class WelcomeServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if ("Log In".equals(action)) {
-            response.sendRedirect("views/Singin.jsp"); // Assuming the file name is SignIn.jsp
+            response.sendRedirect("views/Signin.jsp"); // Assuming the file name is SignIn.jsp
         } else if ("Sign Up".equals(action)) {
             response.sendRedirect("views/register/role_selection.jsp");
         } else {

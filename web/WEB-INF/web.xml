@@ -9,18 +9,9 @@
         <servlet-name>controller.AuthorsServlet</servlet-name>
         <servlet-class>controller.AuthorsServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>SingInServlet</servlet-name>
-        <servlet-class>controller.SingInServlet</servlet-class>
-    </servlet>
-
     <servlet-mapping>
         <servlet-name>controller.AuthorsServlet</servlet-name>
         <url-pattern>/AuthorsServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SingInServlet</servlet-name>
-        <url-pattern>/SingInServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

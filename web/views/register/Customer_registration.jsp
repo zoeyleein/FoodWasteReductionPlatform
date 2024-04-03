@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Charity Registration Form</div>
+        <div>Customer Registration Form</div>
             <form action="registerUser.jsp" method="post">
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name"><br>
