@@ -1,8 +1,6 @@
 package controller;
 
-/**
- * @Author aaronthomp
- */
+
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author aaronthomp
+ */
 @WebServlet(name = "WelcomeServlet", urlPatterns = {"/WelcomeServlet"})
 public class WelcomeServlet extends HttpServlet {
 
@@ -23,6 +24,7 @@ public class WelcomeServlet extends HttpServlet {
         } else if ("Sign Up".equals(action)) {
             response.sendRedirect("views/register/role_selection.jsp");
         } else {
+            throw new ServletException("Error: Unexpected outcome");
             // if we have a different action, we can redirect to an error page
         }
     }

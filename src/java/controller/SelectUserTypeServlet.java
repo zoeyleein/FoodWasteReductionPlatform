@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author aaronthomp
+ */
 @WebServlet(name = "SelectUserTypeServlet", urlPatterns = {"/SelectUserTypeServlet"})
 public class SelectUserTypeServlet extends HttpServlet {
 

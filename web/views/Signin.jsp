@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <body>
         <h1>Food Waste Reduction Platform</h1>
         <p>Please enter your credentials</p>
-        <FORM ACTION="../LoginServlet" METHOD="POST">
+        <FORM ACTION="LoginServlet" METHOD="POST">
             User:
             <INPUT TYPE="TEXT" NAME="name" ><BR>
             Password:

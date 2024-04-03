@@ -14,7 +14,7 @@
     </head>
     <body>
         <div>Customer Registration Form</div>
-            <form action="registerUser.jsp" method="post">
+            <form action="../registerUser.jsp" method="post">
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name"><br>
                 <label for="email">Email:</label><br>
