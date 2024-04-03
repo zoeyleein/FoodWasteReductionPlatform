@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Sign In</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <h1>Food Waste Reduction Platform</h1>
         <p>Please enter your credentials</p>
-        <FORM ACTION="LoginServlet" METHOD="POST">
+        <FORM action="${pageContext.request.contextPath}/LoginServlet" method="POST">
             User:
-            <INPUT TYPE="TEXT" NAME="name" ><BR>
+            <input type="TEXT" name="name" ><BR>
             Password:
-            <INPUT TYPE="password" NAME="password" ><P>
-                <INPUT TYPE="SUBMIT"> <!-- Press this button to submit form -->
+            <input type="password" name="password" ><P>
+                <input type="submit" name="action" value="Sign in">
         </FORM>
-        <p>If you are not logged click <a href="./views/user_registration.html" target="_blank">here </a>to register</p>
+    <p>lets use this Sign Up button instead of the hyperlink and move it when we clean this page up</p>
+    <form action="${pageContext.request.contextPath}/LoginServlet" method="POST">
+        <input type="submit" name="action" value="Sign up">
+        </form>
     </body>
 </html>

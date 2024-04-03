@@ -1,6 +1,8 @@
 package model;
 
 
+import java.util.Objects;
+
 /**
  * @author aaronthomp
  */
@@ -21,7 +23,10 @@ public class UserRegistration {
 
     public boolean validate(String name, String email, String password, String phone, String location) {
         // add parameters to method signature as needed, currently we just ask for these though
-        if (name == null || email == null || password == null || phone == null || location == null) {
+        if (Objects.equals(name, "") || Objects.equals(email, "")
+                || Objects.equals(password, "") || Objects.equals(phone, "") || Objects.equals(location, "")) {
+            // we may need to change the validation requirements, currently the above is useless since you
+            // can't submit the form without filling out all the fields
             return false;
         } else {
             // not sure what to put here

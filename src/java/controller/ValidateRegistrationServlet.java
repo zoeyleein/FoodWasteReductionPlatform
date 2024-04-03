@@ -37,6 +37,8 @@ public class ValidateRegistrationServlet extends HttpServlet{
         if (isValid) {
             response.sendRedirect("views/Signin.jsp");
         } else {
+            // maybe keep track of all invalid fields and send them back to the registration page
+            // telling the user whats wrong
             response.sendRedirect(registration.registrationType(userType));
         }
 
