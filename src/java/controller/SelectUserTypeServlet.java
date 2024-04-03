@@ -23,7 +23,8 @@ public class SelectUserTypeServlet extends HttpServlet {
         // find out what the user type is and redirect to the appropriate registration page
         String registrationPage = registration.registrationType(userType);
         if(userType.equals("Error: Unexpected user type")){
-            response.sendRedirect("views/registrationError.jsp"); // we need to create this jsp
+            throw new ServletException("Error: Unexpected user type");
+            // maybe change this to a redirect to an error page
         }
         else {
             response.sendRedirect(registrationPage);

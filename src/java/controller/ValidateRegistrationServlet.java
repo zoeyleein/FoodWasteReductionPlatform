@@ -18,7 +18,7 @@ public class ValidateRegistrationServlet extends HttpServlet{
     String phone;
     String location;
     UserRegistration registration = new UserRegistration();
-
+    //TODO we need to figure out what were doing for all the registration forms and how we are going to validate them
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false); // false means don't create a session if it doesn't exist

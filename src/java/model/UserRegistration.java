@@ -24,7 +24,7 @@ public class UserRegistration {
         if (name == null || email == null || password == null || phone == null || location == null) {
             return false;
         } else {
-
+            // not sure what to put here
         }
         return true;
     }
