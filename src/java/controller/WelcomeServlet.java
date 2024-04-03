@@ -20,7 +20,7 @@ public class WelcomeServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if ("Log In".equals(action)) {
-            response.sendRedirect("views/Signin.jsp"); // Assuming the file name is SignIn.jsp
+            response.sendRedirect("views/Signin.jsp");
         } else if ("Sign Up".equals(action)) {
             response.sendRedirect("views/register/role_selection.jsp");
         } else {

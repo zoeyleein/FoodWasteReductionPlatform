@@ -69,3 +69,9 @@
 /out/artifacts/FoodWasteReductionPlatform_Web_exploded/WEB-INF/classes/controller/SelectUserTypeServlet.class
 /out/production/FoodWasteReductionPlatform/controller/SelectUserTypeServlet.class
 /out/artifacts/FoodWasteReductionPlatform_Web_exploded/views/Signin.jsp
+/out/artifacts/FoodWasteReductionPlatform_Web_exploded/WEB-INF/classes/model/UserRegistration.class
+/out/production/FoodWasteReductionPlatform/model/UserRegistration.class
+/out/artifacts/FoodWasteReductionPlatform_Web_exploded/WEB-INF/classes/model/ValidateRegistration.class
+/out/production/FoodWasteReductionPlatform/model/ValidateRegistration.class
+/out/artifacts/FoodWasteReductionPlatform_Web_exploded/WEB-INF/classes/controller/ValidateRegistrationServlet.class
+/out/production/FoodWasteReductionPlatform/controller/ValidateRegistrationServlet.class

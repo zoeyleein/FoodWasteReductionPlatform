@@ -1,5 +1,7 @@
 package controller;
 
+import model.UserRegistration;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,28 +14,19 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SelectUserTypeServlet", urlPatterns = {"/SelectUserTypeServlet"})
 public class SelectUserTypeServlet extends HttpServlet {
+    UserRegistration registration = new UserRegistration();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userType = request.getParameter("userType");
-
-
-
-
+        request.getSession().setAttribute("userType", userType);
         // find out what the user type is and redirect to the appropriate registration page
-        switch (userType) {
-            case "Customer":
-                response.sendRedirect("views/register/Customer_registration.jsp");
-                break;
-            case "Retailer":
-                response.sendRedirect("views/register/Retailer_registration.jsp");
-                break;
-            case "Charity":
-                response.sendRedirect("views/register/Charity_registration.jsp");
-                break;
-            default:
-                throw new ServletException("Error: Unexpected outcome");
-                // idk if we need a default case here, combo box should limit it to 3 options
+        String registrationPage = registration.registrationType(userType);
+        if(userType.equals("Error: Unexpected user type")){
+            response.sendRedirect("views/registrationError.jsp"); // we need to create this jsp
+        }
+        else {
+            response.sendRedirect(registrationPage);
         }
     }
 }
