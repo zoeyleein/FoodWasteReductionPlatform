@@ -8,13 +8,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Registration Form</title>
+        <title>Retailer Registration Form</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Charity Registration Form</div>
+        <div>Retailer Registration Form</div>
             <form action="registerUser.jsp" method="post">
+                <input type="text" id="role" value="Retailer" hidden><br>
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name"><br>
                 <label for="email">Email:</label><br>

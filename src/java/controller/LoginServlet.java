@@ -51,6 +51,8 @@ public class LoginServlet extends HttpServlet {
             out.println("</html>");
         }
     }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -110,23 +112,6 @@ public class LoginServlet extends HttpServlet {
     private boolean validateUser(String username, String password) {
         // Dummy validation logic, replace with actual implementation
         return username.equals("admin") && password.equals("admin123");
-//        Path currentDirectory = Paths.get(".").toAbsolutePath().normalize();
-//        System.out.println("Current directory: " + currentDirectory);
-//        try (Connection conn = DataSource.createConnection()) {
-//        String sql = "SELECT * FROM users WHERE name = ? AND password = ?";
-//        try (PreparedStatement statement = conn.prepareStatement(sql)) {
-//           statement.setString(1, "1"); 
-//            statement.setString(2, username);
-//            statement.setString(3, password);
-//            try (ResultSet resultSet = statement.executeQuery()) {
-//                return resultSet.next(); // Returns true if there's at least one row
-//            }
-//        }
-//    } catch (SQLException ex) {
-//        ex.printStackTrace();
-//    }
-//    return true;
-//    }
 
 //    boolean isValid = false;
 //    Connection connection = null;

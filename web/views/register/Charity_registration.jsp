@@ -15,6 +15,7 @@
     <body>
         <div>Charity Registration Form</div>
             <form action="registerUser.jsp" method="post">
+                <input type="text" id="role" value="Charity" hidden><br>
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name"><br>
                 <label for="email">Email:</label><br>

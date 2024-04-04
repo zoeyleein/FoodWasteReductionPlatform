@@ -19,6 +19,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <INPUT TYPE="password" NAME="password" ><P>
                 <INPUT TYPE="SUBMIT"> <!-- Press this button to submit form -->
         </FORM>
-        <p>If you are not logged click <a href="./views/user_registration.html" target="_blank">here </a>to register</p>
+        <p>If you are not logged click <a href="./register/role_selection.jsp "target="_blank">here </a>to register</p>
     </body>
 </html>

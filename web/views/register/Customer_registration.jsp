@@ -13,8 +13,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Charity Registration Form</div>
-            <form action="registerUser.jsp" method="post">
+        <div>Customer Registration Form</div>
+            <form action="../registerUser.jsp" method="post">
+                <input type="text" id="role" value="Customer" hidden><br>
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name"><br>
                 <label for="email">Email:</label><br>
@@ -25,7 +26,12 @@
                 <input type="text" id="phone" name="phone"><br>
                 <label for="location">Location:</label><br>
                 <input type="text" id="location" name="location"><br>
+                <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone">
+                <label for="subscribeToPhone">Get notifications by Phone</label><br>
+                <input type="checkbox" id="subscribeToMail" name="subscribeToMail">
+                <label for="subscribeToMail">Get notifications by Mail</label><br>
                 <input type="submit" value="Register">
+
             </form>
     </body>
 </html>
