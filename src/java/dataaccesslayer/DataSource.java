@@ -37,9 +37,8 @@ public class DataSource {
             String name = dbProperties.getProperty("name");
             String host = dbProperties.getProperty("host");
             String port = dbProperties.getProperty("port");
-            url = "jdbc:mysql://localhost:3306/mydb";
 
-//            url = "jdbc:" + dbType + "://" + host + ":" + port + "/" + name;
+            url = "jdbc:" + dbType + "://" + host + ":" + port + "/" + name;
             username = dbProperties.getProperty("user");
             password = dbProperties.getProperty("pass");
         } catch (IOException ex) {
