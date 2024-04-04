@@ -1,5 +1,7 @@
 package controller;
 
+import model.LogInValidation;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,20 +14,17 @@ import java.io.IOException;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-
+    LogInValidation logInValidation = new LogInValidation();
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        String username = request.getParameter("name");
+        String password = request.getParameter("password");
+        //TODO these variables will be passed to model where our logic will happen
+        // we need to check as well what type of user they are in the db to redirect them to the correct page
+        response.sendRedirect(logInValidation.logInPageRedirect(action, username, password)); // not a finished method
 
-        // TODO this logic can be moved to a model class at a later time, <- this needs to happen for MVC pattern
-        if ("Sign in".equals(action)) {
-        //we perform validation, check db to see if user exists and if they do if their info matches
 
-        } else if ("Sign up".equals(action)) {
-            response.sendRedirect("views/register/role_selection.jsp");
-        } else {
-        // error handling possibly idk
-        }
     }
 
 }

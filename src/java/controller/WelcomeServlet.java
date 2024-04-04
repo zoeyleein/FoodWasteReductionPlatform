@@ -2,6 +2,8 @@ package controller;
 
 
 
+import model.UserRegistration;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,18 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "WelcomeServlet", urlPatterns = {"/WelcomeServlet"})
 public class WelcomeServlet extends HttpServlet {
+    UserRegistration userRegistration = new UserRegistration();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-
-        if ("Log In".equals(action)) {
-            response.sendRedirect("views/Signin.jsp");
-        } else if ("Sign Up".equals(action)) {
-            response.sendRedirect("views/register/role_selection.jsp");
-        } else {
-            throw new ServletException("Error: Unexpected outcome");
-            // if we have a different action, we can redirect to an error page
-        }
+        response.sendRedirect(userRegistration.welcomePageRedirect(action));
+        // idk how we want to handle exception/errors
     }
 }
