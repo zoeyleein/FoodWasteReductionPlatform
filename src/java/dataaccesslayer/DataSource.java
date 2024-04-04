@@ -30,15 +30,16 @@ public class DataSource {
      */
 
     private static void loadDBProperties() {
-        try (InputStream input = new FileInputStream("./db.properties")) {
+        try (InputStream input = new FileInputStream("C:\\Users\\camil\\IdeaProjects\\FoodWasteReductionPlatform\\src\\db.properties")) {
 
             dbProperties.load(input);
             String dbType = dbProperties.getProperty("db");
             String name = dbProperties.getProperty("name");
             String host = dbProperties.getProperty("host");
             String port = dbProperties.getProperty("port");
+            url = "jdbc:mysql://localhost:3306/mydb";
 
-            url = "jdbc:" + dbType + "://" + host + ":" + port + "/" + name;
+//            url = "jdbc:" + dbType + "://" + host + ":" + port + "/" + name;
             username = dbProperties.getProperty("user");
             password = dbProperties.getProperty("pass");
         } catch (IOException ex) {
@@ -57,6 +58,8 @@ public class DataSource {
         try {
             if (connection == null || connection.isClosed()) {
                 loadDBProperties();
+                Class.forName("com.mysql.cj.jdbc.Driver");
+
                 connection = DriverManager.getConnection(url, username, password);
                 System.out.printf("DB connected");
             } else {
@@ -65,6 +68,8 @@ public class DataSource {
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw ex;
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return connection;
     }

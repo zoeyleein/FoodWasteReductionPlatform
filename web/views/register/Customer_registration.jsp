@@ -15,7 +15,8 @@
     <body>
         <div>Customer Registration Form</div>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
-                <input type="text" id="role" value="Customer" hidden><br>
+                <label for="role">Role:</label><br>
+                <input type="text" id="role" value="Customer"><br>
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name"><br>
                 <label for="email">Email:</label><br>
