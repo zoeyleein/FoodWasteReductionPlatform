@@ -15,17 +15,14 @@
     <body>
         <div>Charity Registration Form</div>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
-                <input type="text" id="role" value="Charity" hidden><br>
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" name="name"><br>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email"><br>
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password"><br>
-                <label for="phone">Phone:</label><br>
-                <input type="text" id="phone" name="phone"><br>
-                <label for="location">Location:</label><br>
-                <input type="text" id="location" name="location"><br>
+                <label for="role" hidden>Role:</label>
+                <input type="text" id="role" value="Charity" hidden>
+                <label for="name">*Charity Name:</label><br>
+                <input type="text" id="name" name="name" required><br>
+                <label for="password">*Password:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <label for="location">*Location:</label><br>
+                <input type="text" id="location" name="location" required><br>
                 <input type="submit" value="Register">
             </form>
     </body>
