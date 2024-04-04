@@ -8,17 +8,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+    </head>    
     <body>
         <h1>Food Waste Reduction Platform</h1>
-        <p>Please enter your credentials</p>
-        <FORM ACTION="LoginServlet" METHOD="POST">
-            User:
-            <INPUT TYPE="TEXT" NAME="name" ><BR>
-            Password:
-            <INPUT TYPE="password" NAME="password" ><P>
-                <INPUT TYPE="SUBMIT"> <!-- Press this button to submit form -->
-        </FORM>
-        <p>If you are not logged click <a href="./views/user_registration.html" target="_blank">here </a>to register</p>
+        <p>Welcome! Text that Jaya will write here </p>
+
+        <p><a href="./views/Signin.jsp">Sign in </a></p>
+        <p><a href="./views//register/role_selection.jsp">Sign up</a></p>
     </body>
 </html>
