@@ -59,6 +59,6 @@ public class ValidateRegistrationServlet extends HttpServlet{
         }
         // TODO maybe a validation method that makes sure we have unique phone numbers and emails?
         // we do not need to validate that the fields are not empty because the form will not submit if they are
-//        response.sendRedirect("views/Signin.jsp");
+        response.sendRedirect("views/Signin.jsp");
     }
 }

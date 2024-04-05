@@ -21,6 +21,19 @@
                 <input type="text" id="name" name="name" required><br>
                 <label for="password">*Password:</label><br>
                 <input type="password" id="password" name="password" required><br>
+                <%--Required fields for not null objects --%>
+                <label for="email" hidden>*Email:</label>
+                <input type="email" id="email" name="email" hidden>
+                <label for="phone" hidden>*Phone:</label>
+                <input type="text" id="phone" name="phone" hidden>
+                <label for="location" hidden>*Location:</label>
+                <input type="text" id="location" name="location" hidden>
+                <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone" hidden>
+                <label for="subscribeToPhone" hidden>Get notifications by Phone</label>
+                <input type="checkbox" id="subscribeToMail" name="subscribeToMail" hidden>
+                <label for="subscribeToMail" hidden>Get notifications by Mail</label>
+                <%--Finish of Required fields for not null objects --%>
+
                 <input type="submit" value="Register">
             </form>
     </body>
