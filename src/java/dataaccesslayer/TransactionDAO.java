@@ -6,16 +6,14 @@ import transferobjects.TransactionDTO;
 
 public interface TransactionDAO {
 
-    public void insertTransaction(TransactionDTO transaction) throws SQLException;
+    void insertTransaction(TransactionDTO transaction) throws SQLException;
 
-    public TransactionDTO getTransactionById(String transactionId);
+    TransactionDTO getTransactionById(String transactionId);
 
-    public List<TransactionDTO> getAllTransactions();
+    List<TransactionDTO> getAllTransactions();
 
-    public void updateTransaction(TransactionDTO transaction);
+    void updateTransaction(TransactionDTO transaction);
 
-    public void deleteTransaction(String transactionId);
-
-
+    void deleteTransaction(String transactionId);
 }
 

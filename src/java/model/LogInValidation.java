@@ -1,6 +1,5 @@
 package model;
 
-import dataaccesslayer.DataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LogInValidation {
-    String error = "error";
     public String logInPageRedirect(String action, String name, String password, Connection con) {
         if (action.equals("Sign in")) {
             return switch (getUserRole(name, password, con)) {
@@ -35,9 +33,8 @@ public class LogInValidation {
                 // Check if any rows were returned
                 if (rs.next()) {
                     // Retrieve the role of the user from the result set
-                    String role = rs.getString("role");
                     // Return the role of the user
-                    return role;
+                    return rs.getString("role");
                 } else {
                     // No user found with provided credentials
                     return null; // Or throw an exception depending on your application's logic

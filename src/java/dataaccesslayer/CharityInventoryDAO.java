@@ -7,15 +7,13 @@ import transferobjects.CharityInventoryDTO;
 public interface CharityInventoryDAO {
 
 
-    public void insertCharityInventory(CharityInventoryDTO charityInventory) throws SQLException;
+    void insertCharityInventory(CharityInventoryDTO charityInventory) throws SQLException;
 
-    public CharityInventoryDTO getCharityInventoryById(int inventoryId);
+    CharityInventoryDTO getCharityInventoryById(int inventoryId);
 
-    public List<CharityInventoryDTO> getAllCharityInventories();
+    List<CharityInventoryDTO> getAllCharityInventories();
 
-    public void updateCharityInventory(CharityInventoryDTO charityInventory);
+    void updateCharityInventory(CharityInventoryDTO charityInventory);
 
-    public void deleteCharityInventory(int inventoryId);
-
-
+    void deleteCharityInventory(int inventoryId);
 }

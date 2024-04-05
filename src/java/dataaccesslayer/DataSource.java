@@ -1,12 +1,11 @@
 package dataaccesslayer;
 
-/**
+/*
  * Version: 2
  * Author: Mayank Arora
  */
 
 import javax.servlet.ServletContext;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -61,7 +60,6 @@ public class DataSource {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);
-            System.out.printf("DB connected");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

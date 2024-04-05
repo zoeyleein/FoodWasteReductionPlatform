@@ -7,15 +7,13 @@ import java.util.List;
 
 public interface ItemDAO {
 
-    public void insertItem(ItemDTO item) throws SQLException;
+    void insertItem(ItemDTO item) throws SQLException;
 
-    public ItemDTO getItemById(int itemId);
+    ItemDTO getItemById(int itemId);
 
-    public List<ItemDTO> getAllItems();
+    List<ItemDTO> getAllItems();
 
-    public void updateItem(ItemDTO item);
+    void updateItem(ItemDTO item);
 
-    public void deleteItem(int itemId);
-
-
+    void deleteItem(int itemId);
 }

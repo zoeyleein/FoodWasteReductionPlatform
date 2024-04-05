@@ -2,7 +2,6 @@ package controller;
 
 import dataaccesslayer.DataSource;
 import dataaccesslayer.UserDAOImpl;
-import model.UserRegistration;
 import transferobjects.UserDTO;
 
 import javax.servlet.ServletContext;
@@ -25,7 +24,6 @@ public class ValidateRegistrationServlet extends HttpServlet{
     String password;
     String phone;
     String location;
-    String userType;
     String role;
     //TODO we need to figure out what were doing for all the registration forms and how we are going to validate them
 
