@@ -1,8 +1,28 @@
 <%-- 
     Document   : Customer_registration
     Created on : Mar 27, 2024, 8:12:59 PM
-    Author     : camil
+    Author     : Andres Porras
 --%>
+
+<%@ page import="dataaccesslayer.DataSource" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.servlet.ServletContext" %>
+
+<%
+    // Instantiate DataSource
+    ServletContext context = pageContext.getServletContext();
+    DataSource dataSource = new DataSource(context);
+
+// Establish database connection
+    Connection connection = null;
+    try {
+        connection = dataSource.getConnection();
+
+        // Query database
+        String query = "SELECT location FROM users";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,8 +45,18 @@
                 <input type="password" id="password" name="password" required><br>
                 <label for="phone">*Phone:</label><br>
                 <input type="text" id="phone" name="phone" required><br>
-                <label for="location">*Location:</label><br>
-                <input type="text" id="location" name="location" required><br>
+                <label for="dropdown">Select your nearest store:</label>
+                <select id="dropdown" name="selectedValue">
+                    <%
+                        // Populate the dropdown
+                        while (resultSet.next()) {
+                            String value = resultSet.getString("location");
+                    %>
+                    <option value="<%= value %>"><%= value %></option>
+                    <%
+                        }
+                    %>
+                </select><br>
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone">
                 <label for="subscribeToPhone">Get notifications by Phone</label><br>
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail">
@@ -35,3 +65,17 @@
             </form>
     </body>
 </html>
+<%
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // Close database connection
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+%>
