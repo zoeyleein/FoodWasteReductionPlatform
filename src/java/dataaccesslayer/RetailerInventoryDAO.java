@@ -6,13 +6,13 @@ import transferobjects.RetailerInventoryDTO;
 
 public interface RetailerInventoryDAO {
 
-    public void insertRetailerInventory(RetailerInventoryDTO retailerInventory) throws SQLException;
+    void insertRetailerInventory(RetailerInventoryDTO retailerInventory) throws SQLException;
 
-    public RetailerInventoryDTO getRetailerInventoryById(int inventoryId);
+    RetailerInventoryDTO getRetailerInventoryById(int inventoryId);
 
-    public List<RetailerInventoryDTO> getAllRetailerInventories();
+    List<RetailerInventoryDTO> getAllRetailerInventories();
 
-    public void updateRetailerInventory(RetailerInventoryDTO retailerInventory);
+    void updateRetailerInventory(RetailerInventoryDTO retailerInventory);
 
-    public void deleteRetailerInventory(int inventoryId);
+    void deleteRetailerInventory(int inventoryId);
 }

@@ -1,11 +1,11 @@
 package dataaccesslayer;
 
-/**
+/*
  * Version: 2
  * Author: Mayank Arora
  */
 
-import java.io.FileInputStream;
+import javax.servlet.ServletContext;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -19,18 +19,21 @@ import java.util.Properties;
 public class DataSource {
     private static Properties dbProperties = new Properties();
     private static Connection connection = null;
-    private static String url;
-    private static String username;
-    private static String password;
+    private String url;
+    private String username;
+    private String password;
 
+    public DataSource(ServletContext context) {
+        loadDBProperties(context);
+    }
 
     /**
      * Sets database properties using the db.properties file.
      * Allows users to edit the file based on their configuration.
      */
 
-    private static void loadDBProperties() {
-        try (InputStream input = new FileInputStream("C:\\Users\\camil\\IdeaProjects\\FoodWasteReductionPlatform\\src\\db.properties")) {
+    private void loadDBProperties(ServletContext context) {
+        try (InputStream input = context.getResourceAsStream("/WEB-INF/db.properties")) {
 
             dbProperties.load(input);
             String dbType = dbProperties.getProperty("db");
@@ -53,22 +56,36 @@ public class DataSource {
      * is already connected.
      */
 
-    public static Connection createConnection() throws SQLException {
+    private synchronized void createConnection() throws SQLException {
         try {
-            if (connection == null || connection.isClosed()) {
-                loadDBProperties();
-                Class.forName("com.mysql.cj.jdbc.Driver");
-
-                connection = DriverManager.getConnection(url, username, password);
-                System.out.printf("DB connected");
-            } else {
-                System.out.println("Cannot create new connection, one exists already");
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            throw ex;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        }
+//        try {
+//            if (connection == null || connection.isClosed()) {
+//                loadDBProperties(context);
+//                Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//                connection = DriverManager.getConnection(url, username, password);
+//                System.out.printf("DB connected");
+//            } else {
+//                System.out.println("Cannot create new connection, one exists already");
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            throw ex;
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return connection;
+
+    }
+
+    public Connection getConnection() throws SQLException {
+        if(connection == null || connection.isClosed()) {
+            createConnection();
         }
         return connection;
     }

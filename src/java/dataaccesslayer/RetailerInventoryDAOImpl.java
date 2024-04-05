@@ -10,11 +10,16 @@ import java.util.List;
 
 public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
 
+    Connection con;
+
+    RetailerInventoryDAOImpl(Connection con){
+        this.con = con;
+    }
+
     @Override
     public void insertRetailerInventory(RetailerInventoryDTO retailerInventory) throws SQLException {
         String sql = "INSERT INTO retailer_inventory (id, users_id, item_id, batch, expiry_date, quantity, unit_price, final_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, retailerInventory.getId()); // Set the RetailerInventoryID manually
             pstmt.setInt(2, retailerInventory.getUsersId());
             pstmt.setInt(3, retailerInventory.getItemId());
@@ -31,8 +36,7 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
     public RetailerInventoryDTO getRetailerInventoryById(int inventoryId) {
         String sql = "SELECT * FROM retailer_inventory WHERE id = ?";
         RetailerInventoryDTO inventory = null;
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, inventoryId);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -56,8 +60,7 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
     public List<RetailerInventoryDTO> getAllRetailerInventories() {
         List<RetailerInventoryDTO> inventories = new ArrayList<>();
         String sql = "SELECT * FROM retailer_inventory";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
+        try (PreparedStatement pstmt = con.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 RetailerInventoryDTO inventory = new RetailerInventoryDTO();
@@ -80,8 +83,7 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
     @Override
     public void updateRetailerInventory(RetailerInventoryDTO retailerInventory) {
         String sql = "UPDATE retailer_inventory SET users_id = ?, item_id = ?, batch = ?, expiry_date = ?, quantity = ?, unit_price = ?, final_price = ? WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, retailerInventory.getUsersId());
             pstmt.setInt(2, retailerInventory.getItemId());
             pstmt.setInt(3, retailerInventory.getBatch());
@@ -99,12 +101,13 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
     @Override
     public void deleteRetailerInventory(int inventoryId) {
         String sql = "DELETE FROM retailer_inventory WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, inventoryId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
 }

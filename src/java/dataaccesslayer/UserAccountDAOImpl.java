@@ -10,11 +10,16 @@ import java.util.List;
 
 public class UserAccountDAOImpl implements UserAccountDAO {
 
+    Connection con;
+
+    UserAccountDAOImpl(Connection con) {
+        this.con = con;
+    }
+
     @Override
     public void insertUserAccount(UserAccountDTO userAccount) throws SQLException {
         String sql = "INSERT INTO userAccount (id, balance, users_id) VALUES (?, ?, ?)";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, userAccount.getId());
             pstmt.setDouble(2, userAccount.getBalance());
             pstmt.setInt(3, userAccount.getUsersId());
@@ -26,8 +31,7 @@ public class UserAccountDAOImpl implements UserAccountDAO {
     public UserAccountDTO getUserAccountById(int accountId) {
         String sql = "SELECT * FROM userAccount WHERE id = ?";
         UserAccountDTO account = null;
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, accountId);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -46,8 +50,7 @@ public class UserAccountDAOImpl implements UserAccountDAO {
     public List<UserAccountDTO> getAllUserAccounts() {
         List<UserAccountDTO> accounts = new ArrayList<>();
         String sql = "SELECT * FROM userAccount";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
+        try (PreparedStatement pstmt = con.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 UserAccountDTO account = new UserAccountDTO();
@@ -65,8 +68,7 @@ public class UserAccountDAOImpl implements UserAccountDAO {
     @Override
     public void updateUserAccount(UserAccountDTO userAccount) {
         String sql = "UPDATE userAccount SET balance = ?, users_id = ? WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setDouble(1, userAccount.getBalance());
             pstmt.setInt(2, userAccount.getUsersId());
             pstmt.setInt(3, userAccount.getId());
@@ -79,12 +81,13 @@ public class UserAccountDAOImpl implements UserAccountDAO {
     @Override
     public void deleteUserAccount(int accountId) {
         String sql = "DELETE FROM userAccount WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, accountId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
 }

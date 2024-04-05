@@ -1,7 +1,6 @@
 package dataaccesslayer;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,15 +9,17 @@ import java.util.List;
 import transferobjects.UserDTO;
 
 public class UserDAOImpl implements UserDAO {
-
+    private Connection con;
     List<UserDTO> users = new ArrayList<>();
 
+    public UserDAOImpl(Connection con) {
+        this.con = con;
+    }
 
     @Override
     public void insertUser(UserDTO user) throws SQLException {
         String sql = "INSERT INTO users (id, name, password, subscribeToPhone, subscribeToEmail, location, role, phone, mail, preference) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, user.getId());
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getPassword());
@@ -41,8 +42,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public UserDTO getUserById(int userId) {
         String sql = "SELECT * FROM users WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -70,8 +70,7 @@ public class UserDAOImpl implements UserDAO {
     public List<UserDTO> getAllUsers() {
 
         String sql = "SELECT * FROM users";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
+        try (PreparedStatement pstmt = con.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 UserDTO user = new UserDTO();
@@ -96,8 +95,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void updateUser(UserDTO user) {
         String sql = "UPDATE users SET name = ?, password = ?, subscribeToPhone = ?, subscribeToEmail = ?, location = ?, role = ?, phone = ?, mail = ?, preference = ? WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getPassword());
             pstmt.setBoolean(3, user.getSubscribeToPhone());
@@ -117,8 +115,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void deleteUser(int userId) {
         String sql = "DELETE FROM users WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.executeUpdate();
         } catch (SQLException e) {

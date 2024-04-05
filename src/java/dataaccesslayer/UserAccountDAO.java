@@ -6,13 +6,13 @@ import transferobjects.UserAccountDTO;
 
 public interface UserAccountDAO {
 
-    public void insertUserAccount(UserAccountDTO userAccount) throws SQLException;
+    void insertUserAccount(UserAccountDTO userAccount) throws SQLException;
 
-    public UserAccountDTO getUserAccountById(int accountId);
+    UserAccountDTO getUserAccountById(int accountId);
 
-    public List<UserAccountDTO> getAllUserAccounts();
+    List<UserAccountDTO> getAllUserAccounts();
 
-    public void updateUserAccount(UserAccountDTO userAccount);
+    void updateUserAccount(UserAccountDTO userAccount);
 
-    public void deleteUserAccount(int accountId);
+    void deleteUserAccount(int accountId);
 }

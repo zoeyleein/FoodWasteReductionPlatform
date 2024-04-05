@@ -10,11 +10,16 @@ import transferobjects.ItemDTO;
 
 public class ItemDAOImpl implements ItemDAO {
 
+    Connection con;
+
+    public ItemDAOImpl(Connection con) {
+        this.con = con;
+    }
+
     @Override
     public void insertItem(ItemDTO item) throws SQLException {
         String sql = "INSERT INTO item (id, name, category) VALUES (?, ?, ?)";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, item.getId());
             pstmt.setString(2, item.getName());
             pstmt.setString(3, item.getCategory());
@@ -30,8 +35,7 @@ public class ItemDAOImpl implements ItemDAO {
     public ItemDTO getItemById(int itemId) {
         String sql = "SELECT * FROM item WHERE id = ?";
         ItemDTO item = null;
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, itemId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -51,8 +55,7 @@ public class ItemDAOImpl implements ItemDAO {
     public List<ItemDTO> getAllItems() {
         List<ItemDTO> items = new ArrayList<>();
         String sql = "SELECT * FROM item";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
+        try (PreparedStatement pstmt = con.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 ItemDTO item = new ItemDTO();
@@ -70,8 +73,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public void updateItem(ItemDTO item) {
         String sql = "UPDATE item SET name = ?, category = ? WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, item.getName());
             pstmt.setString(2, item.getCategory());
             pstmt.setInt(3, item.getId());
@@ -85,8 +87,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public void deleteItem(int itemId) {
         String sql = "DELETE FROM item WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, itemId);
             pstmt.executeUpdate();
             System.out.println("Item deleted successfully");
@@ -94,4 +95,6 @@ public class ItemDAOImpl implements ItemDAO {
             e.printStackTrace();
         }
     }
+
+
 }
