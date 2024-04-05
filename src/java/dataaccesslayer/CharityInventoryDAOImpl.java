@@ -10,11 +10,16 @@ import java.util.List;
 
 public class CharityInventoryDAOImpl implements CharityInventoryDAO {
 
+    Connection con;
+
+    public CharityInventoryDAOImpl(Connection con) {
+        this.con = con;
+    }
+
     @Override
     public void insertCharityInventory(CharityInventoryDTO charityInventory) throws SQLException {
         String sql = "INSERT INTO charity_inventory (id, users_id, quantity, userInventory_id) VALUES (?, ?, ?, ?)";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, charityInventory.getId());
             pstmt.setInt(2, charityInventory.getUsersId());
             pstmt.setString(3, charityInventory.getQuantity());
@@ -27,8 +32,7 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
     public CharityInventoryDTO getCharityInventoryById(int inventoryId) {
         String sql = "SELECT * FROM charity_inventory WHERE id = ?";
         CharityInventoryDTO inventory = null;
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, inventoryId);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -48,8 +52,7 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
     public List<CharityInventoryDTO> getAllCharityInventories() {
         List<CharityInventoryDTO> inventories = new ArrayList<>();
         String sql = "SELECT * FROM charity_inventory";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
+        try (PreparedStatement pstmt = con.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 CharityInventoryDTO inventory = new CharityInventoryDTO();
@@ -68,8 +71,7 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
     @Override
     public void updateCharityInventory(CharityInventoryDTO charityInventory) {
         String sql = "UPDATE charity_inventory SET users_id = ?, quantity = ?, userInventory_id = ? WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, charityInventory.getUsersId());
             pstmt.setString(2, charityInventory.getQuantity());
             pstmt.setInt(3, charityInventory.getUserInventoryId());
@@ -83,12 +85,13 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
     @Override
     public void deleteCharityInventory(int inventoryId) {
         String sql = "DELETE FROM charity_inventory WHERE id = ?";
-        try (Connection con = DataSource.createConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, inventoryId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
 }

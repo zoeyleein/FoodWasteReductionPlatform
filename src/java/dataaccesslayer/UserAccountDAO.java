@@ -15,4 +15,5 @@ public interface UserAccountDAO {
     public void updateUserAccount(UserAccountDTO userAccount);
 
     public void deleteUserAccount(int accountId);
+
 }

@@ -15,4 +15,6 @@ public interface RetailerInventoryDAO {
     public void updateRetailerInventory(RetailerInventoryDTO retailerInventory);
 
     public void deleteRetailerInventory(int inventoryId);
+
+
 }
