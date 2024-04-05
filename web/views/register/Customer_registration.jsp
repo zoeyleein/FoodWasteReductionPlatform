@@ -22,6 +22,8 @@
         String query = "SELECT location FROM users";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
+        //TODO the dropdown needs to be reworked... currently displays all locations meaning duplicates as well
+        //TODO need method to check for dupes before populating dropdown
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

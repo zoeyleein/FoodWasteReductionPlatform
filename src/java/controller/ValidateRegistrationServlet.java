@@ -2,7 +2,8 @@ package controller;
 
 import dataaccesslayer.DataSource;
 import dataaccesslayer.UserDAOImpl;
-import transferobjects.UserDTO;
+import model.DTOBuilder;
+import model.UserRegistration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -26,8 +27,9 @@ public class ValidateRegistrationServlet extends HttpServlet{
     String location;
     String role;
     //TODO we need to figure out what were doing for all the registration forms and how we are going to validate them
-
+    DTOBuilder builder = new DTOBuilder();
     DataSource dataSource;
+    UserRegistration registration = new UserRegistration();
 
     @Override
     public void init() throws ServletException {
@@ -43,33 +45,19 @@ public class ValidateRegistrationServlet extends HttpServlet{
         email = request.getParameter("email");
         password = request.getParameter("password");
         phone = request.getParameter("phone");
-        location = request.getParameter("location");
-       // role = request.getParameter("role");
+        location = request.getParameter("selectedValue");
+       // TODO add subscription parameters here
         try (Connection connection = dataSource.getConnection()) {
-
-            if (name == null || email == null || password == null || phone == null || location == null || role == null) {
-                // TODO different type of validation not the null type, need regex method in model class
-                out.println("Please fill all the fields.");
-            } else {
-                // Create a new UserDTO object
-                UserDTO user = new UserDTO();
-                user.setName(name);
-                user.setPassword(password);
-                user.setRole(role);
-                user.setMail(email);
-                user.setPhone(phone);
-                user.setLocation(location);
+            if (registration.userExists(name, connection)) {
+                response.sendRedirect(registration.registrationErrorRedirect(role));
+            } else{// at some point add 10 digit phone number validation if wanted
                 UserDAOImpl userDAO = new UserDAOImpl(connection);
-                userDAO.insertUser(user);
-                out.println("User registered successfully!");
+                userDAO.insertUser(builder.userBuilder(name, password, role, email, phone, location));
+                response.sendRedirect("views/Signin.jsp");
             }
         }catch (SQLException e) {
                 out.println("Failed to register user. Please try again later.");
                 e.printStackTrace();
             }
-
-        // TODO maybe a validation method that makes sure we have unique phone numbers and emails?
-        // we do not need to validate that the fields are not empty because the form will not submit if they are
-        response.sendRedirect("views/Signin.jsp");
     }
 }
