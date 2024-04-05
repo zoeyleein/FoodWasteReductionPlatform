@@ -3,8 +3,6 @@ package controller;
 import dataaccesslayer.DataSource;
 import dataaccesslayer.UserDAOImpl;
 import model.DTOBuilder;
-import transferobjects.UserDTO;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
