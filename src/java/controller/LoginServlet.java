@@ -2,6 +2,7 @@ package controller;
 
 import dataaccesslayer.DataSource;
 import model.LogInValidation;
+import transferobjects.UserDTO;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -35,7 +37,15 @@ public class LoginServlet extends HttpServlet {
         //TODO these variables will be passed to model where our logic will happen
         // we need to check as well what type of user they are in the db to redirect them to the correct page
         try (Connection connection = dataSource.getConnection()) {
-            response.sendRedirect(logInValidation.logInPageRedirect(action, username, password, connection));
+            UserDTO user = logInValidation.getUserRoleAndId(username, password, connection);
+            String nextPage = logInValidation.logInPageRedirect(action, user.getRole());
+
+            if (user.getRole().equals("Retailer")) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userId", user.getId());
+            }
+
+            response.sendRedirect(nextPage);
         } catch(SQLException e){
             e.printStackTrace();
         }

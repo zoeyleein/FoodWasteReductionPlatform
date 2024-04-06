@@ -5,6 +5,7 @@ import dataaccesslayer.DataSource;
 import dataaccesslayer.UserDAOImpl;
 import model.DTOBuilder;
 import model.UserRegistration;
+import transferobjects.UserDTO;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
