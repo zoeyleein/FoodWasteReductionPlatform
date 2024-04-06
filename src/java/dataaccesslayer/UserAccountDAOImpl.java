@@ -12,7 +12,7 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 
     Connection con;
 
-    UserAccountDAOImpl(Connection con) {
+    public UserAccountDAOImpl(Connection con) {
         this.con = con;
     }
 

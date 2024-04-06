@@ -12,7 +12,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     Connection con;
 
-    TransactionDAOImpl(Connection con) {
+    public TransactionDAOImpl(Connection con) {
         this.con = con;
     }
 
