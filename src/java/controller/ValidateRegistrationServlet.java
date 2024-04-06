@@ -49,7 +49,7 @@ public class ValidateRegistrationServlet extends HttpServlet {
         password = request.getParameter("password");
         phone = request.getParameter("phone");
 
-        if(Objects.equals(role, "Customer")) {
+        if(Objects.equals(role, "Customer") || Objects.equals(role, "Charity")) {
             location = request.getParameter("selectedValue");
         } else{
             location = request.getParameter("location");
