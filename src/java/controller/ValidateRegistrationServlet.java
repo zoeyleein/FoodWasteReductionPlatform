@@ -2,7 +2,6 @@ package controller;
 
 import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
-import dataaccesslayer.UserDAOImpl;
 import model.DTOBuilder;
 import model.UserRegistration;
 import transferobjects.UserDTO;
@@ -17,8 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 
-import static java.lang.System.out;
 
 @WebServlet(name = "ValidateRegistrationServlet", urlPatterns = {"/ValidateRegistrationServlet"})
 public class ValidateRegistrationServlet extends HttpServlet {
@@ -32,6 +31,7 @@ public class ValidateRegistrationServlet extends HttpServlet {
     DTOBuilder builder = new DTOBuilder();
     DataSource dataSource;
     UserBusinessLogic userBusinessLogic;
+    UserRegistration registration = new UserRegistration();
 
     @Override
     public void init() throws ServletException {
@@ -48,28 +48,25 @@ public class ValidateRegistrationServlet extends HttpServlet {
         email = request.getParameter("email");
         password = request.getParameter("password");
         phone = request.getParameter("phone");
-        location = request.getParameter("selectedValue");
+
+        if(Objects.equals(role, "Customer")) {
+            location = request.getParameter("selectedValue");
+        } else{
+            location = request.getParameter("location");
+        }
         // TODO add subscription parameters here
         try (Connection connection = dataSource.getConnection()) {
 
-            if (name == null || email == null || password == null || phone == null || location == null || role == null) {
-                // TODO different type of validation not the null type, need regex method in model class
-                out.println("Please fill all the fields.");
-            } else {
+            if (registration.userExists(name, connection)) {
+                response.sendRedirect(registration.registrationErrorRedirect(role));
+            } else{// at some point add 10 digit phone number validation if wanted
                 // Create a new UserDTO object
-                UserDTO user = new UserDTO();
-                user.setName(name);
-                user.setPassword(password);
-                user.setRole(role);
-                user.setMail(email);
-                user.setPhone(phone);
-                user.setLocation(location);
+                UserDTO user = builder.userBuilder(name, password, role, email, phone, location);
                 userBusinessLogic = new UserBusinessLogic(connection);
                 userBusinessLogic.addUser(user);
-                out.println("User registered successfully!");
+                response.sendRedirect("views/Signin.jsp");
             }
         } catch (SQLException e) {
-            out.println("Failed to register user. Please try again later.");
             e.printStackTrace();
         }
     }
