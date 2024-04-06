@@ -1,5 +1,6 @@
 package controller;
 
+import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import dataaccesslayer.UserDAOImpl;
 import transferobjects.UserDTO;
@@ -28,6 +29,7 @@ public class ValidateRegistrationServlet extends HttpServlet{
     //TODO we need to figure out what were doing for all the registration forms and how we are going to validate them
 
     DataSource dataSource;
+    UserBusinessLogic userBusinessLogic;
 
     @Override
     public void init() throws ServletException {
@@ -59,8 +61,10 @@ public class ValidateRegistrationServlet extends HttpServlet{
                 user.setMail(email);
                 user.setPhone(phone);
                 user.setLocation(location);
-                UserDAOImpl userDAO = new UserDAOImpl(connection);
-                userDAO.insertUser(user);
+//                UserDAOImpl userDAO = new UserDAOImpl(connection);
+//                userDAO.insertUser(user);
+                userBusinessLogic = new UserBusinessLogic(connection);
+                userBusinessLogic.addUser(user);
                 out.println("User registered successfully!");
             }
         }catch (SQLException e) {

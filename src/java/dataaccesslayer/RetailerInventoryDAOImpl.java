@@ -12,7 +12,7 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
 
     Connection con;
 
-    RetailerInventoryDAOImpl(Connection con){
+    public RetailerInventoryDAOImpl(Connection con){
         this.con = con;
     }
 
