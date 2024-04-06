@@ -15,6 +15,7 @@
 <body>
 <div>Retailer Inventory</div>
 <form action="${pageContext.request.contextPath}/RetailerInventoryServlet" method="post">
+    <fieldset id="inventoryFields" disabled>
     <label for="productName" >Product Name: </label><br>
     <input type="text" id="productName" name="productName" required><br>
     <label for="category" >Product Category: </label><br>
@@ -32,7 +33,6 @@
     <label for="expiryDate">Expiry Date:</label><br>
     <input type="datetime-local" id="expiryDate" name="expiryDate" onchange="validateExpiryDate()"><br>
     <span id="expiryDateError" style="color: red;"></span>
-
     <script>
         function validateExpiryDate() {
             var inputDate = new Date(document.getElementById("expiryDate").value);
@@ -48,15 +48,23 @@
     </script><br>
     <label for="price" >Unit Price: </label><br>
     <input type="number" id="price" name="price" step="0.01" min="0" required><br>
+    </fieldset>
+
+    <input type="submit" name="action" value="Add Item"><br><br>
 
 
-    <input type="submit" value="Add Item"><br><br>
+    <input type="submit" name="action" value="Update Item"><br>
 
-
-    <input type="submit" value="Update Item"><br>
-
-    <input type="submit" value="View Inventory">
+    <input type="submit" name="action" value="View Inventory" onclick="removeRequired()">
 
 </form>
+<script>
+    function removeRequired() {
+        var fields = document.getElementById("inventoryFields").getElementsByTagName('input');
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].removeAttribute('required');
+        }
+    }
+</script>
 </body>
 </html>
