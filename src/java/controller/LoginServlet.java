@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * @author aaronthomp
@@ -36,6 +37,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         //TODO these variables will be passed to model where our logic will happen
         // we need to check as well what type of user they are in the db to redirect them to the correct page
+        if(Objects.equals(action, "Sign in")){
         try (Connection connection = dataSource.getConnection()) {
             UserDTO user = logInValidation.getUserRoleAndId(username, password, connection);
             String nextPage = logInValidation.logInPageRedirect(action, user.getRole());
@@ -49,6 +51,10 @@ public class LoginServlet extends HttpServlet {
         } catch(SQLException e){
             e.printStackTrace();
         }
+        }else {
+            response.sendRedirect("views/register/role_selection.jsp");
+        }
+
 
     }
 
