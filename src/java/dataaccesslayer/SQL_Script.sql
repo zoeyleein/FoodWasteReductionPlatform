@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
                                               `subscribeToEmail` TINYINT NOT NULL,
                                               `location` VARCHAR(50) NOT NULL,
                                               `role` VARCHAR(50) NOT NULL,
-                                              `phone` VARCHAR(50) NOT NULL,
-                                              `mail` VARCHAR(50) NOT NULL,
+                                              `phone` VARCHAR(50) NULL,
+                                              `mail` VARCHAR(50) NULL,
                                               `preference` VARCHAR(50) NULL,
                                               PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;

@@ -35,9 +35,7 @@ public class LoginServlet extends HttpServlet {
         //TODO these variables will be passed to model where our logic will happen
         // we need to check as well what type of user they are in the db to redirect them to the correct page
         try (Connection connection = dataSource.getConnection()) {
-            //String redirectPath = logInValidation.logInPageRedirect(action, username, password, connection);
-            //response.sendRedirect(redirectPath);
-            response.sendRedirect(logInValidation.logInPageRedirect(action, username, password, connection)); // not a finished method
+            response.sendRedirect(logInValidation.logInPageRedirect(action, username, password, connection));
         } catch(SQLException e){
             e.printStackTrace();
         }

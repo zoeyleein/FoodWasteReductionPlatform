@@ -3,7 +3,8 @@ package controller;
 import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import dataaccesslayer.UserDAOImpl;
-import transferobjects.UserDTO;
+import model.DTOBuilder;
+import model.UserRegistration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,15 +20,15 @@ import java.sql.SQLException;
 import static java.lang.System.out;
 
 @WebServlet(name = "ValidateRegistrationServlet", urlPatterns = {"/ValidateRegistrationServlet"})
-public class ValidateRegistrationServlet extends HttpServlet{
+public class ValidateRegistrationServlet extends HttpServlet {
     String name = null;
     String email;
     String password;
     String phone;
     String location;
     String role;
-    //TODO we need to figure out what were doing for all the registration forms and how we are going to validate them
-
+    //TODO we need to figure out what we're doing for all the registration forms and how we are going to validate them
+    DTOBuilder builder = new DTOBuilder();
     DataSource dataSource;
     UserBusinessLogic userBusinessLogic;
 
@@ -37,6 +38,7 @@ public class ValidateRegistrationServlet extends HttpServlet{
         ServletContext context = getServletContext();
         dataSource = new DataSource(context);
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false); // false means don't create a session if it doesn't exist
@@ -45,8 +47,8 @@ public class ValidateRegistrationServlet extends HttpServlet{
         email = request.getParameter("email");
         password = request.getParameter("password");
         phone = request.getParameter("phone");
-        location = request.getParameter("location");
-       // role = request.getParameter("role");
+        location = request.getParameter("selectedValue");
+        // TODO add subscription parameters here
         try (Connection connection = dataSource.getConnection()) {
 
             if (name == null || email == null || password == null || phone == null || location == null || role == null) {
@@ -61,19 +63,13 @@ public class ValidateRegistrationServlet extends HttpServlet{
                 user.setMail(email);
                 user.setPhone(phone);
                 user.setLocation(location);
-//                UserDAOImpl userDAO = new UserDAOImpl(connection);
-//                userDAO.insertUser(user);
                 userBusinessLogic = new UserBusinessLogic(connection);
                 userBusinessLogic.addUser(user);
                 out.println("User registered successfully!");
             }
-        }catch (SQLException e) {
-                out.println("Failed to register user. Please try again later.");
-                e.printStackTrace();
-            }
-
-        // TODO maybe a validation method that makes sure we have unique phone numbers and emails?
-        // we do not need to validate that the fields are not empty because the form will not submit if they are
-        response.sendRedirect("views/Signin.jsp");
+        } catch (SQLException e) {
+            out.println("Failed to register user. Please try again later.");
+            e.printStackTrace();
+        }
     }
 }

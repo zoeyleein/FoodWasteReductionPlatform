@@ -26,8 +26,8 @@
                 <input type="email" id="email" name="email" hidden>
                 <label for="phone" hidden>*Phone:</label>
                 <input type="text" id="phone" name="phone" hidden>
-                <label for="location" hidden>*Location:</label>
-                <input type="text" id="location" name="location" hidden>
+                <label for="location">*Location:</label><br>
+                <input type="text" id="location" name="location" required><br>
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone" hidden>
                 <label for="subscribeToPhone" hidden>Get notifications by Phone</label>
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail" hidden>
