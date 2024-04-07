@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>CustomerView</title><%-- this will be what the user sees when they log in --%>
+    <link href="../style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 
