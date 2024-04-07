@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<h1>Food Waste Reduction Platform</h1>
 <form action="${pageContext.request.contextPath}/SelectUserTypeServlet" method="POST">
     <label for="userType">Select what type of user you are:</label><br>
     <select name="userType" id="userType">

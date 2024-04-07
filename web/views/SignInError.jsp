@@ -28,7 +28,7 @@
     <input type="submit" name="action" value="Sign in">
 </FORM>
 <p class="error">The information entered was not correct.</p>
-<p>Let's use this Sign Up button instead of the hyperlink and move it when we clean this page up</p>
+<p>If you are not register yet, please do it here</p>
 <form action="${pageContext.request.contextPath}/LoginServlet" method="POST">
     <input type="submit" name="action" value="Sign up">
 </form>
