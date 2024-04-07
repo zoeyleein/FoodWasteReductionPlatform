@@ -19,7 +19,7 @@
         connection = dataSource.getConnection();
 
         // Query database
-        String query = "SELECT location FROM users";
+        String query = "SELECT DISTINCT location FROM users";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         //TODO the dropdown needs to be reworked... currently displays all locations meaning duplicates as well
