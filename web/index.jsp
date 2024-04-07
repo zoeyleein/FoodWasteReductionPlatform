@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./style/style.css" type="text/css" rel="stylesheet">
 </head>
+
 <body class = "home-page">
 <div class="logo-container">
     <img src="image/logo.png" alt="Logo">
@@ -27,4 +28,12 @@
     <input type="submit" name="action" value="Sign Up">
 </form>
 </body>
+<p>Let's make every meal count.
+
+
+
+
+
+
+</p>
 </html>
