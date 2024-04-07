@@ -78,6 +78,12 @@ label[for="userType"] {
     border-color: #45a049;
 }
 
+footer p {
+    padding: 30px;
+    letter-spacing: 0px;
+    font-size: 12px
+}
+
 /* home page */
 .home-page {
     padding-top: 50px;
