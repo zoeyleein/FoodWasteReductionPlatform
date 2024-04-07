@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventory</title>
-    <link href="../style/style.css" type="text/css" rel="stylesheet">
+    <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <h1>Inventory</h1>
