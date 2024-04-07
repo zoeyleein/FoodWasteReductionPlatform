@@ -12,6 +12,14 @@
     <link href="../style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<script>
 
+    function redirectToPurchaseView() {
+
+        window.location.href = "CustomerPurhchaseView.jsp"
+
+    }
+</script>
+<button onclick="redirectToPurchaseView()">Buy</button>
 </body>
 </html>
