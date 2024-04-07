@@ -1,5 +1,6 @@
 package controller;
 
+import businesslayer.RetailerInventoryBusinessLogic;
 import dataaccesslayer.DataSource;
 import dataaccesslayer.RetailerInventoryDAOImpl;
 import model.DTOBuilder;
@@ -75,7 +76,9 @@ public class RetailerInventoryServlet extends HttpServlet {
                 itemId = worker.insertAndGetGeneratedId(connection, item);
                 RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate);
                 RetailerInventoryDAOImpl retailerInventoryDAO = new RetailerInventoryDAOImpl(connection);
-                retailerInventoryDAO.insertRetailerInventory(retailInventory);
+//                retailerInventoryDAO.insertRetailerInventory(retailInventory);
+                RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
+                retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
                 response.sendRedirect("view/RetailerView.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,6 +90,9 @@ public class RetailerInventoryServlet extends HttpServlet {
                 List<InventoryItemDTO> inventory = worker.retrieveInventory(connection, retailId);
                 request.setAttribute("inventory", inventory);
                 System.out.println("Inventory: " + inventory);
+                for(InventoryItemDTO inventoryItemDTO: inventory){
+                    System.out.println(inventoryItemDTO);
+                }
                 RequestDispatcher dispatcher = request.getRequestDispatcher("views/RetailerInventory.jsp");
                 dispatcher.forward(request, response);
             } catch (SQLException e) {

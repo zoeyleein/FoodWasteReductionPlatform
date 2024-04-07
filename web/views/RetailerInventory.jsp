@@ -4,6 +4,10 @@
   Time: 5:22 p.m.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +30,7 @@
     <!-- Iterate over inventory data and generate table rows -->
     <c:forEach items="${inventory}" var="item">
         <tr>
+
             <td>${item.getName()}</td>
             <td>${item.getCategory()}</td>
             <td>${item.getQuantity()}</td>
@@ -33,6 +38,7 @@
             <td>${item.getFinalPrice()}</td>
         </tr>
     </c:forEach>
+
     </tbody>
 </table>
 </body>
