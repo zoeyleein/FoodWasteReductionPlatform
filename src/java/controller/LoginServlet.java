@@ -40,14 +40,18 @@ public class LoginServlet extends HttpServlet {
         if(Objects.equals(action, "Sign in")){
         try (Connection connection = dataSource.getConnection()) {
             UserDTO user = logInValidation.getUserRoleAndId(username, password, connection);
-            String nextPage = logInValidation.logInPageRedirect(action, user.getRole());
+            if (user != null) {
+                String nextPage = logInValidation.logInPageRedirect(action, user.getRole());
 
-            if (user.getRole().equals("Retailer")) {
-                HttpSession session = request.getSession();
-                session.setAttribute("userId", user.getId());
+                if (user.getRole().equals("Retailer")) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userId", user.getId());
+                }
+
+                response.sendRedirect(nextPage);
+            } else {
+                response.sendRedirect("views/SignInError.jsp");
             }
-
-            response.sendRedirect(nextPage);
         } catch(SQLException e){
             e.printStackTrace();
         }
