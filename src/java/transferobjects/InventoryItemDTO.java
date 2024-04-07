@@ -56,4 +56,15 @@ public class InventoryItemDTO {
     public void setFinalPrice(double finalPrice) {
         this.finalPrice = finalPrice;
     }
+
+    @Override
+    public String toString() {
+        return
+                "name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", quantity=" + quantity +
+                ", expiryDate=" + expiryDate +
+                ", finalPrice=" + finalPrice;
+    }
+
 }
