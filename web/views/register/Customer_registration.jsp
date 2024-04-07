@@ -35,7 +35,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Customer Registration Form</div>
+    <h1>Food Waste Reduction Platform</h1>
+    <div>Customer Registration Form</div>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
                 <label for="role" hidden>Role:</label>
                 <input type="text" id="role" value="Customer" hidden>
