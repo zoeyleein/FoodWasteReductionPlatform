@@ -15,7 +15,7 @@
 <body>
 <div>Retailer Inventory</div>
 <form action="${pageContext.request.contextPath}/RetailerInventoryServlet" method="post">
-    <fieldset id="inventoryFields" disabled>
+    <fieldset id="inventoryFields">
     <label for="productName" >Product Name: </label><br>
     <input type="text" id="productName" name="productName" required><br>
     <label for="category" >Product Category: </label><br>
@@ -27,7 +27,7 @@
         <option value="Dairy & Eggs">Dairy & Eggs</option>
     </select><br>
     <label for="batch" >Batch Number: </label><br>
-    <input type="text" id="batch" name="batch" required><br>
+    <input type="number" id="batch" name="batch" required><br>
     <label for="quantity" >Quantity: </label><br>
     <input type="number" id="quantity" name="quantity" min="0" required><br>
     <label for="expiryDate">Expiry Date:</label><br>
