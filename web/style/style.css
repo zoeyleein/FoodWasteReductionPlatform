@@ -79,9 +79,9 @@ label[for="userType"] {
 }
 
 footer p {
-    padding: 30px;
-    letter-spacing: 0px;
-    font-size: 12px
+    padding: 50px;
+    letter-spacing: 1px;
+    font-size: 14px
 }
 
 /* home page */
@@ -120,7 +120,7 @@ footer p {
     max-width: 70%;
 }
 
-.home-page p{
+.content-container p{
     font-weight: 100;
     letter-spacing: 1.5px;
     line-height: 2;
