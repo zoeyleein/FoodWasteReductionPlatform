@@ -11,9 +11,11 @@
         <title>Retailer Registration Form</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <div>Retailer Registration Form</div>
+    <h1>Food Waste Reduction Platform</h1>
+    <div>Retailer Registration Form</div>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
                 <label for="role" hidden>Role:</label>
                 <input type="text" id="role" value="Retailer" hidden>

@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>CharityView</title> <%-- this is what the charities will see when they log in --%>
+    <link href="../style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 
