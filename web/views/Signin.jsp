@@ -7,14 +7,18 @@
         <link href="../style/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <h1>Food Waste Reduction Platform</h1>
-        <p>Please enter your credentials</p>
-        <FORM action="${pageContext.request.contextPath}/LoginServlet" method="POST">
-            User:
-            <input type="TEXT" name="name" required><br>
-            Password:
+<div class="container">
+    <div class="content">
+        <h1>Sign In</h1>
+        <h4>Please enter your credentials</h4>
+        <form action="${pageContext.request.contextPath}/LoginServlet" method="POST" class="signin-form">
+            <p>User :</p>
+            <input type="text" name="name" required><br>
+            <p>Password :</p>
             <input type="password" name="password" required><br>
-                <input type="submit" name="action" value="Sign in">
-        </FORM>
+            <input type="submit" name="action" value="Sign in">
+        </form>
+    </div>
+</div>
     </body>
 </html>
