@@ -17,7 +17,8 @@
     <body>
 
         <div class="logoblack-container">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
+            <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo"></a>
         </div>
 
     <div class = "roleselection">

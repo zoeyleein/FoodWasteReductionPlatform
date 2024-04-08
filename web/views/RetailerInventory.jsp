@@ -18,6 +18,9 @@
 </head>
 <body>
 
+    <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+    <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo"></a>
+
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
 </ul>
