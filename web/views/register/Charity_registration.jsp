@@ -34,8 +34,13 @@
         <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
     </head>
     <body class = "registration">
+
+    <div class="logoblack-container">
+                <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
+    </div>
+
     <div class="container">
-    <h1>Retailer Registration Form</h1>
+    <h1>Charity Registration Form</h1>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
             <div class="hidden">
                 <label for="role" hidden>Role :</label>
@@ -59,6 +64,7 @@
                     %>
                 </select><br>
                 <%--Required fields for not null objects --%>
+                <br>
             <div class="hidden">
                 <label for="email" hidden>*Email :</label>
                 <input type="email" id="email" name="email" hidden>
@@ -70,7 +76,9 @@
                 <label for="subscribeToMail" hidden>Get notifications by Mail</label>
             </div>
                 <%--Finish of Required fields for not null objects --%>
+                <div style="text-align: right; background-color: white;">
                 <input type="submit" value="Register">
+                <div>
             </form>
         </div>
     </body>

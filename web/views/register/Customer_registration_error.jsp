@@ -36,6 +36,11 @@
     <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body class = "registration">
+
+<div class="logoblack-container">
+            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
+</div>
+
 <div class="container">
 <h1>Customer Registration Form</h1>
 <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
@@ -69,7 +74,10 @@
     <label for="subscribeToPhone">Get notifications by Phone</label><br>
     <input type="checkbox" id="subscribeToMail" name="subscribeToMail">
     <label for="subscribeToMail">Get notifications by Mail</label><br>
+    <br>
+    <div style="text-align: right; background-color: white;">
     <input type="submit" value="Register">
+    </div>
 </form>
 </div>
 </body>

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../style/style.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body class = "signin">
         <div class="logoblack-container">
             <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
         </div>

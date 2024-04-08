@@ -15,11 +15,12 @@
     </head>
 
     <body>
+
         <div class="logoblack-container">
             <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
         </div>
-    <div class = "roleselection">
 
+    <div class = "roleselection">
     <form action="${pageContext.request.contextPath}/SelectUserTypeServlet" method="POST">
         <label for="userType">Select the type of user</label><br>
         <select name="userType" id="userType" class="select-dropdown">
