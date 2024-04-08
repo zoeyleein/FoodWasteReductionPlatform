@@ -40,7 +40,7 @@
     </div>
 
     <div class="container">
-    <h1>Retailer Registration Form</h1>
+    <h1>Charity Registration Form</h1>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
             <div class="hidden">
                 <label for="role" hidden>Role :</label>
@@ -64,6 +64,7 @@
                     %>
                 </select><br>
                 <%--Required fields for not null objects --%>
+                <br>
             <div class="hidden">
                 <label for="email" hidden>*Email :</label>
                 <input type="email" id="email" name="email" hidden>

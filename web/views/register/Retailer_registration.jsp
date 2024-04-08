@@ -46,7 +46,7 @@
                 <label for="subscribeToMail" hidden>Get notifications by Mail</label>
             </div>
                 <%--Finish of Required fields for not null objects --%>
-
+                <br>
                 <input type="submit" value="Register">
             </form>
         </div>

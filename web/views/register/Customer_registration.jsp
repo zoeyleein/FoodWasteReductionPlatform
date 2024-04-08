@@ -73,6 +73,7 @@
                 <label for="subscribeToPhone">Get notifications by Phone</label><br>
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail">
                 <label for="subscribeToMail">Get notifications by Mail</label><br>
+                <br>
                 <input type="submit" value="Register">
             </form>
          </div>
