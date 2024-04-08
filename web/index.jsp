@@ -33,12 +33,4 @@
     </footer>
 
 </body>
-<p>Let's make every meal count.
-
-
-
-
-
-
-</p>
 </html>
