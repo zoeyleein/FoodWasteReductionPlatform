@@ -14,4 +14,9 @@
 <body>
 
 </body>
+
+<ul class="menu">
+    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>
+
 </html>

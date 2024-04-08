@@ -12,6 +12,11 @@
     <link href="../style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
+<ul class="menu">
+    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>
+
 <script>
 
     function redirectToPurchaseView() {

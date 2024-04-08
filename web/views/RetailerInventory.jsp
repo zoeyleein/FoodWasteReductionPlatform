@@ -17,6 +17,11 @@
     <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
+<ul class="menu">
+    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>
+
 <div class="container">
 <h1>Inventory</h1>
 <table>

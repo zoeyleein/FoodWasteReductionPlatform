@@ -13,7 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../style/style.css" type="text/css" rel="stylesheet">
 </head>
+
 <body onload="resetRequiredFields()">
+  
+<ul class="menu">
+    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>  
+  
 <div>Retailer Inventory</div>
     <%
     String errorMessage = (String) request.getAttribute("errorMessage");
