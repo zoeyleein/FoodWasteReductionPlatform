@@ -12,9 +12,9 @@
         <h1>Sign In</h1>
         <h4>Please enter your credentials</h4>
         <form action="${pageContext.request.contextPath}/LoginServlet" method="POST" class="signin-form">
-            <p>User</p>
+            <p>User :</p>
             <input type="text" name="name" required><br>
-            <p>Password</p>
+            <p>Password :</p>
             <input type="password" name="password" required><br>
             <input type="submit" name="action" value="Sign in">
         </form>
