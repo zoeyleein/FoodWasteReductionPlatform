@@ -69,10 +69,11 @@ input[type="submit"] {
 
 input[type="submit"] {
     background-color: #6BB082;
+    padding: 10px;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size:18px;
 }
 
 label[for="userType"] {
