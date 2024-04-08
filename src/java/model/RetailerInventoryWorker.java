@@ -62,9 +62,22 @@ public class RetailerInventoryWorker {
         }
     }
 
-
-
-
+    public boolean productAlreadyExists(Connection connection, int retailerId, String itemName, int batchNum) {
+        String query = "SELECT * FROM item AS i " +
+                "JOIN retailer_inventory AS ri ON i.id = ri.item_id " +
+                "WHERE ri.users_id = ? AND i.name = ? AND ri.batch = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, retailerId);
+            statement.setString(2, itemName);
+            statement.setInt(3, batchNum);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next(); // If a row is found, it means the product exists for the retailer
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately, such as logging or throwing it
+        }
+        return false;
+    }
 
     public int insertAndGetGeneratedId(Connection connection, ItemDTO item) throws SQLException {
         String insertQuery = "INSERT INTO item VALUES (?, ?, ?)";
@@ -84,7 +97,6 @@ public class RetailerInventoryWorker {
 
     public List<InventoryItemDTO> retrieveInventory(Connection connection, int retailerId) {
         List<InventoryItemDTO> inventory = new ArrayList<>();
-
         String query = "SELECT i.name, i.category, ri.quantity, ri.expiry_date, ri.final_price " +
                 "FROM item i " +
                 "JOIN retailer_inventory ri ON i.id = ri.item_id " +
@@ -93,14 +105,12 @@ public class RetailerInventoryWorker {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, retailerId); // Set the retailer ID parameter
             ResultSet resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
                 String category = resultSet.getString("category");
                 int quantity = resultSet.getInt("quantity");
                 Date expiryDate = resultSet.getDate("expiry_date");
                 double finalPrice = resultSet.getDouble("final_price");
-
                 InventoryItemDTO item = new InventoryItemDTO(name, category, quantity, expiryDate, finalPrice);
                 inventory.add(item);
             }
@@ -108,8 +118,26 @@ public class RetailerInventoryWorker {
             e.printStackTrace();
             // Handle the exception appropriately, such as logging or throwing it
         }
-
         return inventory;
+    }
+
+    public void updateQuantity(Connection connection, int retailerId, String itemName, int batchNum, int newQuantity) {
+        String sql = "UPDATE retailer_inventory ri " +
+                "JOIN item i ON ri.item_id = i.id " +
+                "SET ri.quantity = ? " +
+                "WHERE ri.users_id = ? AND i.name = ? AND ri.batch = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, newQuantity); // the new quantity you want to set
+            pstmt.setInt(2, retailerId); // the retailer's ID
+            pstmt.setString(3, itemName); // the name of the item
+            pstmt.setInt(4, batchNum); // the batch number
+
+            pstmt.executeUpdate(); // Execute the update without storing the affected rows
+        } catch (SQLException e) {
+            // Handle any SQL exceptions
+            e.printStackTrace();
+        }
     }
 }
 

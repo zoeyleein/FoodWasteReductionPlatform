@@ -13,8 +13,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body onload="resetRequiredFields()">
 <div>Retailer Inventory</div>
+    <%
+    String errorMessage = (String) request.getAttribute("errorMessage");
+    if (errorMessage != null && !errorMessage.isEmpty()) {
+%>
+<div style="color: red;"><%= errorMessage %></div>
+<%
+    }
+%>
 <form action="${pageContext.request.contextPath}/RetailerInventoryServlet" method="post">
     <fieldset id="inventoryFields">
     <label for="productName" >Product Name: </label><br>
@@ -54,7 +62,7 @@
     <input type="submit" name="action" value="Add Item"><br><br>
 
 
-    <input type="submit" name="action" value="Update Item"><br>
+    <input type="submit" name="action" value="Update Item" onclick="removeRequired()"><br>
 
     <input type="submit" name="action" value="View Inventory" onclick="removeRequired()">
 
@@ -64,6 +72,13 @@
         var fields = document.getElementById("inventoryFields").getElementsByTagName('input');
         for (var i = 0; i < fields.length; i++) {
             fields[i].removeAttribute('required');
+        }
+    }
+
+    function resetRequiredFields() {
+        var fields = document.getElementById("inventoryFields").getElementsByTagName('input');
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].setAttribute('required', 'true');
         }
     }
 </script>
