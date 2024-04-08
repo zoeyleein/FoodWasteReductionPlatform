@@ -5,8 +5,16 @@
     font-family: 'Varta', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #EFEFEF;
     box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f2f2;
+    background-image:
+    radial-gradient(at 47% 33%, hsl(107.83, 42%, 91%) 0, transparent 59%),
+    radial-gradient(at 82% 65%, hsl(180.00, 42%, 85%) 0, transparent 55%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 .logoblack-container img {
@@ -44,7 +52,8 @@ p {
 .container {
     width: 100%;
     max-width: 400px;
-    margin: 50px auto 0;
+    margin: 80px auto 0;
+    margin-bottom: 200px;
     padding: 50px;
     border-radius: 10px;
     background-color: #FFF;
@@ -68,10 +77,11 @@ input[type="submit"] {
 
 input[type="submit"] {
     background-color: #6BB082;
+    padding: 10px;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size:18px;
 }
 
 label[for="userType"] {
@@ -106,6 +116,7 @@ footer p {
 }
 
 /* home page */
+
 .home-page {
     padding-top: 50px;
     display: flex;
@@ -209,16 +220,12 @@ footer p {
 .roleselection {
     width: 100%;
     max-width: 500px;
-    margin: 100px auto 0;
+    margin: 100px auto 300px;
     padding: 50px;
     border-radius: 10px;
     text-align: center;
     background-color: #FFF;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.roleselection > * {
-    background-color: #FFF;
 }
 
 /* Role Selection form */
@@ -322,9 +329,10 @@ input[type="checkbox"]:checked {
 }
 
 input[type="checkbox"] + label {
+    letter-spacing: 0.5px;
     padding-left: 30px;
     font-weight: 100;
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
 }
 
