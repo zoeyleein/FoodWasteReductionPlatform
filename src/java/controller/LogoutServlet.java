@@ -1,6 +1,5 @@
 package controller;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +11,11 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
-            response.sendRedirect("views/Signin.jsp");
         }
+        response.sendRedirect("views/Signin.jsp");
     }
 }
