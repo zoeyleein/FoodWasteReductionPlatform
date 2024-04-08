@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: mayankarora
-  Date: 2024-04-07
+  User: jingyi
+  Date: 2024-04-08
   Time: 2:11 p.m.
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Customer Purchase View</title>
-    <link href="../style/style.css" type="text/css" rel="stylesheet">
+    <title>Charity Transaction View</title>
+    <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
         <div class="logoblack-container">
@@ -21,7 +21,7 @@
     <!-- menu icon -->
     <li class="top-menu">
         <div class="cart-icon">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CharityTransactionView.jsp"><img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart"></a>
+            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart">
         </div>
     </li>
 </ul>
@@ -52,12 +52,13 @@
             <td>$0.50</td>
             <td>$5.00</td>
             <td>Yes</td>
-            <td><button class="select-button">Select</button></td>
+            <td><button class="select-button">Remove</button></td>
         </tr>
     </tbody>
 </table>
 
-<button class="update-inventory-button">Update Inventory</button>
+<a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CharityTransactionConfirmView.jsp">
+    <button class="confirm-button">Confirm</button></a>
 
 </body>
 </html>
