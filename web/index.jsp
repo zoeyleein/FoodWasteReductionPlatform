@@ -27,6 +27,11 @@
 <form action="${pageContext.request.contextPath}/WelcomeServlet" method="POST">
     <input type="submit" name="action" value="Sign Up">
 </form>
+
+    <footer>
+        <p>&copy; 2024 EcoHarvest. All rights reserved.</p>
+    </footer>
+
 </body>
 <p>Let's make every meal count.
 

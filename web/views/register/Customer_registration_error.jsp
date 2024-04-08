@@ -36,8 +36,8 @@
     <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<h1>Food Waste Reduction Platform</h1>
-<div>Customer Registration Form</div>
+<div class="container">
+<h1>Customer Registration Form</h1>
 <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
     <label for="role" hidden>Role:</label>
     <input type="text" id="role" value="Customer" hidden>
@@ -68,6 +68,7 @@
     <label for="subscribeToMail">Get notifications by Mail</label><br>
     <input type="submit" value="Register">
 </form>
+</div>
 </body>
 </html>
 <%
