@@ -11,6 +11,11 @@
     <title>Customer Purchase View</title>
 </head>
 <body>
+
+<ul class="menu">
+    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>
+
 <label for="location">Select a location:</label>
 <select id="location">
     <option value="Nepean">Nepean</option>

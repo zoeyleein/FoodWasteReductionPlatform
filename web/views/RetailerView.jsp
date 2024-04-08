@@ -14,6 +14,11 @@
     <link href="../style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
+<ul class="menu">
+    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>
+
 <div>Retailer Inventory</div>
 <form action="${pageContext.request.contextPath}/RetailerInventoryServlet" method="post">
     <fieldset id="inventoryFields">
