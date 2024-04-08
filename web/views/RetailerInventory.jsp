@@ -17,6 +17,7 @@
     <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
 <h1>Inventory</h1>
 <table>
     <thead>
@@ -43,5 +44,6 @@
 
     </tbody>
 </table>
+</div>
 </body>
 </html>
