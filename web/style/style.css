@@ -316,6 +316,40 @@ footer p {
     background-color: #FFF;
 }
 
+/* Retailer View */
+fieldset {
+    border: none;
+}
+
+legend {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #3A7877;
+}
+
+/*
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #FFF;
+}
+
+input[type="number"] {
+    width: calc(100% - 22px);
+}
+
+input[type="datetime-local"] {
+    width: calc(100% - 22px);
+}
+
+#error-message {
+    color: red;
+}*/
 
 /* Checkbox style */
 input[type="checkbox"] {
@@ -341,9 +375,6 @@ input[type="checkbox"] + label {
     font-size: 18px;
     color: #666;
 }
-
-
-
 
 
 .hidden {
