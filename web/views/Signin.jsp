@@ -7,6 +7,9 @@
         <link href="../style/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
+        <div class="logoblack-container">
+            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
+        </div>
 <div class="container">
     <div class="content">
         <h1>Sign In</h1>

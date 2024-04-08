@@ -9,11 +9,10 @@
     box-sizing: border-box;
 }
 
-.container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+.logoblack-container img {
+    width: 150px;
+    margin-top: 30px;
+    margin-left: 40px;
 }
 
 h1 {
@@ -170,9 +169,10 @@ footer p {
 .container {
     width: 100%;
     max-width: 400px;
-    margin: 100px auto 0;
-    padding: 30px;
+    margin: 50px auto 0;
+    padding: 50px;
     border-radius: 10px;
+    text-align: center;
     background-color: #FFF;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
@@ -184,11 +184,6 @@ footer p {
 .container > * {
     background-color: #FFF;
 }
-
- .content {
-     text-align: center;
-     padding: 20px;
- }
 
  /* Sign In form */
  .content .signin-form input[type="text"],
@@ -240,7 +235,7 @@ footer p {
 .roleselection {
     width: 100%;
     max-width: 500px;
-    margin: 150px auto 0; /* 將 margin-top 設置為 100px */
+    margin: 100px auto 0; /* 將 margin-top 設置為 100px */
     padding: 50px;
     border-radius: 10px;
     text-align: center;
