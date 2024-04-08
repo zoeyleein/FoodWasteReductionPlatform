@@ -33,17 +33,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body class = "registration">
     <div class="container">
-    <h1>Charity Registration Form</h1>
+    <h1>Retailer Registration Form</h1>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
-                <label for="role" hidden>Role:</label>
+            <div class="hidden">
+                <label for="role" hidden>Role :</label>
                 <input type="text" id="role" value="Charity" hidden>
-                <label for="name">*Charity Name:</label><br>
+            </div>
+                <label for="name">*Charity Name :</label><br>
                 <input type="text" id="name" name="name" required><br>
-                <label for="password">*Password:</label><br>
+                <label for="password">*Password :</label><br>
                 <input type="password" id="password" name="password" required><br>
-                <label for="dropdown">Select your nearest store:</label>
+                <label for="dropdown">Select your nearest store :</label>
+                <br>
                 <select id="dropdown" name="selectedValue">
                     <%
                         // Populate the dropdown
@@ -56,14 +59,16 @@
                     %>
                 </select><br>
                 <%--Required fields for not null objects --%>
-                <label for="email" hidden>*Email:</label>
+            <div class="hidden">
+                <label for="email" hidden>*Email :</label>
                 <input type="email" id="email" name="email" hidden>
-                <label for="phone" hidden>*Phone:</label>
+                <label for="phone" hidden>*Phone :</label>
                 <input type="text" id="phone" name="phone" hidden>
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone" hidden>
                 <label for="subscribeToPhone" hidden>Get notifications by Phone</label>
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail" hidden>
                 <label for="subscribeToMail" hidden>Get notifications by Mail</label>
+            </div>
                 <%--Finish of Required fields for not null objects --%>
                 <input type="submit" value="Register">
             </form>

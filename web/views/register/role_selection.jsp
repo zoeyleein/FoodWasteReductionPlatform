@@ -13,7 +13,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
     </head>
-    <body class = "roleselection">
+
+    <body>
+        <div class="logoblack-container">
+            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
+        </div>
+    <div class = "roleselection">
+
     <form action="${pageContext.request.contextPath}/SelectUserTypeServlet" method="POST">
         <label for="userType">Select the type of user</label><br>
         <select name="userType" id="userType" class="select-dropdown">
@@ -24,6 +30,7 @@
         <br>
         <input type="submit" value="Submit">
     </form>
+    </div>
     </body>
     </html>
 

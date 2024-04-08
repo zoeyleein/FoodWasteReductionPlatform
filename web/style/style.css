@@ -9,11 +9,10 @@
     box-sizing: border-box;
 }
 
-.container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+.logoblack-container img {
+    width: 150px;
+    margin-top: 30px;
+    margin-left: 40px;
 }
 
 h1 {
@@ -21,6 +20,7 @@ h1 {
     font-weight: 1000;
     color: #3A7877;
     font-size: 50px;
+    text-align: center;
 }
 
 h4 {
@@ -47,8 +47,7 @@ input[type="password"],
 input[type="submit"] {
     font-family: 'Overpass', sans-serif;
     width: 200px;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -71,7 +70,6 @@ label[for="userType"] {
     letter-spacing: 1px;
 }
 
-
 .select-dropdown {
     font-family: 'Overpass', sans-serif;
     width: 220px;
@@ -86,12 +84,12 @@ label[for="userType"] {
 }
 
 .select-dropdown:hover {
-    border-color: #45a049;
+    border-color: #3A7877;
 }
 
 .select-dropdown:focus {
     outline: none;
-    border-color: #45a049;
+    border-color: #3A7877;
 }
 
 footer p {
@@ -162,7 +160,7 @@ footer p {
 }
 
 .home-page input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #063331;
 }
 
 /* Sign In page styles */
@@ -170,8 +168,8 @@ footer p {
 .container {
     width: 100%;
     max-width: 400px;
-    margin: 100px auto 0;
-    padding: 30px;
+    margin: 50px auto 0;
+    padding: 50px;
     border-radius: 10px;
     background-color: #FFF;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -185,11 +183,6 @@ footer p {
     background-color: #FFF;
 }
 
- .content {
-     text-align: center;
-     padding: 20px;
- }
-
  /* Sign In form */
  .content .signin-form input[type="text"],
  .content .signin-form input[type="password"] {
@@ -201,16 +194,13 @@ footer p {
      background-color: #FFF; /* the color in the frame */
  }
 
- .content p {
+ .content p,label {
+      font-weight: 1000;
+      font-size: 20px;
       text-align: left;
       color: black;
       background-color: #FFF;
  }
-
-.signin-form p {
-    font-weight: 1000;
-    font-size: 20px;
-}
 
  /* Set font size for User and Password */
  .content .signin-form label {
@@ -231,7 +221,7 @@ footer p {
  }
 
  .content .signin-form input[type="submit"]:hover {
-     background-color: #45a049;
+     background-color: #063331;
 
 }
 
@@ -240,7 +230,7 @@ footer p {
 .roleselection {
     width: 100%;
     max-width: 500px;
-    margin: 150px auto 0; /* 將 margin-top 設置為 100px */
+    margin: 100px auto 0; /* 將 margin-top 設置為 100px */
     padding: 50px;
     border-radius: 10px;
     text-align: center;
@@ -262,6 +252,7 @@ footer p {
     font-size: 25px;
     color: #333;
     background-color: #FFF;
+    text-align: center;
 }
 
 .roleselection select {
@@ -286,7 +277,79 @@ footer p {
 }
 
 .roleselection input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #063331;
 }
 
+/* registration */
 
+.registration .container {
+    width: 100%;
+    max-width: 550px;
+}
+
+.registration h1 {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    letter-spacing: 1px;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.registration form label {
+    display: block;
+    margin-bottom: -5px;
+    font-size: 20px;
+    color: #333;
+    text-align: left;
+}
+
+.registration form input[type="text"],
+.registration form input[type="email"],
+.registration form input[type="password"] {
+    width: 100%;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #FFF;
+}
+
+.registration select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #FFF;
+}
+
+/* Checkbox style */
+input[type="checkbox"] {
+    vertical-align: middle;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Checkbox checked */
+input[type="checkbox"]:checked {
+    background-color: #3A7877;
+}
+
+input[type="checkbox"] + label {
+    font-weight: 100;
+    font-size: 16px;
+    margin-left: 5px;
+    color: #666;
+}
+
+.hidden {
+    display: none;
+}

@@ -35,22 +35,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body class = "registration">
 <div class="container">
 <h1>Customer Registration Form</h1>
 <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
-    <label for="role" hidden>Role:</label>
+<div class="hidden">
+    <label for="role" hidden>Role :</label>
     <input type="text" id="role" value="Customer" hidden>
-    <label for="name">*Name:</label><br>
+</div>
+    <label for="name">*Name :</label><br>
     <input type="text" id="name" name="name" required><br>
     <p style="color: red;">Username already exists, please choose another username</p>
-    <label for="email">*Email:</label><br>
+    <label for="email">*Email :</label><br>
     <input type="email" id="email" name="email" required><br>
-    <label for="password">*Password:</label><br>
+    <label for="password">*Password :</label><br>
     <input type="password" id="password" name="password" required><br>
-    <label for="phone">*Phone:</label><br>
+    <label for="phone">*Phone :</label><br>
     <input type="text" id="phone" name="phone" required><br>
     <label for="dropdown">Select your nearest store:</label>
+    <br>
     <select id="dropdown" name="selectedValue">
         <%
             // Populate the dropdown
