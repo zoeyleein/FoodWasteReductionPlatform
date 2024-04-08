@@ -21,5 +21,16 @@
 
     <input type="submit" name="action" value="Update Item"><br><br>
 </form>
+
+<%
+    String message = (String) request.getAttribute("message");
+    String messageColor = (String) request.getAttribute("messageColor");
+    if (message != null && !message.isEmpty()) {
+%>
+<p style="color: <%= messageColor %>;"><%= message %></p>
+<%
+    }
+%>
+
 </body>
 </html>
