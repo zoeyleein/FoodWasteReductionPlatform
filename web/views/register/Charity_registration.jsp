@@ -34,6 +34,11 @@
         <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
     </head>
     <body class = "registration">
+
+    <div class="logoblack-container">
+                <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo">
+    </div>
+
     <div class="container">
     <h1>Retailer Registration Form</h1>
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
