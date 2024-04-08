@@ -38,8 +38,16 @@ public class UpdateInventoryServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         try (Connection connection = dataSource.getConnection()) {
-            worker.updateQuantity(connection, retailId, name, batchNum, quantity);
-            response.sendRedirect("views/UpdateInventory.jsp");
+            if(worker.productAlreadyExists(connection, retailId, name, batchNum)) {
+                worker.updateQuantity(connection, retailId, name, batchNum, quantity);
+                request.setAttribute("message", "Item updated successfully");
+                request.setAttribute("messageColor", "green");
+            }
+            else{
+                request.setAttribute("message", "Item does not exist, cannot update it");
+                request.setAttribute("messageColor", "red");
+            }
+            request.getRequestDispatcher("views/UpdateInventory.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
