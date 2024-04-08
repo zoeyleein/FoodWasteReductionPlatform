@@ -2,7 +2,6 @@ package controller;
 
 import businesslayer.RetailerInventoryBusinessLogic;
 import dataaccesslayer.DataSource;
-import dataaccesslayer.RetailerInventoryDAOImpl;
 import model.DTOBuilder;
 import model.RetailerInventoryWorker;
 import transferobjects.InventoryItemDTO;
@@ -68,31 +67,38 @@ public class RetailerInventoryServlet extends HttpServlet {
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            int productStatus = worker.productStatus(rInventoryExpDate); // determine how close to expiry we are
-            rInventoryFinalPrice = worker.productPrice(productStatus, rInventoryUnitPrice);
-            ItemDTO item = builder.itemBuilder(itemName, itemCategory);
-            // still need to deal with button clicks, any button just adds rn
             try (Connection connection = dataSource.getConnection()) {
+            if(worker.productAlreadyExists(connection, retailId, itemName, rInventoryBatchNum)){
+                String errorMessage = "Item already exists for this retailer.";
+                request.setAttribute("errorMessage", errorMessage);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("views/RetailerView.jsp");
+                dispatcher.forward(request, response);
+            }else {
+                int productStatus = worker.productStatus(rInventoryExpDate); // determine how close to expiry we are
+                rInventoryFinalPrice = worker.productPrice(productStatus, rInventoryUnitPrice);
+                ItemDTO item = builder.itemBuilder(itemName, itemCategory);
+                // still need to deal with button clicks, any button just adds rn
                 itemId = worker.insertAndGetGeneratedId(connection, item);
                 RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate);
-                RetailerInventoryDAOImpl retailerInventoryDAO = new RetailerInventoryDAOImpl(connection);
-//                retailerInventoryDAO.insertRetailerInventory(retailInventory);
                 RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
                 retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
-                response.sendRedirect("view/RetailerView.jsp");
+                response.sendRedirect("views/RetailerView.jsp");
+            }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (action.equals("Update Item")) {
-
+            request.setAttribute("retailId", retailId);
+            response.sendRedirect("views/UpdateInventory.jsp");
         } else {
             try (Connection connection = dataSource.getConnection()) {
+                request.setAttribute("retailId", retailId);
                 List<InventoryItemDTO> inventory = worker.retrieveInventory(connection, retailId);
                 request.setAttribute("inventory", inventory);
-                System.out.println("Inventory: " + inventory);
-                for(InventoryItemDTO inventoryItemDTO: inventory){
-                    System.out.println(inventoryItemDTO);
-                }
+//                System.out.println("Inventory: " + inventory);
+//                for(InventoryItemDTO inventoryItemDTO: inventory){
+//                    System.out.println(inventoryItemDTO);
+//                }
                 RequestDispatcher dispatcher = request.getRequestDispatcher("views/RetailerInventory.jsp");
                 dispatcher.forward(request, response);
             } catch (SQLException e) {
