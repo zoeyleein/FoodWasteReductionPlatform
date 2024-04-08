@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: mayankarora
-  Date: 2024-04-07
+  User: jingyi
+  Date: 2024-04-08
   Time: 2:11 p.m.
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Customer Purchase View</title>
-    <link href="../style/style.css" type="text/css" rel="stylesheet">
+    <title>Customer Transaction View</title>
+    <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
         <div class="logoblack-container">
@@ -23,9 +23,6 @@
         <div class="notification-icon">
             <img src="http://localhost:8080/FoodWasteReductionPlatform/image/notification-icon.png" alt="Alerts">
         </div>
-        <div class="cart-icon">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CustomerTransactionView.jsp"><img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart"></a>
-        </div>
         <div class="money-icon">
             <img src="http://localhost:8080/FoodWasteReductionPlatform/image/money-icon.png" alt="Money">
             <span class="user-balance">$100</span>
@@ -33,7 +30,7 @@
     </li>
 </ul>
 
-<h1>Food items</h1>
+<h1>Transaction</h1>
 
 <!--
 <label for="location">Select a location:</label>
@@ -69,12 +66,13 @@
             <td>$0.50</td>
             <td>$5.00</td>
             <td>No</td>
-            <td><button class="buy-button">Buy</button></td>
+            <td><button class="remove-button">Remove</button></td>
         </tr>
     </tbody>
 </table>
 
-<button class="update-inventory-button">Update Inventory</button>
+<a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CustomerTransactionConfirmView.jsp">
+    <button class="confirm-button">Confirm</button></a>
 
 </body>
 </html>
