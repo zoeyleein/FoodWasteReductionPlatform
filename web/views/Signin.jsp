@@ -7,8 +7,8 @@
         <link href="../style/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-<div class="signin-container">
-    <div class="signin-content">
+<div class="container">
+    <div class="content">
         <h1>Sign In</h1>
         <h4>Please enter your credentials</h4>
         <form action="${pageContext.request.contextPath}/LoginServlet" method="POST" class="signin-form">

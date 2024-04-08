@@ -167,7 +167,7 @@ footer p {
 
 /* Sign In page styles */
 
-.signin-container {
+.container {
     width: 100%;
     max-width: 400px;
     margin: 100px auto 0;
@@ -177,22 +177,22 @@ footer p {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.signin-content > * {
+.content > * {
     background-color: #FFF;
 }
 
-.signin-container > * {
+.container > * {
     background-color: #FFF;
 }
 
- .signin-content {
+ .content {
      text-align: center;
      padding: 20px;
  }
 
  /* Sign In form */
- .signin-content .signin-form input[type="text"],
- .signin-content .signin-form input[type="password"] {
+ .content .signin-form input[type="text"],
+ .content .signin-form input[type="password"] {
      width: 100%;
      padding: 10px;
      margin-bottom: 20px;
@@ -202,7 +202,7 @@ footer p {
      background-color: #FFF; /* the color in the frame */
  }
 
- .signin-content p {
+ .content p {
       text-align: left;
       color: black;
       background-color: #FFF;
@@ -215,11 +215,11 @@ footer p {
 }
 
  /* Set font size for User and Password */
- .signin-content .signin-form label {
+ .content .signin-form label {
      font-size: 30px;
  }
 
- .signin-content .signin-form input[type="submit"] {
+ .content .signin-form input[type="submit"] {
      width: 100%;
      padding: 10px;
      margin-bottom: 30px;
@@ -232,7 +232,7 @@ footer p {
 
  }
 
- .signin-content .signin-form input[type="submit"]:hover {
+ .content .signin-form input[type="submit"]:hover {
      background-color: #45a049;
 
 }
