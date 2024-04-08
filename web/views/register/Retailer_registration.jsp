@@ -47,7 +47,9 @@
             </div>
                 <%--Finish of Required fields for not null objects --%>
                 <br>
+                <div style="text-align: right; background-color: white;">
                 <input type="submit" value="Register">
+                </div>
             </form>
         </div>
     </body>

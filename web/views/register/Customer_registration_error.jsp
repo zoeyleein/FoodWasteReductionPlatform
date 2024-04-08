@@ -75,7 +75,9 @@
     <input type="checkbox" id="subscribeToMail" name="subscribeToMail">
     <label for="subscribeToMail">Get notifications by Mail</label><br>
     <br>
+    <div style="text-align: right; background-color: white;">
     <input type="submit" value="Register">
+    </div>
 </form>
 </div>
 </body>

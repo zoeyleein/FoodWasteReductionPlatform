@@ -68,13 +68,15 @@
                     <%
                         }
                     %>
-                </select><br>
+                </select><br><br>
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone">
                 <label for="subscribeToPhone">Get notifications by Phone</label><br>
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail">
                 <label for="subscribeToMail">Get notifications by Mail</label><br>
-                <br>
-                <input type="submit" value="Register">
+
+                <div style="text-align: right; background-color: white;">
+                <input type="submit" value="Register" >
+                </div>
             </form>
          </div>
     </body>
