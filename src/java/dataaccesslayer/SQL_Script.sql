@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`retailer_inventory` (
                                                            `quantity` INT NOT NULL,
                                                            `unit_price` DOUBLE NOT NULL,
                                                            `final_price` DOUBLE NOT NULL,
+                                                           `sale` BOOLEAN NULL,
+                                                           `donation` BOOLEAN NULL,
                                                            PRIMARY KEY (`id`),
                                                            INDEX `fk_userInventory_users_idx` (`users_id` ASC),
                                                            INDEX `fk_userInventory_item1_idx` (`item_id` ASC),
@@ -108,4 +110,3 @@ CREATE TABLE IF NOT EXISTS `mydb`.`userAccount` (
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
