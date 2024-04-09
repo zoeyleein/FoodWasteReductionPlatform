@@ -36,10 +36,12 @@ public class UpdateInventoryServlet extends HttpServlet {
         String name = request.getParameter("productName");
         int batchNum = Integer.parseInt(request.getParameter("batchNum"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
+        boolean sale = Boolean.parseBoolean(request.getParameter("sale")); // Retrieve sale from request parameters
+        boolean donation = Boolean.parseBoolean(request.getParameter("donation")); // Retrieve donation from request parameters
 
         try (Connection connection = dataSource.getConnection()) {
             if(worker.productAlreadyExists(connection, retailId, name, batchNum)) {
-                worker.updateQuantity(connection, retailId, name, batchNum, quantity);
+                worker.updateQuantity(connection, retailId, name, batchNum, quantity, sale, donation);
                 request.setAttribute("message", "Item updated successfully");
                 request.setAttribute("messageColor", "green");
             }
