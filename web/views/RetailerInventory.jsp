@@ -14,12 +14,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventory</title>
-    <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 
     <a href="http://localhost:8080/FoodWasteReductionPlatform/">
-    <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo"></a>
+    <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
 
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>

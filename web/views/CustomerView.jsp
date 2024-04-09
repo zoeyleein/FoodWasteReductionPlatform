@@ -9,12 +9,12 @@
 <html>
 <head>
     <title>Customer Purchase View</title>
-    <link href="../style/style.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
         <div class="logoblack-container">
             <a href="http://localhost:8080/FoodWasteReductionPlatform/">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo"></a>
+            <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
