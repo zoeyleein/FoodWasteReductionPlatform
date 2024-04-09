@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,6 +26,8 @@ import java.util.List;
 
 @WebServlet(name = "RetailerInventoryServlet", urlPatterns = {"/RetailerInventoryServlet"})
 public class RetailerInventoryServlet extends HttpServlet {
+    int AUTO_SALE = 1;
+    int AUTO_DONATION = 2;
     String action;
     int retailId;
     int itemId;
@@ -35,8 +38,9 @@ public class RetailerInventoryServlet extends HttpServlet {
     double rInventoryUnitPrice;
     double rInventoryFinalPrice;
     Date rInventoryExpDate;
-    boolean rInventorysale;
-    boolean rInventoryDonation;
+    boolean rInventorysale = false;
+    boolean rInventoryDonation = false;
+    boolean setSurplusFlag = false;
     RetailerInventoryWorker worker = new RetailerInventoryWorker();
     DTOBuilder builder = new DTOBuilder();
 
@@ -79,11 +83,28 @@ public class RetailerInventoryServlet extends HttpServlet {
                 int productStatus = worker.productStatus(rInventoryExpDate); // determine how close to expiry we are
                 rInventoryFinalPrice = worker.productPrice(productStatus, rInventoryUnitPrice);
                 ItemDTO item = builder.itemBuilder(itemName, itemCategory);
-                // still need to deal with button clicks, any button just adds rn
                 itemId = worker.insertAndGetGeneratedId(connection, item);
+                if(productStatus == AUTO_SALE){
+                    rInventorysale = true;
+                }
+                else if(productStatus == AUTO_DONATION){
+                    rInventoryDonation = true;
+                }
+                else{
+                    rInventorysale = false;
+                    rInventoryDonation = false;
+                    HttpSession session = request.getSession();
+                    session.setAttribute("itemId", itemId);
+                    setSurplusFlag = true;
+                }
                 RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate, rInventorysale, rInventoryDonation);
                 RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
                 retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
+
+                if(setSurplusFlag){
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("views/SurplusItemChoice.jsp");
+                    dispatcher.forward(request, response);
+                }
                 response.sendRedirect("views/RetailerView.jsp");
             }
             } catch (Exception e) {
@@ -97,10 +118,7 @@ public class RetailerInventoryServlet extends HttpServlet {
                 request.setAttribute("retailId", retailId);
                 List<InventoryItemDTO> inventory = worker.retrieveInventory(connection, retailId);
                 request.setAttribute("inventory", inventory);
-//                System.out.println("Inventory: " + inventory);
-//                for(InventoryItemDTO inventoryItemDTO: inventory){
-//                    System.out.println(inventoryItemDTO);
-//                }
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("views/RetailerInventory.jsp");
                 dispatcher.forward(request, response);
             } catch (SQLException e) {
