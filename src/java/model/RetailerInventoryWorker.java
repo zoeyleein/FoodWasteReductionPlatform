@@ -16,7 +16,6 @@ public class RetailerInventoryWorker {
     int NOT_FOR_SALE = 0;
     int ON_SALE = 1;
     int FOR_DONATION = 2;
-    int EXPIRED = 3;
     double salePercent = 0.3;
 
     public boolean expiryDateValidation(Date expiryDate) {
@@ -35,17 +34,8 @@ public class RetailerInventoryWorker {
         return daysDifference <= 3;
     }
 
-    public boolean isExpired(Date expiryDate){
-        Date currentDate = new Date();
-        long differenceInMillis = expiryDate.getTime() - currentDate.getTime();
-        long daysDifference = differenceInMillis / (1000 * 60 * 60 * 24);
-        return daysDifference <= 0;
-    }
-
     public int productStatus(Date expiryDate){
-        if (isExpired(expiryDate)){
-            return EXPIRED;
-        } else if (isDonation(expiryDate)){
+        if (isDonation(expiryDate)){
             return FOR_DONATION;
         } else if (expiryDateValidation(expiryDate)){
             return ON_SALE;
@@ -142,6 +132,40 @@ public class RetailerInventoryWorker {
             // Handle any SQL exceptions
             e.printStackTrace();
         }
+    }
+
+
+    public void updateInventoryFlags(Connection connection, int itemId, boolean sale, boolean donation) throws SQLException {
+        String sql = "UPDATE retailer_inventory SET sale = ?, donation = ? WHERE item_id = ?";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+
+        pstmt.setBoolean(1, sale);
+        pstmt.setBoolean(2, donation);
+        pstmt.setInt(3, itemId);
+
+        pstmt.executeUpdate();
+
+        if (sale){
+            String sql2 = "SELECT unit_price FROM retailer_inventory WHERE item_id = ?";
+            PreparedStatement pstmt2 = connection.prepareStatement(sql2);
+            pstmt2.setInt(1, itemId);
+            ResultSet rs = pstmt2.executeQuery();
+            if (rs.next()){
+                double unitPrice = rs.getDouble("unit_price");
+                updatePrice(connection, itemId, unitPrice);
+            }
+        }
+    }
+
+
+    public void updatePrice(Connection connection, int itemId, double unitPrice) throws SQLException {
+        String sql = "UPDATE retailer_inventory SET final_price = ? WHERE item_id = ?";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+
+        pstmt.setDouble(1, productPrice(1, unitPrice));
+        pstmt.setInt(2, itemId);
+
+        pstmt.executeUpdate();
     }
 }
 
