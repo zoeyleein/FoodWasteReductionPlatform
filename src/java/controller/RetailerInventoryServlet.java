@@ -35,6 +35,8 @@ public class RetailerInventoryServlet extends HttpServlet {
     double rInventoryUnitPrice;
     double rInventoryFinalPrice;
     Date rInventoryExpDate;
+    boolean rInventorysale;
+    boolean rInventoryDonation;
     RetailerInventoryWorker worker = new RetailerInventoryWorker();
     DTOBuilder builder = new DTOBuilder();
 
@@ -79,7 +81,7 @@ public class RetailerInventoryServlet extends HttpServlet {
                 ItemDTO item = builder.itemBuilder(itemName, itemCategory);
                 // still need to deal with button clicks, any button just adds rn
                 itemId = worker.insertAndGetGeneratedId(connection, item);
-                RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate);
+                RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate, rInventorysale, rInventoryDonation);
                 RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
                 retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
                 response.sendRedirect("views/RetailerView.jsp");

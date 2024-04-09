@@ -18,7 +18,7 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
 
     @Override
     public void insertRetailerInventory(RetailerInventoryDTO retailerInventory) throws SQLException {
-        String sql = "INSERT INTO retailer_inventory (id, users_id, item_id, batch, expiry_date, quantity, unit_price, final_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO retailer_inventory (id, users_id, item_id, batch, expiry_date, quantity, unit_price, final_price, sale, donation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, retailerInventory.getId()); // Set the RetailerInventoryID manually
             pstmt.setInt(2, retailerInventory.getUsersId());
@@ -28,6 +28,8 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
             pstmt.setInt(6, retailerInventory.getQuantity());
             pstmt.setDouble(7, retailerInventory.getUnitPrice());
             pstmt.setDouble(8, retailerInventory.getFinalPrice());
+            pstmt.setBoolean(9, retailerInventory.getSale());
+            pstmt.setBoolean(10, retailerInventory.getDonation());
             pstmt.executeUpdate();
         }
     }
@@ -49,6 +51,8 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
                 inventory.setQuantity(rs.getInt("quantity"));
                 inventory.setUnitPrice(rs.getDouble("unit_price"));
                 inventory.setFinalPrice(rs.getDouble("final_price"));
+                inventory.setSale(rs.getBoolean("sale"));
+                inventory.setDonation(rs.getBoolean("donation"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,6 +76,8 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
                 inventory.setQuantity(rs.getInt("quantity"));
                 inventory.setUnitPrice(rs.getDouble("unit_price"));
                 inventory.setFinalPrice(rs.getDouble("final_price"));
+                inventory.setSale(rs.getBoolean("sale"));
+                inventory.setDonation(rs.getBoolean("donation"));
                 inventories.add(inventory);
             }
         } catch (SQLException e) {
@@ -82,7 +88,7 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
 
     @Override
     public void updateRetailerInventory(RetailerInventoryDTO retailerInventory) {
-        String sql = "UPDATE retailer_inventory SET users_id = ?, item_id = ?, batch = ?, expiry_date = ?, quantity = ?, unit_price = ?, final_price = ? WHERE id = ?";
+        String sql = "UPDATE retailer_inventory SET users_id = ?, item_id = ?, batch = ?, expiry_date = ?, quantity = ?, unit_price = ?, final_price = ?, sale = ?, donation = ? WHERE id = ?";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, retailerInventory.getUsersId());
             pstmt.setInt(2, retailerInventory.getItemId());
@@ -91,7 +97,9 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
             pstmt.setInt(5, retailerInventory.getQuantity());
             pstmt.setDouble(6, retailerInventory.getUnitPrice());
             pstmt.setDouble(7, retailerInventory.getFinalPrice());
-            pstmt.setInt(8, retailerInventory.getId());
+            pstmt.setBoolean(8, retailerInventory.getSale());
+            pstmt.setBoolean(9, retailerInventory.getDonation());
+            pstmt.setInt(10, retailerInventory.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

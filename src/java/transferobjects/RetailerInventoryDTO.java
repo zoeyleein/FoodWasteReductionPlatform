@@ -11,6 +11,9 @@ public class RetailerInventoryDTO {
     private int quantity;
     private double unitPrice;
     private double finalPrice;
+    private boolean sale;
+    private boolean donation;
+
 
     public int getId() {
         return id;
@@ -60,7 +63,18 @@ public class RetailerInventoryDTO {
     public void setFinalPrice(double finalPrice) {
         this.finalPrice = finalPrice;
     }
-
+    public boolean getSale() {
+        return sale;
+    }
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+    public boolean getDonation() {
+        return donation;
+    }
+    public void setDonation(boolean donation) {
+        this.donation = donation;
+    }
     public String toString() {
         return "RetailerInventoryDTO{" +
                 "id=" + id +
@@ -71,6 +85,8 @@ public class RetailerInventoryDTO {
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
                 ", finalPrice=" + finalPrice +
+                ", sale=" + sale +
+                ", donation=" + donation +
                 '}';
     }
 }

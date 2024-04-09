@@ -97,7 +97,7 @@ public class RetailerInventoryWorker {
 
     public List<InventoryItemDTO> retrieveInventory(Connection connection, int retailerId) {
         List<InventoryItemDTO> inventory = new ArrayList<>();
-        String query = "SELECT i.name, i.category, ri.quantity, ri.expiry_date, ri.final_price " +
+        String query = "SELECT i.name, i.category, ri.quantity, ri.expiry_date, ri.final_price, ri.sale, ri.donation " +
                 "FROM item i " +
                 "JOIN retailer_inventory ri ON i.id = ri.item_id " +
                 "WHERE ri.users_id = ?";
@@ -111,7 +111,9 @@ public class RetailerInventoryWorker {
                 int quantity = resultSet.getInt("quantity");
                 Date expiryDate = resultSet.getDate("expiry_date");
                 double finalPrice = resultSet.getDouble("final_price");
-                InventoryItemDTO item = new InventoryItemDTO(name, category, quantity, expiryDate, finalPrice);
+                boolean sale = resultSet.getBoolean("sale");
+                boolean donation = resultSet.getBoolean("donation");
+                InventoryItemDTO item = new InventoryItemDTO(name, category, quantity, expiryDate, finalPrice, sale, donation);
                 inventory.add(item);
             }
         } catch (SQLException e) {
@@ -121,17 +123,19 @@ public class RetailerInventoryWorker {
         return inventory;
     }
 
-    public void updateQuantity(Connection connection, int retailerId, String itemName, int batchNum, int newQuantity) {
+    public void updateQuantity(Connection connection, int retailerId, String itemName, int batchNum, int newQuantity, boolean sale, boolean donation) {
         String sql = "UPDATE retailer_inventory ri " +
                 "JOIN item i ON ri.item_id = i.id " +
-                "SET ri.quantity = ? " +
+                "SET ri.quantity = ?, ri.sale = ?, ri.donation = ? " +
                 "WHERE ri.users_id = ? AND i.name = ? AND ri.batch = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, newQuantity); // the new quantity you want to set
-            pstmt.setInt(2, retailerId); // the retailer's ID
-            pstmt.setString(3, itemName); // the name of the item
-            pstmt.setInt(4, batchNum); // the batch number
+            pstmt.setBoolean(2, sale);
+            pstmt.setBoolean(3, donation);
+            pstmt.setInt(4, retailerId); // the retailer's ID
+            pstmt.setString(5, itemName); // the name of the item
+            pstmt.setInt(6, batchNum); // the batch number
 
             pstmt.executeUpdate(); // Execute the update without storing the affected rows
         } catch (SQLException e) {

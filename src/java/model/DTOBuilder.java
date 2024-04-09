@@ -31,7 +31,7 @@ public class DTOBuilder {
     }
 
 
-    public RetailerInventoryDTO retailerInventoryBuilder(int retailId, int itemId, int rInventoryBatchNum, int rInventoryQuantity, double rInventoryUnitPrice, double rInventoryFinalPrice, Date rInventoryExpDate){
+    public RetailerInventoryDTO retailerInventoryBuilder(int retailId, int itemId, int rInventoryBatchNum, int rInventoryQuantity, double rInventoryUnitPrice, double rInventoryFinalPrice, Date rInventoryExpDate, boolean sale, boolean donation){
         RetailerInventoryDTO retailerInventory = new RetailerInventoryDTO();
         retailerInventory.setUsersId(retailId);
         retailerInventory.setItemId(itemId);
@@ -40,6 +40,8 @@ public class DTOBuilder {
         retailerInventory.setUnitPrice(rInventoryUnitPrice);
         retailerInventory.setFinalPrice(rInventoryFinalPrice);
         retailerInventory.setExpiryDate(rInventoryExpDate);
+        retailerInventory.setSale(sale);
+        retailerInventory.setDonation(donation);
         return retailerInventory;
     }
 }

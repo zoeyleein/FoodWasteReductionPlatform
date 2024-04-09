@@ -8,13 +8,17 @@ public class InventoryItemDTO {
     private int quantity;
     private Date expiryDate;
     private double finalPrice;
+    private boolean sale;
+    private boolean donation;
 
-    public InventoryItemDTO(String name, String category, int quantity, Date expiryDate, double finalPrice) {
+    public InventoryItemDTO(String name, String category, int quantity, Date expiryDate, double finalPrice, boolean sale, boolean donation) {
         this.name = name;
         this.category = category;
         this.quantity = quantity;
         this.expiryDate = expiryDate;
         this.finalPrice = finalPrice;
+        this.sale = sale;
+        this.donation = donation;
     }
 
     public String getName() {
@@ -57,6 +61,22 @@ public class InventoryItemDTO {
         this.finalPrice = finalPrice;
     }
 
+    public boolean isSale() {
+        return sale;
+    }
+
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+
+    public boolean isDonation() {
+        return donation;
+    }
+
+    public void setDonation(boolean donation) {
+        this.donation = donation;
+    }
+
     @Override
     public String toString() {
         return
@@ -64,7 +84,9 @@ public class InventoryItemDTO {
                 ", category='" + category + '\'' +
                 ", quantity=" + quantity +
                 ", expiryDate=" + expiryDate +
-                ", finalPrice=" + finalPrice;
+                ", finalPrice=" + finalPrice +
+                ", sale=" + sale +
+                ", donation=" + donation;
     }
 
 }
