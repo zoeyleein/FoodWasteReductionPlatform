@@ -11,13 +11,13 @@
         <title>Retailer Registration Form</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
     </head>
     <body class = "registration">
 
     <div class="logoblack-container">
         <a href="http://localhost:8080/FoodWasteReductionPlatform/">
-        <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo"></a>
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
     </div>
 
     <div class="container">
