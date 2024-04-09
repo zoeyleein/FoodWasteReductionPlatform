@@ -35,46 +35,49 @@
 
 <h1>Food items</h1>
 
-<!--
-<label for="location">Select a location:</label>
-<select id="location">
-    <option value="Nepean">Nepean</option>
-    <option value="Kanata">Kanata</option>
-    <option value="Barrhaven">Barrhaven</option>
-    <option value="Downtown">Downtown</option>
-</select>
--->
 
-<table>
-    <thead>
-        <tr>
-            <th>Item</th>
-            <th>Batch</th>
-            <th>Expiry Date</th>
-            <th>Quantity</th>
-            <th>Unit Price</th>
-            <th>Final Price</th>
-            <th>Donation</th>
-            <th></th> <!-- Empty header for Buy button -->
-        </tr>
-    </thead>
-    <tbody>
+        <form action="http://localhost:8080/FoodWasteReductionPlatform_Web_exploded/FetchRetailersServlet" method="post">
+            <label for="location">Select a location:</label>
+            <select id="location" name="location">
+                <option value="Nepean">Nepean</option>
+                <option value="Kanata">Kanata</option>
+                <option value="Barrhaven">Barrhaven</option>
+                <option value="Downtown">Downtown</option>
+            </select>
+            <button type="submit">OK</button>
+        </form>
 
-    <!-- The temporary data, have to link from database -->
-        <tr>
-            <td>Apple</td>
-            <td>2022-01</td>
-            <td>2024-04-30</td>
-            <td>10</td>
-            <td>$0.50</td>
-            <td>$5.00</td>
-            <td>No</td>
-            <td><button class="buy-button">Buy</button></td>
-        </tr>
-    </tbody>
-</table>
 
-<button class="update-inventory-button">Update Inventory</button>
+<%--<table>--%>
+<%--    <thead>--%>
+<%--        <tr>--%>
+<%--            <th>Item</th>--%>
+<%--            <th>Batch</th>--%>
+<%--            <th>Expiry Date</th>--%>
+<%--            <th>Quantity</th>--%>
+<%--            <th>Unit Price</th>--%>
+<%--            <th>Final Price</th>--%>
+<%--            <th>Donation</th>--%>
+<%--            <th></th> <!-- Empty header for Buy button -->--%>
+<%--        </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
+
+<%--    <!-- The temporary data, have to link from database -->--%>
+<%--        <tr>--%>
+<%--            <td>Apple</td>--%>
+<%--            <td>2022-01</td>--%>
+<%--            <td>2024-04-30</td>--%>
+<%--            <td>10</td>--%>
+<%--            <td>$0.50</td>--%>
+<%--            <td>$5.00</td>--%>
+<%--            <td>No</td>--%>
+<%--            <td><button class="buy-button">Buy</button></td>--%>
+<%--        </tr>--%>
+<%--    </tbody>--%>
+<%--</table>--%>
+
+<%--<button class="update-inventory-button">Update Inventory</button>--%>
 
 </body>
 </html>
