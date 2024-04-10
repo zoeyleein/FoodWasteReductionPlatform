@@ -4,7 +4,6 @@ import dataaccesslayer.DataSource;
 import model.CharityWorker;
 import transferobjects.InventoryItemDTO;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
