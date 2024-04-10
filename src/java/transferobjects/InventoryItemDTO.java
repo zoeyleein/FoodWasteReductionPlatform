@@ -3,6 +3,7 @@ package transferobjects;
 import java.util.Date;
 
 public class InventoryItemDTO {
+    private int id;
     private String name;
     private String category;
     private int quantity;
@@ -10,6 +11,9 @@ public class InventoryItemDTO {
     private double finalPrice;
     private boolean sale;
     private boolean donation;
+
+    public InventoryItemDTO() {
+    }
 
     public InventoryItemDTO(String name, String category, int quantity, Date expiryDate, double finalPrice, boolean sale, boolean donation) {
         this.name = name;
@@ -75,6 +79,14 @@ public class InventoryItemDTO {
 
     public void setDonation(boolean donation) {
         this.donation = donation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

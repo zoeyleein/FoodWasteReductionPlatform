@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Customer Purchase View</title>
@@ -21,43 +22,56 @@
     <!-- menu icon -->
     <li class="top-menu">
         <div class="cart-icon">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CharityTransactionView.jsp"><img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart"></a>
+            <a href="${pageContext.request.contextPath}/views/transaction/CharityTransactionView.jsp"><img src="${pageContext.request.contextPath}/image/cart-icon.png" alt="Shopping Cart"></a>
         </div>
     </li>
 </ul>
 
 <h1>Transaction</h1>
+        <c:if test="${not empty sessionScope.message}">
+            <div class="success">
+                <p>${sessionScope.message}</p>
+            </div>
+            <c:set var="message" scope="session" value=""/>
+        </c:if>
 
+        <c:if test="${not empty sessionScope.error}">
+            <div class="error">
+                <p>${sessionScope.error}</p>
+            </div>
+            <c:set var="error" scope="session" value=""/>
+        </c:if>
 <table>
     <thead>
         <tr>
-            <th>Item</th>
-            <th>Batch</th>
+            <th>Product Name</th>
+            <th>Category</th>
             <th>Expiry Date</th>
             <th>Quantity</th>
-            <th>Unit Price</th>
-            <th>Final Price</th>
-            <th>Donation</th>
-            <th></th> <!-- Empty header for Select button -->
         </tr>
     </thead>
     <tbody>
-
-    <!-- The temporary data, have to link from database -->
+    <c:forEach items="${items}" var="item">
         <tr>
-            <td>Apple</td>
-            <td>2022-01</td>
-            <td>2024-04-30</td>
-            <td>10</td>
-            <td>$0.50</td>
-            <td>$5.00</td>
-            <td>Yes</td>
-            <td><button class="select-button">Select</button></td>
+            <td>${item.name}</td>
+            <td>${item.category}</td>
+            <td>${item.expiryDate}</td>
+            <td>${item.quantity}</td>
+            <td>
+                <form action="${pageContext.request.contextPath}/CharityClaimsServlet" method="post">
+                    <input type="hidden" name="itemId" value="${item.id}">
+                    <label for="claimedQuantity${item.id}">Quantity to claim:</label>
+                    <select name="claimedQuantity" id="claimedQuantity${item.id}">
+                        <c:forEach begin="1" end="${item.quantity}" var="num">
+                            <option value="${num}">${num}</option>
+                        </c:forEach>
+                    </select><br>
+                    <input type="submit" value="Claim">
+                </form>
+            </td>
         </tr>
+    </c:forEach>
     </tbody>
 </table>
-
-<button class="update-inventory-button">Update Inventory</button>
-
 </body>
 </html>

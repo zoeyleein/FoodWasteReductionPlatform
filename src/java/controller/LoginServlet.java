@@ -1,7 +1,9 @@
 package controller;
 
 import dataaccesslayer.DataSource;
+import model.CharityWorker;
 import model.LogInValidation;
+import transferobjects.InventoryItemDTO;
 import transferobjects.UserDTO;
 
 import javax.servlet.ServletContext;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -35,8 +38,6 @@ public class LoginServlet extends HttpServlet {
         String action = request.getParameter("action");
         String username = request.getParameter("name");
         String password = request.getParameter("password");
-        //TODO these variables will be passed to model where our logic will happen
-        // we need to check as well what type of user they are in the db to redirect them to the correct page
         if(Objects.equals(action, "Sign in")){
         try (Connection connection = dataSource.getConnection()) {
             UserDTO user = logInValidation.getUserRoleAndId(username, password, connection);
@@ -46,10 +47,16 @@ public class LoginServlet extends HttpServlet {
                 if (user.getRole().equals("Retailer")) {
                     HttpSession session = request.getSession();
                     session.setAttribute("userId", user.getId());
+                }else if(user.getRole().equals("Charity")){
+                    CharityWorker worker = new CharityWorker();
+                    List<InventoryItemDTO> items = worker.displayCharityClaims(connection);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("items", items);
                 }
 
                 response.sendRedirect(nextPage);
-            } else {
+            }
+            else {
                 response.sendRedirect("views/SignInError.jsp");
             }
         } catch(SQLException e){
