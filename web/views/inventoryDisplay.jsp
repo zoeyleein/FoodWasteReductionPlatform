@@ -7,7 +7,6 @@
 <head>
     <title>Inventory List</title>
     <script>
-        // Updates the cost and validates quantity and total cost constraints
         function updateCostAndValidate(element, availableQty, unitPrice) {
             let qtyInput = parseInt(element.value, 10);
             if (qtyInput > availableQty) {
@@ -16,8 +15,6 @@
                 qtyInput = availableQty;
             }
 
-            //must use .closest here instead of querySelector for all
-            //reference: https://stackoverflow.com/questions/63241462/using-closest-on-element-in-different-parent-element
             let costElement = element.closest('tr').querySelector('.cost');
             costElement.innerText = (qtyInput * unitPrice).toFixed(2);
 
@@ -26,12 +23,10 @@
                 totalCost += parseFloat(item.innerText);
             });
 
-            // If the total cost exceeds $100, reset the last input change
             if (totalCost > 100) {
                 alert('Total cost cannot exceed 100 dollars. Adjusting quantity...');
-                element.value = 0; // Reset last changed input
-                costElement.innerText = '0.00'; // Reset cost for the last changed item
-                // Recalculate total cost after adjustment
+                element.value = 0;
+                costElement.innerText = '0.00';
                 totalCost = 0;
                 document.querySelectorAll('.cost').forEach(function(item) {
                     totalCost += parseFloat(item.innerText);
@@ -39,6 +34,48 @@
             }
 
             document.getElementById('totalCost').innerText = 'Total Cost: $' + totalCost.toFixed(2);
+        }
+
+        function checkout() {
+            const rowsData = getRowJsonData();
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'http://localhost:8080/FoodWasteReductionPlatform_Web_exploded/ProcessCheckoutServlet';
+            form.style.display = 'none';
+
+            rowsData.forEach((item, index) => {
+                for (const [key, value] of Object.entries(item)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = `items[${index}].${key}`;
+                    hiddenField.value = value;
+                    form.appendChild(hiddenField);
+                }
+            });
+
+            document.body.appendChild(form);
+
+
+            form.submit();
+        }
+
+        getRowJsonData = () => {
+            let rowsData = [];
+
+            document.querySelectorAll('tbody tr').forEach((row) => {
+                let cells = row.querySelectorAll('td');
+                let itemData = {
+                    itemName: cells[0].textContent.split(',')[0],
+                    expiryDate: cells[1].textContent,
+                    onSale: cells[2].textContent === 'Yes',
+                    unitPrice: parseFloat(cells[4].textContent.replace('$', '')),
+                    quantityPurchased: parseInt(cells[5].querySelector('input[type=number]').value, 10),
+                    totalCost: parseFloat(cells[6].textContent)
+                };
+                rowsData.push(itemData);
+            });
+
+            return rowsData; // Return the structured data
         }
     </script>
 </head>
@@ -67,7 +104,7 @@
                 <td>$${entry.value.finalPrice}</td>
                 <td>
                     <input type="number" min="0" value="0"
-                           oninput="updateCostAndValidate(this, ${entry.value.quantity}, ${entry.value.unitPrice})"/>
+                           oninput="updateCostAndValidate(this, ${entry.value.quantity}, ${entry.value.finalPrice})"/>
                 </td>
                 <td class="cost">0.00</td>
             </tr>
@@ -75,6 +112,7 @@
         </tbody>
     </table>
     <p id="totalCost">Total Cost: $0.00</p>
+    <button onclick="checkout()">Checkout</button>
 </c:if>
 <c:if test="${empty inventoryItemsMap}">
     <p>No inventory items found.</p>
