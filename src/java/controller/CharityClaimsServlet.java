@@ -16,6 +16,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * CharityClaimsServlet is a controller that handles the claiming of items by a charity.
+ */
 @WebServlet(name = "CharityClaimsServlet", urlPatterns = {"/CharityClaimsServlet"})
 public class CharityClaimsServlet extends HttpServlet {
 
@@ -27,6 +30,7 @@ public class CharityClaimsServlet extends HttpServlet {
         ServletContext context = getServletContext();
         dataSource = new DataSource(context);
     }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

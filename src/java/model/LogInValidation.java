@@ -8,7 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * LogInValidation is a model class that validates the login credentials of a user.
+ */
 public class LogInValidation {
+
+    /**
+     * Used to redirect user based on role to the appropriate page
+     * @param action the action to perform (the button clicked)
+     * @param role the role of the user
+     * @return the page to redirect to
+     */
     public String logInPageRedirect(String action, String role) {
         if (action.equals("Sign in")) {
             return switch (role) {
@@ -25,6 +35,13 @@ public class LogInValidation {
         }
     }
 
+    /**
+     * gets the user role and id
+     * @param username takes in a username
+     * @param password takes in a password
+     * @param con takes in a db connection
+     * @return the user data transfer object
+     */
     public UserDTO getUserRoleAndId(String username, String password, Connection con) {
         String sql = "SELECT id, role FROM users WHERE name = ? AND password = ?";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {

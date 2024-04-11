@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * RetailerInventoryWorker is a model class that handles the inventory of a retailer.
+ */
 public class RetailerInventoryWorker {
 
     int NOT_FOR_SALE = 0;
@@ -18,7 +21,12 @@ public class RetailerInventoryWorker {
     int FOR_DONATION = 2;
     double salePercent = 0.3;
 
-    public boolean expiryDateValidation(Date expiryDate) {
+    /**
+     * Validates if the product is within automatic sale date
+     * @param expiryDate the expiry date of the product
+     * @return true if the product is within 7 days of expiry, false otherwise
+     */
+    public boolean saleDateValidation(Date expiryDate) {
         Date currentDate = new Date();
 
         long differenceInMillis = expiryDate.getTime() - currentDate.getTime();
@@ -27,6 +35,11 @@ public class RetailerInventoryWorker {
         return daysDifference <= 7;
     }
 
+    /**
+     * Validates if the product is within automatic donation date
+     * @param expiryDate the expiry date of the product
+     * @return true if the product is within 3 days of expiry, false otherwise
+     */
     public boolean isDonation(Date expiryDate){
         Date currentDate = new Date();
         long differenceInMillis = expiryDate.getTime() - currentDate.getTime();
@@ -34,24 +47,45 @@ public class RetailerInventoryWorker {
         return daysDifference <= 3;
     }
 
+    /**
+     * Determines the status of the product
+     * @param expiryDate the expiry date of the product
+     * @return the status of the product
+     */
     public int productStatus(Date expiryDate){
         if (isDonation(expiryDate)){
             return FOR_DONATION;
-        } else if (expiryDateValidation(expiryDate)){
+        } else if (saleDateValidation(expiryDate)){
             return ON_SALE;
         } else {
             return NOT_FOR_SALE;
         }
     }
 
+    /**
+     * Calculates the price of the product and returns either the unit price or a rounded final price
+     * @param status the status of the product
+     * @param unitPrice the unit price of the product
+     * @return the price of the product
+     */
     public double productPrice(int status, double unitPrice) {
         if (status == ON_SALE){
-            return (unitPrice - (unitPrice * salePercent));
+            return Math.round((unitPrice - (unitPrice * salePercent)) * 100.0) / 100.0;
         } else {
             return unitPrice;
         }
     }
 
+
+    /**
+     * Checks if the product already exists in the retailer's inventory by checking the name and
+     * batch number from a specific retailer
+     * @param connection the connection to the database
+     * @param retailerId the ID of the retailer
+     * @param itemName the name of the product
+     * @param batchNum the batch number of the product
+     * @return true if the product already exists, false otherwise
+     */
     public boolean productAlreadyExists(Connection connection, int retailerId, String itemName, int batchNum) {
         String query = "SELECT * FROM item AS i " +
                 "JOIN retailer_inventory AS ri ON i.id = ri.item_id " +
@@ -69,6 +103,13 @@ public class RetailerInventoryWorker {
         return false;
     }
 
+    /**
+     * Inserts a new product into the retailer's inventory and gets the auto incremented id
+     * @param connection the connection to the database
+     * @param item the item to insert
+     * @return the auto incremented id of the inserted product
+     * @throws SQLException if an error occurs during the insert
+     */
     public int insertAndGetGeneratedId(Connection connection, ItemDTO item) throws SQLException {
         String insertQuery = "INSERT INTO item VALUES (?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(insertQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -76,15 +117,21 @@ public class RetailerInventoryWorker {
             pstmt.setString(2, item.getName());
             pstmt.setString(3, item.getCategory());
             pstmt.executeUpdate();
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+            try (ResultSet rs = pstmt.getGeneratedKeys()) { // this line was ChatGPT'd because i didnt know how to get this automatically
                 if (rs.next()) {
                     return rs.getInt(1);
                 }
             }
         }
-        return -1; // Return -1 if no generated key is retrieved
+        return -1; // return -1 if no generated key is retrieved
     }
 
+    /**
+     * retrieves the inventory to display for the retailer
+     * @param connection the connection to the database
+     * @param retailerId the ID of the retailer
+     * @return the list of inventory items to display
+     */
     public List<InventoryItemDTO> retrieveInventory(Connection connection, int retailerId) {
         List<InventoryItemDTO> inventory = new ArrayList<>();
         String query = "SELECT i.name, i.category, ri.quantity, ri.expiry_date, ri.final_price, ri.sale, ri.donation " +
@@ -113,6 +160,16 @@ public class RetailerInventoryWorker {
         return inventory;
     }
 
+    /**
+     * Updates the quantity of a product in the retailer's inventory
+     * @param connection the connection to the database
+     * @param retailerId the ID of the retailer
+     * @param itemName the name of the product
+     * @param batchNum the batch number of the product
+     * @param newQuantity the new quantity to set
+     * @param sale the sale status of the product
+     * @param donation the donation status of the product
+     */
     public void updateQuantity(Connection connection, int retailerId, String itemName, int batchNum, int newQuantity, boolean sale, boolean donation) {
         String sql = "UPDATE retailer_inventory ri " +
                 "JOIN item i ON ri.item_id = i.id " +
@@ -135,6 +192,14 @@ public class RetailerInventoryWorker {
     }
 
 
+    /**
+     * Updates the sale and donation flags of a product in the retailer's inventory
+     * @param connection the connection to the database
+     * @param itemId the ID of the product
+     * @param sale the sale status of the product
+     * @param donation the donation status of the product
+     * @throws SQLException if an error occurs during the update
+     */
     public void updateInventoryFlags(Connection connection, int itemId, boolean sale, boolean donation) throws SQLException {
         String sql = "UPDATE retailer_inventory SET sale = ?, donation = ? WHERE item_id = ?";
         PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -158,6 +223,13 @@ public class RetailerInventoryWorker {
     }
 
 
+    /**
+     * this method updates the price if the sale flag is set to true
+     * @param connection the connection to the database
+     * @param itemId the ID of the product
+     * @param unitPrice the unit price of the product
+     * @throws SQLException if an error occurs during the update
+     */
     public void updatePrice(Connection connection, int itemId, double unitPrice) throws SQLException {
         String sql = "UPDATE retailer_inventory SET final_price = ? WHERE item_id = ?";
         PreparedStatement pstmt = connection.prepareStatement(sql);
