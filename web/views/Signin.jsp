@@ -15,7 +15,7 @@
     </head>
 <body class = "signin">
         <div class="logoblack-container">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+            <a href="${pageContext.request.contextPath}">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <div class="container">

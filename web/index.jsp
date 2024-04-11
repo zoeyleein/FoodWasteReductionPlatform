@@ -16,9 +16,9 @@
 <div class="content-container">
     <p>Welcome to EcoHarvest, your sustainable solution to reducing food waste and promoting responsible consumption. Our platform connects retailers, charities, and consumers in a collaborative effort to minimize surplus food and ensure that it is redirected to those in need or utilized efficiently.</p>
 </div>
-<h3>Lets get start !</h3>
+<h3>Lets get started!</h3>
 <br>
-</br>
+<br>
 
 <form action="${pageContext.request.contextPath}/WelcomeServlet" method="POST">
     <input type="submit" name="action" value="Log In">
@@ -29,7 +29,7 @@
 </form>
 
     <footer>
-        <p>&copy; 2024 EcoHarvest. All rights reserved. Made by Mayank, Arron, Andres, Jaya</p>
+        <p>&copy; 2024 EcoHarvest. All rights reserved. Made by Mayank, Aaron, Andres, Jaya</p>
     </footer>
 
 </body>
