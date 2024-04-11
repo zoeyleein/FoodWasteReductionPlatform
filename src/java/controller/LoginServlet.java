@@ -41,10 +41,12 @@ public class LoginServlet extends HttpServlet {
         try (Connection connection = dataSource.getConnection()) {
             UserDTO user = logInValidation.getUserRoleAndId(username, password, connection);
             if (user != null) {
+                HttpSession session = request.getSession();
                 String nextPage = logInValidation.logInPageRedirect(action, user.getRole());
-
+                session.setAttribute("userId", user.getId());
+                session.setAttribute("userRole", user.getRole());
                 if (user.getRole().equals("Retailer")) {
-                    HttpSession session = request.getSession();
+                    session = request.getSession();
                     session.setAttribute("userId", user.getId());
                 }
 

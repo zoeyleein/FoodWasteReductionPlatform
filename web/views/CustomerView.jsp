@@ -18,7 +18,7 @@
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
-    <!-- menu icon -->
+
     <li class="top-menu">
         <div class="notification-icon">
             <img src="http://localhost:8080/FoodWasteReductionPlatform/image/notification-icon.png" alt="Alerts">
