@@ -380,3 +380,11 @@ input[type="checkbox"] + label {
 .hidden {
     display: none;
 }
+
+/* Error message style */
+.error p {
+    color: red;
+    letter-spacing: 0px;
+    font-size: 10px;
+    margin-top: 10px;
+}

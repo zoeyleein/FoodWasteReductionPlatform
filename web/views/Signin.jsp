@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Andres
+  Date: 2024-04-03
+  Time: 8:52 p.m.
+  To change this template use File | Settings | File Templates.
+--%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
     </head>
-    <body class = "signin">
+<body class = "signin">
         <div class="logoblack-container">
             <a href="http://localhost:8080/FoodWasteReductionPlatform/">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
@@ -24,5 +31,5 @@
         </form>
     </div>
 </div>
-    </body>
+</body>
 </html>
