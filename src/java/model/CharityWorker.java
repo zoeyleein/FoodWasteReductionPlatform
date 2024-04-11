@@ -62,6 +62,26 @@ public class CharityWorker {
         return claimSuccessful;
     }
 
-
+    /**
+     * checks if the quantity of an item is zero and deletes it from the database if so.
+     * @param connection takes in db connection.
+     * @param itemId takes in the item id.
+     * @throws SQLException if database error occurs.
+     */
+    public void deleteItemIfQuantityZero(Connection connection, int itemId) throws SQLException {
+        String sql = "SELECT quantity FROM retailer_inventory WHERE id = ? AND quantity = 0";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, itemId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    String sql2 = "DELETE FROM retailer_inventory WHERE id = ?";
+                    try (PreparedStatement pstmt2 = connection.prepareStatement(sql2)) {
+                        pstmt2.setInt(1, itemId);
+                        pstmt2.executeUpdate();
+                    }
+                }
+            }
+        }
+    }
 
 }

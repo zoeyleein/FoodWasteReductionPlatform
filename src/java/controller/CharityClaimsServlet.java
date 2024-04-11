@@ -37,7 +37,9 @@ public class CharityClaimsServlet extends HttpServlet {
 
         try(Connection connection = dataSource.getConnection()) {
             boolean valid = worker.claimItem(connection, itemId, claimedQuantity);
+            worker.deleteItemIfQuantityZero(connection, itemId); // checks quantity, deletes if its 0
             if(valid){
+                // if valid, display the updated list of items and set a success message
                 List<InventoryItemDTO> items = worker.displayCharityClaims(connection);
                 session.setAttribute("items", items);
                 session.setAttribute("message", "Successfully claimed " + claimedQuantity + " items.");
