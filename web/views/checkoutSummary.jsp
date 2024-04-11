@@ -41,6 +41,7 @@
         </tr>
         </tfoot>
     </table>
+    <input type="hidden" name="totalCost" value="${totalCost}" />
     <button type="submit">Pay now</button>
 </form>
 </body>
