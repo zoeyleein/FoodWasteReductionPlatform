@@ -29,7 +29,7 @@
 </form>
 
     <footer>
-        <p>&copy; 2024 EcoHarvest. All rights reserved.</p>
+        <p>&copy; 2024 EcoHarvest. All rights reserved. Made by Mayank, Arron, Andres, Jaya</p>
     </footer>
 
 </body>
