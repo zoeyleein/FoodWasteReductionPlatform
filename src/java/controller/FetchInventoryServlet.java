@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,17 +32,20 @@ public class FetchInventoryServlet extends HttpServlet {
         try {
             Map<Integer, RetailerInventoryDTO> inventoryById = logic.getInventory(retailerId, context);
             Map<String, RetailerInventoryDTO> inventoryItemsMap = new HashMap<>();
-
-            DataSource dataSource = new DataSource(context); // Ensure DataSource is properly instantiated
+            ArrayList<Integer> list = new ArrayList<>();
+            DataSource dataSource = new DataSource(context);
             try (Connection connection = dataSource.getConnection()) {
                 ItemDAOImpl itemDAO = new ItemDAOImpl(connection);
                 inventoryById.forEach((itemId, inventoryDTO) -> {
-                    ItemDTO item = itemDAO.getItemById(itemId); // Assuming getItemById returns an ItemDTO
+                    ItemDTO item = itemDAO.getItemById(itemId);
+                    int retailerInventoryid = inventoryDTO.getId();
+                    list.add(retailerInventoryid);
                     inventoryItemsMap.put(item.getName()+","+inventoryDTO.getBatch(), inventoryDTO);
                 });
             }
 
             request.setAttribute("inventoryItemsMap", inventoryItemsMap);
+
         } catch (SQLException e) {
             e.printStackTrace(); // Consider more graceful error handling
         }

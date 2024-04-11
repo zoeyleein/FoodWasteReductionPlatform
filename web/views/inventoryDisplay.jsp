@@ -55,7 +55,7 @@
 
             document.body.appendChild(form);
 
-
+            console.log('clicked');
             form.submit();
         }
 
@@ -64,19 +64,23 @@
 
             document.querySelectorAll('tbody tr').forEach((row) => {
                 let cells = row.querySelectorAll('td');
+                let retailerInventoryIDElement = row.querySelector('.retailerInventoryID'); // Getting the element
+                let retailerInventoryID = retailerInventoryIDElement ? retailerInventoryIDElement.value : 'Error: ID Not Found'; // Using the element's value if it exists
                 let itemData = {
                     itemName: cells[0].textContent.split(',')[0],
-                    expiryDate: cells[1].textContent,
-                    onSale: cells[2].textContent === 'Yes',
-                    unitPrice: parseFloat(cells[4].textContent.replace('$', '')),
-                    quantityPurchased: parseInt(cells[5].querySelector('input[type=number]').value, 10),
-                    totalCost: parseFloat(cells[6].textContent)
+                    retailerInventoryID: retailerInventoryID, // Now this should properly get the value
+                    expiryDate: cells[2].textContent,
+                    onSale: cells[3].textContent === 'Yes',
+                    unitPrice: parseFloat(cells[5].textContent.replace('$', '')),
+                    quantityPurchased: parseInt(cells[6].querySelector('input[type=number]').value, 10),
+                    totalCost: parseFloat(cells[7].textContent)
                 };
                 rowsData.push(itemData);
             });
 
             return rowsData; // Return the structured data
-        }
+        };
+
     </script>
 </head>
 <body>
@@ -86,6 +90,7 @@
         <thead>
         <tr>
             <th>Item</th>
+
             <th>Expiry Date</th>
             <th>On Sale</th>
             <th>Available Quantity</th>
@@ -98,6 +103,7 @@
         <c:forEach items="${inventoryItemsMap}" var="entry">
             <tr>
                 <td>${entry.key}</td>
+                <td>${entry.value.id}</td>
                 <td>${entry.value.expiryDate}</td>
                 <td>${entry.value.sale ? 'Yes' : 'No'}</td>
                 <td>${entry.value.quantity}</td>
@@ -106,7 +112,12 @@
                     <input type="number" min="0" value="0"
                            oninput="updateCostAndValidate(this, ${entry.value.quantity}, ${entry.value.finalPrice})"/>
                 </td>
+
                 <td class="cost">0.00</td>
+                <td>
+                    <input type="hidden" class="retailerInventoryID" value="${entry.value.id}">
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>

@@ -8,38 +8,40 @@
 </head>
 <body>
 <h2>Checkout Summary</h2>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Item Name</th>
-        <th>Expiry Date</th>
-        <th>Item Price</th>
-        <th>On Sale</th>
-        <th>Quantity Purchased</th>
-        <th>Total Cost (Per Item)</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${items}" var="item">
-        <tr>
-            <td>${item.itemName}</td>
-            <td>${item.expiryDate}</td> <!-- Display expiryDate -->
-            <td>$${item.unitPrice}</td> <!-- Updated to reflect the correct property name -->
-            <td>${item.onSale ? 'Yes' : 'No'}</td> <!-- Adjusted to show Yes/No -->
-            <td>${item.quantityPurchased}</td> <!-- Updated to reflect the correct property name -->
-            <td>$${item.totalCost}</td> <!-- Display totalCost -->
-        </tr>
-    </c:forEach>
-    </tbody>
-    <tfoot>
-    <tr>
-        <th colspan="5">Grand Total Cost</th> <!-- Updated colspan to account for the new column -->
-        <th>$${totalCost}</th> <!-- Display the grand totalCost passed from servlet -->
-    </tr>
-    </tfoot>
-</table>
 <form action="PaymentServlet" method="post">
-    <button type="submit">Proceed to Payment</button> <!-- Updated button text for clarity -->
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Expiry Date</th>
+            <th>Item Price</th>
+            <th>On Sale</th>
+            <th>Quantity Purchased</th>
+            <th>Total Cost (Per Item)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${items}" var="item">
+            <tr>
+                <td>${item.itemName}</td>
+                <td>${item.expiryDate}</td>
+                <td>$${item.unitPrice}</td>
+                <td>${item.onSale ? 'Yes' : 'No'}</td>
+                <td>${item.quantityPurchased}</td>
+                <td>$${item.totalCost}</td>
+            </tr>
+            <input type="hidden" name="retailerInventoryIDs[]" value="${item.retailerInventoryID}" />
+            <input type="hidden" name="quantities[]" value="${item.quantityPurchased}" />
+        </c:forEach>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="5">Grand Total Cost</th>
+            <th>$${totalCost}</th>
+        </tr>
+        </tfoot>
+    </table>
+    <button type="submit">Pay now</button>
 </form>
 </body>
 </html>
