@@ -1,5 +1,6 @@
 package dataaccesslayer;
 
+import notifications.Observer;
 import transferobjects.RetailerInventoryDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import notifications.NotificationObserver;
+import transferobjects.UserDTO;
 
-public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
+public class RetailerInventoryDAOImpl implements RetailerInventoryDAO{
 
     Connection con;
+    NotificationObserver notificationObserver = new NotificationObserver();
+
 
     public RetailerInventoryDAOImpl(Connection con){
         this.con = con;
@@ -31,6 +36,10 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
             pstmt.setBoolean(9, retailerInventory.getSale());
             pstmt.setBoolean(10, retailerInventory.getDonation());
             pstmt.executeUpdate();
+            // Check if sale or donation flag is true
+            if (retailerInventory.getSale() || retailerInventory.getDonation()) {
+//                notifyObservers(); // Notify observers
+            }
         }
     }
 
@@ -101,6 +110,10 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
             pstmt.setBoolean(9, retailerInventory.getDonation());
             pstmt.setInt(10, retailerInventory.getId());
             pstmt.executeUpdate();
+            // Check if sale or donation flag is true
+            if (retailerInventory.getSale() || retailerInventory.getDonation()) {
+//                notifyObservers(); // Notify observers
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -116,6 +129,5 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
             e.printStackTrace();
         }
     }
-
 
 }

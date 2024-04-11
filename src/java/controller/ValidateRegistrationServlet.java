@@ -5,6 +5,7 @@ import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import model.DTOBuilder;
 import model.UserRegistration;
+import notifications.Subject;
 import transferobjects.UserAccountDTO;
 import transferobjects.UserDTO;
 
@@ -29,6 +30,8 @@ public class ValidateRegistrationServlet extends HttpServlet {
     String phone;
     String location;
     String role;
+    Boolean subscribeToPhone;
+    Boolean subscribeToEmail;
     //TODO we need to figure out what we're doing for all the registration forms and how we are going to validate them
     DTOBuilder builder = new DTOBuilder();
     DataSource dataSource;
@@ -50,7 +53,16 @@ public class ValidateRegistrationServlet extends HttpServlet {
         email = request.getParameter("email");
         password = request.getParameter("password");
         phone = request.getParameter("phone");
+        subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToEmail"));
+        subscribeToPhone = Boolean.parseBoolean(request.getParameter("subscribeToPhone"));
 
+        if (subscribeToEmail){
+
+        }
+
+        if (subscribeToPhone){
+
+        }
         if(Objects.equals(role, "Customer") || Objects.equals(role, "Charity")) {
             location = request.getParameter("selectedValue");
         } else{
@@ -73,4 +85,6 @@ public class ValidateRegistrationServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+
 }
