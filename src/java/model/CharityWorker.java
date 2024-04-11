@@ -9,8 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CharityWorker is a model class that handles the claiming of items by a charity.
+ */
 public class CharityWorker {
 
+    /**
+     * Displays the items that are available for charity claims.
+     * @param connection takes in a db connection
+     * @return returns the list of items to display
+     */
     public List<InventoryItemDTO> displayCharityClaims(Connection connection) {
         String query = "SELECT i.name, i.category, r.expiry_date, r.quantity, r.id "
                 + "FROM item i "
@@ -35,8 +43,16 @@ public class CharityWorker {
         return items;
     }
 
+    /**
+     * Query method to claim an item
+     * @param connection takes in db connection
+     * @param itemId takes in the item id
+     * @param claimedQuantity takes in the claimed quantity by the charity
+     * @return returns true if the claim was successful, false otherwise
+     * @throws SQLException if database error occurs
+     */
     public boolean claimItem(Connection connection, int itemId, int claimedQuantity) throws SQLException {
-        boolean claimSuccessful = false;
+        boolean claimSuccessful;
         connection.setAutoCommit(false);
         String updateQuery = "UPDATE retailer_inventory SET quantity = quantity - ? WHERE id = ? AND quantity >= ?";
 
