@@ -5,6 +5,8 @@ import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import model.DTOBuilder;
 import model.UserRegistration;
+import notifications.NotificationObserver;
+import notifications.NotificationService;
 import notifications.Subject;
 import transferobjects.UserAccountDTO;
 import transferobjects.UserDTO;
@@ -56,13 +58,6 @@ public class ValidateRegistrationServlet extends HttpServlet {
         subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToEmail"));
         subscribeToPhone = Boolean.parseBoolean(request.getParameter("subscribeToPhone"));
 
-        if (subscribeToEmail){
-
-        }
-
-        if (subscribeToPhone){
-
-        }
         if(Objects.equals(role, "Customer") || Objects.equals(role, "Charity")) {
             location = request.getParameter("selectedValue");
         } else{
@@ -78,7 +73,12 @@ public class ValidateRegistrationServlet extends HttpServlet {
                 UserDTO user = builder.userBuilder(name, password, role, email, phone, location);
                 userBusinessLogic = new UserBusinessLogic(connection);
                 userBusinessLogic.addUser(user);
-                
+                // Register observer
+                NotificationObserver observer = new NotificationObserver();
+                NotificationService notificationService = new NotificationService();
+                notificationService.registerObserver(observer);
+
+
                 response.sendRedirect("views/Signin.jsp");
             }
         } catch (SQLException e) {
