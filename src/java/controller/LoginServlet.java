@@ -64,7 +64,6 @@ public class LoginServlet extends HttpServlet {
                 }else if(user.getRole().equals("Charity")){
                     CharityWorker worker = new CharityWorker();
                     List<InventoryItemDTO> items = worker.displayCharityClaims(connection);
-                    session = request.getSession();
                     session.setAttribute("items", items);
                 }
 
