@@ -72,7 +72,7 @@
     </fieldset>
     <br>
     <input type="submit" name="action" value="Add Item">
-    <br>
+    <br><br>
     <input type="submit" name="action" value="Update Item" onclick="removeRequired()"><br>
     <br>
     <input type="submit" name="action" value="View Inventory" onclick="removeRequired()">
