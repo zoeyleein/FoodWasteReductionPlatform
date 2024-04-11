@@ -64,6 +64,69 @@ p {
     background-color: #FFF;
 }
 
+/* inventory */
+.inventory {
+    width: 80%;
+    margin: 80px auto;
+    margin-bottom: 400px;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: #FFF;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding-bottom: 100px;
+}
+
+
+.inventory h1 {
+    text-align: center;
+    color: #3A7877; /* Color for the heading */
+}
+
+.inventory table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inventory th, .inventory td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Border color between rows */
+}
+
+.inventory th {
+    background-color: #6BB082; /* Background color for table header */
+    color: white; /* Text color for table header */
+    letter-spacing: 0.5px;
+    font-weight: 400;
+}
+
+.inventory tr:hover {
+    background-color: #f5f5f5; /* Background color on hover */
+}
+
+.inventory td {
+    text-align: center;
+}
+
+.menu {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    list-style: none;
+}
+
+.menu li {
+    text-size: 20px;
+}
+
+.menu a {
+    color: #666; /* Color for menu links */
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #3A7877; /* Link color on hover */
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -328,29 +391,6 @@ legend {
     color: #3A7877;
 }
 
-/*
-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #FFF;
-}
-
-input[type="number"] {
-    width: calc(100% - 22px);
-}
-
-input[type="datetime-local"] {
-    width: calc(100% - 22px);
-}
-
-#error-message {
-    color: red;
-}*/
-
 /* Checkbox style */
 input[type="checkbox"] {
     float: left;
@@ -383,8 +423,26 @@ input[type="checkbox"] + label {
 
 /* Error message style */
 .error p {
-    color: red;
     letter-spacing: 0px;
     font-size: 10px;
     margin-top: 10px;
+}
+
+/* Styles for the top-right menu */
+.menu {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    list-style: none;
+}
+
+.menu a {
+    color: #666; /* Color for menu links */
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 20px; /* Increase font size */
+}
+
+.menu a:hover {
+    color: #3A7877; /* Link color on hover */
 }
