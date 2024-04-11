@@ -1,9 +1,11 @@
 package controller;
 
+import businesslayer.UserAccountBusinessLogic;
 import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import model.DTOBuilder;
 import model.UserRegistration;
+import transferobjects.UserAccountDTO;
 import transferobjects.UserDTO;
 
 import javax.servlet.ServletContext;
@@ -64,6 +66,7 @@ public class ValidateRegistrationServlet extends HttpServlet {
                 UserDTO user = builder.userBuilder(name, password, role, email, phone, location);
                 userBusinessLogic = new UserBusinessLogic(connection);
                 userBusinessLogic.addUser(user);
+                
                 response.sendRedirect("views/Signin.jsp");
             }
         } catch (SQLException e) {

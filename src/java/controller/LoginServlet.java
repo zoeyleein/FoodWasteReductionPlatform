@@ -1,9 +1,11 @@
 package controller;
 
+import businesslayer.UserAccountBusinessLogic;
 import dataaccesslayer.DataSource;
 import model.CharityWorker;
 import model.LogInValidation;
 import transferobjects.InventoryItemDTO;
+import transferobjects.UserAccountDTO;
 import transferobjects.UserDTO;
 
 import javax.servlet.ServletContext;
@@ -46,13 +48,23 @@ public class LoginServlet extends HttpServlet {
                 String nextPage = logInValidation.logInPageRedirect(action, user.getRole());
                 session.setAttribute("userId", user.getId());
                 session.setAttribute("userRole", user.getRole());
+                if(user.getRole().equals("Customer")){
+                    UserAccountBusinessLogic userAccountBusinessLogic = new UserAccountBusinessLogic(connection);
+                    System.out.println("User id is "+userAccountBusinessLogic.getUserAccountById(user.getId()));
+                    if(userAccountBusinessLogic.getUserAccountById(user.getId())==null){
+                        UserAccountDTO userAccountDTO = new UserAccountDTO();
+                        userAccountDTO.setUsersId(user.getId());
+                        userAccountDTO.setBalance(100);
+                        userAccountBusinessLogic.addUserAccount(userAccountDTO);
+                    }
+                }
                 if (user.getRole().equals("Retailer")) {
                     session = request.getSession();
                     session.setAttribute("userId", user.getId());
                 }else if(user.getRole().equals("Charity")){
                     CharityWorker worker = new CharityWorker();
                     List<InventoryItemDTO> items = worker.displayCharityClaims(connection);
-                    HttpSession session = request.getSession();
+                    session = request.getSession();
                     session.setAttribute("items", items);
                 }
 

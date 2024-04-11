@@ -18,18 +18,18 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 
     @Override
     public void insertUserAccount(UserAccountDTO userAccount) throws SQLException {
-        String sql = "INSERT INTO userAccount (id, balance, users_id) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO userAccount ( balance, users_id) VALUES (?, ?)";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setInt(1, userAccount.getId());
-            pstmt.setDouble(2, userAccount.getBalance());
-            pstmt.setInt(3, userAccount.getUsersId());
+//            pstmt.setInt(1, userAccount.getId());
+            pstmt.setDouble(1, userAccount.getBalance());
+            pstmt.setInt(2, userAccount.getUsersId());
             pstmt.executeUpdate();
         }
     }
 
     @Override
     public UserAccountDTO getUserAccountById(int accountId) {
-        String sql = "SELECT * FROM userAccount WHERE id = ?";
+        String sql = "SELECT * FROM userAccount WHERE users_id = ?";
         UserAccountDTO account = null;
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, accountId);
