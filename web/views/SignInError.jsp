@@ -21,7 +21,7 @@
 </head>
 <body class = "signin">
         <div class="logoblack-container">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+            <a href="${pageContext.request.contextPath}">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <div class="container">
@@ -37,11 +37,10 @@
             <input type="submit" name="action" value="Sign up">
         </form>
 
-    </form>
+
     </div>
         <p class="error">The information entered was not correct. If you are not register yet, please sign up.</p>
-        <form action="${pageContext.request.contextPath}/LoginServlet" method="POST">
+    <form action="${pageContext.request.contextPath}/LoginServlet" method="POST"></form>
 </div>
-</form>
 </body>
 </html>
