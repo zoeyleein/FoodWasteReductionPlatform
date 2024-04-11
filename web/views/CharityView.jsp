@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Customer Purchase View</title>
+    <title>Charity View</title>
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body class = "registration">
         <div class="logoblack-container">
             <a href="http://localhost:8080/FoodWasteReductionPlatform/">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
@@ -26,7 +26,8 @@
     </li>
 </ul>
 
-<h1>Transaction</h1>
+<div class="inventory">
+<h1>Inventory</h1>
 
 <table>
     <thead>
@@ -57,7 +58,6 @@
     </tbody>
 </table>
 
-<button class="update-inventory-button">Update Inventory</button>
-
+</div>
 </body>
 </html>
