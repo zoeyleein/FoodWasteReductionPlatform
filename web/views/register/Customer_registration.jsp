@@ -60,15 +60,12 @@
                 <label for="dropdown">Select your nearest store :</label>
                 <br>
                 <select id="dropdown" name="selectedValue">
-                    <%
-                        // Populate the dropdown
-                        while (resultSet.next()) {
-                            String value = resultSet.getString("location");
-                    %>
-                    <option value="<%= value %>"><%= value %></option>
-                    <%
-                        }
-                    %>
+
+                        <option value="Nepean">Nepean</option>
+                        <option value="Kanata">Kanata</option>
+                        <option value="Barrhaven">Barrhaven</option>
+                        <option value="Downtown">Downtown</option>
+
                 </select><br><br>
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone">
                 <label for="subscribeToPhone">Get notifications by Phone</label><br>

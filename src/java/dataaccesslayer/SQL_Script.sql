@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`transaction` (
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`userAccount` (
-                                                    `id` INT NOT NULL,
+                                                    `id` INT NOT NULL AUTO_INCREMENT,
                                                     `balance` DOUBLE NOT NULL,
                                                     `users_id` INT NOT NULL,
                                                     PRIMARY KEY (`id`, `users_id`),
