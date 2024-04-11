@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`charity_inventory` (
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`transaction` (
-                                                    `transaction_id` VARCHAR(50) NOT NULL,
+                                                    `transaction_id` VARCHAR(50) NOT NULL AUTO_INCREMENT,
                                                     `userInventory_id` INT NOT NULL,
                                                     `users_id` INT NOT NULL,
                                                     `quantity` INT NOT NULL,
