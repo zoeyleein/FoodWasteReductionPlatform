@@ -11,7 +11,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
-    <title>Retailer Information Page</title>
 </head>
 
 <body class = "registration" onload="resetRequiredFields()">
@@ -71,9 +70,9 @@
     <input type="number" id="price" name="price" step="0.01" min="0" required><br>
     </fieldset>
     <br>
-    <input type="submit" name="action" value="Add Item">
-    <br>
-    <input type="submit" name="action" value="Update Item" onclick="removeRequired()"><br>
+    <input type="submit" name="action" value="Add">
+    <br></br>
+    <input type="submit" name="action" value="Update" onclick="removeRequired()"><br>
     <br>
     <input type="submit" name="action" value="View Inventory" onclick="removeRequired()">
 
@@ -92,6 +91,7 @@
             fields[i].setAttribute('required', 'true');
         }
     }
+    </div>
 </script>
 </body>
 </html>
