@@ -16,7 +16,7 @@
     <body class = "registration">
 
     <div class="logoblack-container">
-        <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+        <a href="${pageContext.request.contextPath}">
         <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
     </div>
 
@@ -46,7 +46,6 @@
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail" hidden>
                 <label for="subscribeToMail" hidden>Get notifications by Mail</label>
             </div>
-                <%--Finish of Required fields for not null objects --%>
                 <br>
                 <div style="text-align: right; background-color: white;">
                 <input type="submit" value="Register">
