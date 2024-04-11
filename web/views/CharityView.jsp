@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Customer Purchase View</title>
+    <title>Charity View</title>
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>

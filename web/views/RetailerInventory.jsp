@@ -16,16 +16,18 @@
     <title>Inventory</title>
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body class = "registration">
 
-    <a href="http://localhost:8080/FoodWasteReductionPlatform/">
-    <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    <div class="logoblack-container">
+        <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
 
-<ul class="menu">
-    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
-</ul>
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a></li>
+    </ul>
 
-<div class="container">
+<div class="inventory">
 <h1>Inventory</h1>
 <table>
     <thead>

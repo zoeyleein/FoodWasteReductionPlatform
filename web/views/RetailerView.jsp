@@ -8,19 +8,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retailer Registration Form</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 
-<body onload="resetRequiredFields()">
-  
-<ul class="menu">
-    <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
-</ul>  
-  
-<div>Retailer Inventory</div>
+<body class = "registration" onload="resetRequiredFields()">
+
+    <div class="logoblack-container">
+        <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
+
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a></li>
+    </ul>
+
+<div class="container">
+    <h1>Add Items</h1>
     <%
     String errorMessage = (String) request.getAttribute("errorMessage");
     if (errorMessage != null && !errorMessage.isEmpty()) {
@@ -64,12 +69,11 @@
     <label for="price" >Unit Price: </label><br>
     <input type="number" id="price" name="price" step="0.01" min="0" required><br>
     </fieldset>
-
-    <input type="submit" name="action" value="Add Item"><br><br>
-
-
-    <input type="submit" name="action" value="Update Item" onclick="removeRequired()"><br>
-
+    <br>
+    <input type="submit" name="action" value="Add">
+    <br></br>
+    <input type="submit" name="action" value="Update" onclick="removeRequired()"><br>
+    <br>
     <input type="submit" name="action" value="View Inventory" onclick="removeRequired()">
 
 </form>
@@ -87,6 +91,7 @@
             fields[i].setAttribute('required', 'true');
         }
     }
+    </div>
 </script>
 </body>
 </html>

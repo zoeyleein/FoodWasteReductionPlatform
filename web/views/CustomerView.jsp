@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Customer Purchase View</title>
+    <title>Customer View</title>
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>

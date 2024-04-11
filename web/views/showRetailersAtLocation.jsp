@@ -18,8 +18,12 @@
 <c:if test="${not empty retailerNames}">
     <ul>
         <c:forEach items="${retailerNames}" var="retailer">
-            <li>${retailer.getName()}</li>
-            <button>Shop</button>
+            <li>${retailer.getName()}
+                <form action="FetchInventoryServlet" method="post">
+                    <input type="hidden" name="retailerId" value="${retailer.getId()}"/>
+                    <button type="submit">Shop</button>
+                </form>
+            </li>
         </c:forEach>
     </ul>
 </c:if>

@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory List</title>
+    <script>
+        function updateCostAndValidate(element, availableQty, unitPrice) {
+            let qtyInput = parseInt(element.value, 10);
+            if (qtyInput > availableQty) {
+                alert('Quantity cannot exceed available stock.');
+                element.value = availableQty;
+                qtyInput = availableQty;
+            }
+
+            let costElement = element.closest('tr').querySelector('.cost');
+            costElement.innerText = (qtyInput * unitPrice).toFixed(2);
+
+            let totalCost = 0;
+            document.querySelectorAll('.cost').forEach(function(item) {
+                totalCost += parseFloat(item.innerText);
+            });
+
+            if (totalCost > 100) {
+                alert('Total cost cannot exceed 100 dollars. Adjusting quantity...');
+                element.value = 0;
+                costElement.innerText = '0.00';
+                totalCost = 0;
+                document.querySelectorAll('.cost').forEach(function(item) {
+                    totalCost += parseFloat(item.innerText);
+                });
+            }
+
+            document.getElementById('totalCost').innerText = 'Total Cost: $' + totalCost.toFixed(2);
+        }
+
+        function checkout() {
+            const rowsData = getRowJsonData();
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'http://localhost:8080/FoodWasteReductionPlatform_Web_exploded/ProcessCheckoutServlet';
+            form.style.display = 'none';
+
+            rowsData.forEach((item, index) => {
+                for (const [key, value] of Object.entries(item)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = `items[${index}].${key}`;
+                    hiddenField.value = value;
+                    form.appendChild(hiddenField);
+                }
+            });
+
+            document.body.appendChild(form);
+
+
+            form.submit();
+        }
+
+        getRowJsonData = () => {
+            let rowsData = [];
+
+            document.querySelectorAll('tbody tr').forEach((row) => {
+                let cells = row.querySelectorAll('td');
+                let itemData = {
+                    itemName: cells[0].textContent.split(',')[0],
+                    expiryDate: cells[1].textContent,
+                    onSale: cells[2].textContent === 'Yes',
+                    unitPrice: parseFloat(cells[4].textContent.replace('$', '')),
+                    quantityPurchased: parseInt(cells[5].querySelector('input[type=number]').value, 10),
+                    totalCost: parseFloat(cells[6].textContent)
+                };
+                rowsData.push(itemData);
+            });
+
+            return rowsData; // Return the structured data
+        }
+    </script>
+</head>
+<body>
+<h2>Inventory</h2>
+<c:if test="${not empty inventoryItemsMap}">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Expiry Date</th>
+            <th>On Sale</th>
+            <th>Available Quantity</th>
+            <th>Unit Price</th>
+            <th>Qty</th>
+            <th>Cost</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${inventoryItemsMap}" var="entry">
+            <tr>
+                <td>${entry.key}</td>
+                <td>${entry.value.expiryDate}</td>
+                <td>${entry.value.sale ? 'Yes' : 'No'}</td>
+                <td>${entry.value.quantity}</td>
+                <td>$${entry.value.finalPrice}</td>
+                <td>
+                    <input type="number" min="0" value="0"
+                           oninput="updateCostAndValidate(this, ${entry.value.quantity}, ${entry.value.finalPrice})"/>
+                </td>
+                <td class="cost">0.00</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <p id="totalCost">Total Cost: $0.00</p>
+    <button onclick="checkout()">Checkout</button>
+</c:if>
+<c:if test="${empty inventoryItemsMap}">
+    <p>No inventory items found.</p>
+</c:if>
+</body>
+</html>

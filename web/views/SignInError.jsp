@@ -17,21 +17,31 @@
             color: red;
         }
     </style>
+
 </head>
-<body>
-<h1>Food Waste Reduction Platform</h1>
-<p>Please enter your credentials</p>
-<FORM action="${pageContext.request.contextPath}/LoginServlet" method="POST">
-    User:
-    <input type="TEXT" name="name" required><br>
-    Password:
-    <input type="password" name="password" required><br>
-    <input type="submit" name="action" value="Sign in">
-</FORM>
-<p class="error">The information entered was not correct.</p>
-<p>If you are not register yet, please do it here</p>
-<form action="${pageContext.request.contextPath}/LoginServlet" method="POST">
-    <input type="submit" name="action" value="Sign up">
+<body class = "signin">
+        <div class="logoblack-container">
+            <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+            <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+        </div>
+<div class="container">
+    <div class="content">
+        <h1>Sign In</h1>
+        <h4>Please enter your credentials</h4>
+        <form action="${pageContext.request.contextPath}/LoginServlet" method="POST" class="signin-form">
+            <p>User :</p>
+            <input type="text" name="name" required><br>
+            <p>Password :</p>
+            <input type="password" name="password" required><br>
+            <input type="submit" name="action" value="Sign in">
+            <input type="submit" name="action" value="Sign up">
+        </form>
+
+    </form>
+    </div>
+        <p class="error">The information entered was not correct. If you are not register yet, please sign up.</p>
+        <form action="${pageContext.request.contextPath}/LoginServlet" method="POST">
+</div>
 </form>
 </body>
 </html>
