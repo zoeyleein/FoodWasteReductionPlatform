@@ -12,7 +12,7 @@
     <title>Charity View</title>
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body class = "registration">
         <div class="logoblack-container">
             <a href="http://localhost:8080/FoodWasteReductionPlatform/">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
@@ -21,12 +21,9 @@
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
     <!-- menu icon -->
     <li class="top-menu">
-        <div class="cart-icon">
-            <a href="${pageContext.request.contextPath}/views/transaction/CharityTransactionView.jsp"><img src="${pageContext.request.contextPath}/image/cart-icon.png" alt="Shopping Cart"></a>
-        </div>
     </li>
 </ul>
-
+<div class="inventory">
 <h1>Transaction</h1>
         <c:if test="${not empty sessionScope.message}">
             <div class="success">
@@ -73,5 +70,6 @@
     </c:forEach>
     </tbody>
 </table>
+</div>
 </body>
 </html>
