@@ -25,7 +25,7 @@ body {
 
 h1 {
     letter-spacing: 1.5px;
-    font-weight: 700;
+    font-weight: 600;
     color: #3A7877;
     font-size: 50px;
     text-align: center;
@@ -49,6 +49,23 @@ p {
     color: #666;
 }
 
+/* show location */
+ul {
+    padding-left: 30px;
+    font-size: 30px;
+}
+
+ul li div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+ul li div form {
+    margin-left: auto;
+    margin-right: 20px;
+}
 
 .container {
     width: 100%;
@@ -137,11 +154,42 @@ p {
     font-size: 1rem;
 }
 
+/* span */
+.balance {
+    padding-top: 30px;
+    padding-bottom: 5px;
+    margin-left: 40px;
+    font-size: 20px;
+}
+.span {
+    padding-top: 30px;
+    margin-left: 10px;
+}
+
+#add-money-btn {
+    width: 150px;
+    margin-left: 40px;
+    background-color: transparent;
+    color: #3A7877;
+    border: 2px solid #3A7877;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#add-money-btn:hover {
+    background-color: #3A7877;
+    color: #FFF;
+}
+
+/* menu */
 .menu {
     position: absolute;
     top: 35px;
     right: 10px;
     list-style: none;
+    margin-bottom: 50px;
 }
 
 .menu li {
@@ -160,15 +208,19 @@ p {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="submit"] {
+input[type="number"],
+input[type="datetime-local"],
+input[type="submit"],
+button[type="submit"] {
     font-family: 'Overpass', sans-serif;
     width: 200px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
     background-color: #6BB082;
     padding: 10px;
     color: white;
@@ -182,10 +234,17 @@ label[for="userType"] {
     letter-spacing: 1px;
 }
 
+.container input[type="password"],
+           input[type="number"],
+           input[type="datetime-local"] {
+
+           width: 100%;
+           }
+
 .select-dropdown {
     font-family: 'Overpass', sans-serif;
     width: 220px;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: white;
@@ -285,7 +344,7 @@ footer p {
  }
 
  .content p,label {
-      font-weight: 1000;
+      font-weight: 600;
       font-size: 20px;
       text-align: left;
       color: black;
@@ -488,4 +547,32 @@ input[type="checkbox"] + label {
 .claimedSelect {
     size: 20px;
     margin-right: 30px;
+}
+
+/* user balance */
+#user-balance {
+    font-size: 24px;
+    color: #3A7877;
+}
+
+/* table */
+table {
+    border: none;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: none;
+    padding: 8px;
+}
+
+/* pay */
+.button-container {
+    position: relative;
+}
+
+.pay-now-button {
+    position: absolute;
+    bottom: -140px;
+    right: 0px;
 }

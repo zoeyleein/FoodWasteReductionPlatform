@@ -54,15 +54,12 @@
                 <label for="dropdown">Select your nearest store :</label>
                 <br>
                 <select id="dropdown" name="selectedValue">
-                    <%
-                        // Populate the dropdown
-                        while (resultSet.next()) {
-                            String value = resultSet.getString("location");
-                    %>
-                    <option value="<%= value %>"><%= value %></option>
-                    <%
-                        }
-                    %>
+
+                        <option value="Nepean">Nepean</option>
+                        <option value="Kanata">Kanata</option>
+                        <option value="Barrhaven">Barrhaven</option>
+                        <option value="Downtown">Downtown</option>
+
                 </select><br>
                 <%--Required fields for not null objects --%>
                 <br>

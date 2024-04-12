@@ -51,6 +51,7 @@
     <c:if test="${not empty errorMessage}">
         <p style="color: red;">${errorMessage}</p>
     </c:if>
+    <br>
     <label for="name">*Name :</label><br>
     <input type="text" id="name" name="name" required><br>
     <label for="email">*Email :</label><br>
@@ -71,7 +72,7 @@
         <%
             }
         %>
-    </select><br>
+    </select><br></br>
     <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone">
     <label for="subscribeToPhone">Get notifications by Phone</label><br>
     <input type="checkbox" id="subscribeToMail" name="subscribeToMail">

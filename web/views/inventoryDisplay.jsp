@@ -6,6 +6,7 @@
 <html>
 <head>
     <title>Inventory List</title>
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
     <script>
         function updateCostAndValidate(element, availableQty, unitPrice) {
             let qtyInput = parseInt(element.value, 10);
@@ -65,11 +66,11 @@
 
             document.querySelectorAll('tbody tr').forEach((row) => {
                 let cells = row.querySelectorAll('td');
-                let retailerInventoryIDElement = row.querySelector('.retailerInventoryID'); // Getting the element
+                let retailerInventoryIDElement = row.querySelector('.retailerInventoryID');
                 let retailerInventoryID = retailerInventoryIDElement ? retailerInventoryIDElement.value : 'Error: ID Not Found'; // Using the element's value if it exists
                 let itemData = {
                     itemName: cells[0].textContent.split(',')[0],
-                    retailerInventoryID: retailerInventoryID, // Now this should properly get the value
+                    retailerInventoryID: retailerInventoryID,
                     expiryDate: cells[2].textContent,
                     onSale: cells[3].textContent === 'Yes',
                     unitPrice: parseFloat(cells[5].textContent.replace('$', '')),
@@ -79,32 +80,45 @@
                 rowsData.push(itemData);
             });
 
-            return rowsData; // Return the structured data
+            return rowsData;
         };
 
     </script>
 </head>
-<body>
-<h2>Inventory</h2>
+<body class = "registration">
+
+    <div class="logoblack-container">
+        <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
+
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a></li>
+    </ul>
+
+<div class="inventory">
+<h1>Inventory</h1>
 <p id="totalCostLimit" style="display:none;">${currentBal}</p>
 <c:if test="${not empty inventoryItemsMap}">
-    <table border="1">
+    <table>
         <thead>
         <tr>
             <th>Item</th>
-
+            <th>Batch</th>
             <th>Expiry Date</th>
             <th>On Sale</th>
-            <th>Available Quantity</th>
-            <th>Unit Price</th>
-            <th>Qty</th>
+            <th>Quantity</th>
+            <th>Price per unit</th>
+            <th>Units Purchased</th>
             <th>Cost</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${inventoryItemsMap}" var="entry">
             <tr>
-                <td>${entry.key}</td>
+<%--                To only display the item name--%>
+                <td>${fn:split(entry.key, ',')[0]}</td>
                 <td>${entry.value.id}</td>
                 <td>${entry.value.expiryDate}</td>
                 <td>${entry.value.sale ? 'Yes' : 'No'}</td>
@@ -119,16 +133,19 @@
                 <td>
                     <input type="hidden" class="retailerInventoryID" value="${entry.value.id}">
                 </td>
-
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
+    <br>
     <p id="totalCost">Total Cost: $0.00</p>
-    <button onclick="checkout()">Checkout</button>
+    <br>
+    <button type="submit" onclick="checkout()">Checkout</button>
 </c:if>
 <c:if test="${empty inventoryItemsMap}">
     <p>No inventory items found.</p>
 </c:if>
+</div>
 </body>
 </html>

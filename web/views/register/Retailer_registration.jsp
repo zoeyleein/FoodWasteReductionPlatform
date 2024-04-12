@@ -39,7 +39,14 @@
                 <input type="text" id="phone" name="phone" hidden>
             </div>
                 <label for="location">*Location :</label><br>
-                <input type="text" id="location" name="location" required><br>
+                <select id="location" name="location">
+                    <option value="Nepean">Nepean</option>
+                    <option value="Kanata">Kanata</option>
+                    <option value="Barrhaven">Barrhaven</option>
+                    <option value="Downtown">Downtown</option>
+                </select>
+
+                <br>
             <div class="hidden">
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone" hidden>
                 <label for="subscribeToPhone" hidden>Get notifications by Phone</label>

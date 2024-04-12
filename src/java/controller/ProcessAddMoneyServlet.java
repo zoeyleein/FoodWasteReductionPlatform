@@ -42,7 +42,7 @@ public class ProcessAddMoneyServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error occurred"); // Handle database errors
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error occurred");
         }
     }
 }

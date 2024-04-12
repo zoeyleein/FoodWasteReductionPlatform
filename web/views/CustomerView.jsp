@@ -11,41 +11,28 @@
     <title>Customer View</title>
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body class = "registration">
         <div class="logoblack-container">
             <a href="${pageContext.request.contextPath}/">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>
 
-    <li class="top-menu">
-        <div class="notification-icon">
-            <img src="${pageContext.request.contextPath}/image/notification-icon.png" alt="Alerts">
-        </div>
-        <div class="cart-icon">
-            <a href="${pageContext.request.contextPath}/views/transaction/CustomerTransactionView.jsp">
-                <img src="${pageContext.request.contextPath}/image/cart-icon.png" alt="Shopping Cart">
-            </a>
-        </div>
-        <div class="money-icon">
-            <img src="${pageContext.request.contextPath}/image/money-icon.png" alt="Money">
-            <span class="user-balance">$${sessionScope.userBalance}</span>
+            <p class="balance">Balance :<span class="span">$${sessionScope.userBalance}</span></p>
             <form action="${pageContext.request.contextPath}/AddMoneyServlet" method="POST">
                 <input type="hidden" name="userId" value="${sessionScope.userId}">
                 <input type="hidden" name="currentBal" value="${sessionScope.userBalance}">
-                <button type="submit">Add money</button>
+
+                <button id="add-money-btn" type="submit">Add money</button>
             </form>
-        </div>
-    </li>
 
-</ul>
-
+<div class="container">
 <h1>Food items</h1>
-
-
         <form action="${pageContext.request.contextPath}/FetchRetailersServlet" method="post">
             <label for="location">Select a location:</label>
+            <br>
             <select id="location" name="location">
                 <option value="Nepean">Nepean</option>
                 <option value="Kanata">Kanata</option>
@@ -53,7 +40,9 @@
                 <option value="Downtown">Downtown</option>
             </select>
             <input type="hidden" name="currentBal2" value="${sessionScope.userBalance}">
+            <div style="text-align: right;">
             <button type="submit">OK</button>
+            </div>
         </form>
 
 
@@ -87,6 +76,7 @@
 <%--</table>--%>
 
 <%--<button class="update-inventory-button">Update Inventory</button>--%>
-
+</div>
+</div>
 </body>
 </html>

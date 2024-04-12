@@ -36,16 +36,17 @@
             background-color: #45a049;
         }
     </style>
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1>Add Money to Account</h1>
-    <p>Your current balance is: $<%= session.getAttribute("currentBal") %></p>
+    <h1 style = "font-size: 25px; letter-spacing: 0px;">Add Money to Account</h1><br>
+    <p style = "text-align: center;">Your current balance is: $<%= session.getAttribute("currentBal") %></p><br>
 
     <form action="${pageContext.request.contextPath}/ProcessAddMoneyServlet" method="POST">
         <input type="hidden" name="userId" value="<%= session.getAttribute("userId") %>">
-        <label for="amount">Amount to Add:</label>
-        <input type="number" id="amount" name="amount" min="1" step="0.01" required>
+        <label for="amount">Amount to Add:</label><br></br>
+        <input type="number" id="amount" name="amount" min="1" step="0.01" required><br></br>
         <button type="submit">Add Balance</button>
     </form>
 </div>

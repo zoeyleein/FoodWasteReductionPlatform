@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: mayankarora
+  Date: 2024-04-09
+  Time: 3:15 p.m.
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -5,10 +12,21 @@
 <html>
 <head>
     <title>Checkout Summary</title>
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-<h2>Checkout Summary</h2>
-<form action="${pageContext.request.contextPath}/PaymentServlet" method="post">
+<body class = "registration">
+
+    <div class="logoblack-container">
+        <a href="${pageContext.request.contextPath}/">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
+
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a></li>
+    </ul>
+<div class="inventory">
+<h1>Checkout Summary</h1>
+<form action="PaymentServlet" method="post">
     <table border="1">
         <thead>
         <tr>
@@ -36,13 +54,16 @@
         </tbody>
         <tfoot>
         <tr>
-            <th colspan="5">Grand Total Cost</th>
-            <th>$${totalCost}</th>
+            <th colspan="5" style="background-color: #b0b0b0;">Grand Total Cost</th>
+            <th style="background-color: #b0b0b0;">$${totalCost}</th>
         </tr>
         </tfoot>
     </table>
     <input type="hidden" name="totalCost" value="${totalCost}" />
-    <button type="submit">Pay now</button>
+    <div class="button-container">
+    <button type="submit" class="pay-now-button">Pay now</button>
+    </div>
 </form>
+</div>
 </body>
 </html>

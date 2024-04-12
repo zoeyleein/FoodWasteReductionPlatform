@@ -64,7 +64,7 @@
                         <option value="Barrhaven">Barrhaven</option>
                         <option value="Downtown">Downtown</option>
 
-                </select><br><br>
+                </select>
                 <label for="preference">Select your prefered category</label><br>
                 <select id="preference" name="preference">
                     <option value="Fruit">Fruit</option>
@@ -72,12 +72,12 @@
                     <option value="Meat">Meat</option>
                     <option value="Seafood">Seafood</option>
                     <option value="Dairy & Eggs">Dairy & Eggs</option>
-                </select><br>
+                </select><br></br>
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone" value="true">
                 <label for="subscribeToPhone">Get notifications by Phone</label><br>
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail" value="true">
                 <label for="subscribeToMail">Get notifications by Mail</label><br>
-
+                <br>
                 <div style="text-align: right; background-color: white;">
                 <input type="submit" value="Register" >
                 </div>
