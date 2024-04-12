@@ -4,7 +4,7 @@
     <title>Ending page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
         <style>
             .thankyou h3 {
                 letter-spacing: 2px;
@@ -19,7 +19,7 @@
 
 <body class = "home-page">
 <div class="logo-container">
-    <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo.png" alt="Logo">
+    <img src="${pageContext.request.contextPath}/image/logo.png" alt="Logo">
 </div>
 <h1>EcoHarvest</h1>
 
@@ -35,15 +35,15 @@
 </div>
 </div>
 <br>
-</br>
+<br>
 
-    <a href="http://localhost:8080/FoodWasteReductionPlatform/views/CharityView.jsp">
+    <a href="${pageContext.request.contextPath}/views/CharityView.jsp">
         <input type="submit" name="action" value="Keep shopping"></a>
 
 <br>
 
     <footer>
-        <p>&copy; 2024 EcoHarvest. All rights reserved. Made by Mayank, Arron, Andres, Jaya</p>
+        <p>&copy; 2024 EcoHarvest. All rights reserved. Made by Mayank, Aaron, Andres, Jaya</p>
     </footer>
 
 </body>

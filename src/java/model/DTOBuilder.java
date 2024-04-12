@@ -18,15 +18,15 @@ public class DTOBuilder {
     /**
      * Builds a user data transfer object
      *
-     * @param name             takes in the name for the users
-     * @param password         takes in the users password
-     * @param role             takes in the users role
-     * @param email            takes in the users email
-     * @param phone            takes in the users phone
-     * @param location         takes in the users location
-     * @param preference
-     * @param subscribeToPhone
-     * @param subscribeToEmail
+     * @param name takes in the name for the users
+     * @param password takes in the users password
+     * @param role takes in the users role
+     * @param email takes in the users email
+     * @param phone takes in the users phone
+     * @param location takes in the users location
+     * @param preference takes in the users preference
+     * @param subscribeToPhone takes in the users subscribe to phone
+     * @param subscribeToEmail takes in the users subscribe to email
      * @return the user data transfer object
      */
     public UserDTO userBuilder(String name, String password, String role, String email, String phone, String location, String preference, Boolean subscribeToPhone, Boolean subscribeToEmail){

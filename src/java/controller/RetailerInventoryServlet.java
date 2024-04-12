@@ -19,16 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
-
+/**
+ * This servlet is used to add, update, or view the inventory of a retailer
+ */
 @WebServlet(name = "RetailerInventoryServlet", urlPatterns = {"/RetailerInventoryServlet"})
 public class RetailerInventoryServlet extends HttpServlet {
     int AUTO_SALE = 1;
@@ -60,18 +59,16 @@ public class RetailerInventoryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         action = request.getParameter("action");
         retailId = (int) request.getSession().getAttribute("userId");
         if (action.equals("Add Item")) {
-        itemName = request.getParameter("productName");
-        itemCategory = request.getParameter("category");
-        rInventoryBatchNum = Integer.parseInt(request.getParameter("batch"));
-        rInventoryQuantity = Integer.parseInt(request.getParameter("quantity"));
-        rInventoryUnitPrice = Double.parseDouble(request.getParameter("price"));
-        String expiryDateStr = request.getParameter("expiryDate");
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-
+            itemName = request.getParameter("productName");
+            itemCategory = request.getParameter("category");
+            rInventoryBatchNum = Integer.parseInt(request.getParameter("batch"));
+            rInventoryQuantity = Integer.parseInt(request.getParameter("quantity"));
+            rInventoryUnitPrice = Double.parseDouble(request.getParameter("price"));
+            String expiryDateStr = request.getParameter("expiryDate");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
             try {
                 rInventoryExpDate = formatter.parse(expiryDateStr);
@@ -79,44 +76,46 @@ public class RetailerInventoryServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
             try (Connection connection = dataSource.getConnection()) {
-            if(worker.productAlreadyExists(connection, retailId, itemName, rInventoryBatchNum)){
-                String errorMessage = "Item already exists for this retailer.";
-                request.setAttribute("errorMessage", errorMessage);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("views/RetailerView.jsp");
-                dispatcher.forward(request, response);
-            }else {
-                int productStatus = worker.productStatus(rInventoryExpDate); // determine how close to expiry we are
-                rInventoryFinalPrice = worker.productPrice(productStatus, rInventoryUnitPrice);
-                ItemDTO item = builder.itemBuilder(itemName, itemCategory);
-                itemId = worker.insertAndGetGeneratedId(connection, item);
-                if(productStatus == AUTO_SALE){
-                    rInventorysale = true;
-                }
-                else if(productStatus == AUTO_DONATION){
-                    rInventoryDonation = true;
-                }
-                else{
-                    rInventorysale = false;
-                    rInventoryDonation = false;
-                    HttpSession session = request.getSession();
-                    session.setAttribute("itemId", itemId);
-                    setSurplusFlag = true;
-                }
-                RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate, rInventorysale, rInventoryDonation);
-                RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
-                retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
-                NotificationService notificationService = new NotificationService();
-                notificationService.notifyObservers(retailInventory, connection);
-
-                if(setSurplusFlag){
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("views/SurplusItemChoice.jsp");
+                if(worker.productAlreadyExists(connection, retailId, itemName, rInventoryBatchNum)){
+                    String errorMessage = "Item already exists for this retailer.";
+                    request.setAttribute("errorMessage", errorMessage);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("views/RetailerView.jsp");
                     dispatcher.forward(request, response);
-                    //Notifications
+                }else {
+                    int productStatus = worker.productStatus(rInventoryExpDate); // determine how close to expiry we are
+                    rInventoryFinalPrice = worker.productPrice(productStatus, rInventoryUnitPrice);
+                    ItemDTO item = builder.itemBuilder(itemName, itemCategory);
+                    itemId = worker.insertAndGetGeneratedId(connection, item);
+                    if(productStatus == AUTO_SALE){
+                        rInventorysale = true;
+                    }
+                    else if(productStatus == AUTO_DONATION){
+                        rInventoryDonation = true;
+                    }
+                    else{
+                        rInventorysale = false;
+                        rInventoryDonation = false;
+                        HttpSession session = request.getSession();
+                        session.setAttribute("itemId", itemId);
+                        setSurplusFlag = true;
+                    }
+                    RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate, rInventorysale, rInventoryDonation);
+                    RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
+                    retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
+                    NotificationService notificationService = new NotificationService();
+                    notificationService.notifyObservers(retailInventory, connection);
+
+                    if(setSurplusFlag){
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("views/SurplusItemChoice.jsp");
+                        dispatcher.forward(request, response);
+                        //Notifications
 
 
+                    }
+                    else {
+                        response.sendRedirect("views/RetailerView.jsp");
+                    }
                 }
-                response.sendRedirect("views/RetailerView.jsp");
-            }
             } catch (Exception e) {
                 e.printStackTrace();
             }

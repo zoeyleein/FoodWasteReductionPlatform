@@ -24,6 +24,10 @@ public class CharityClaimsServlet extends HttpServlet {
 
     DataSource dataSource;
 
+    /**
+     * Initializes the servlet. used throughout most servlets to instantiate the datasource
+     * @throws ServletException if there is a servlet error
+     */
     @Override
     public void init() throws ServletException {
         super.init();
@@ -53,7 +57,7 @@ public class CharityClaimsServlet extends HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        } // send the user back to the CharityView page
         response.sendRedirect("views/CharityView.jsp");
     }
 

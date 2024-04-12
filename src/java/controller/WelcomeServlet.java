@@ -19,17 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 public class WelcomeServlet extends HttpServlet {
     UserRegistration userRegistration = new UserRegistration();
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     * @param request the servlet request
-     * @param response the servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
+        String action = request.getParameter("action"); // take the action from the form
+        // redirect to the appropriate page
         response.sendRedirect(userRegistration.welcomePageRedirect(action));
-        // idk how we want to handle exception/errors
     }
 }

@@ -36,7 +36,7 @@
         <c:forEach items="${retailerNames}" var="retailer">
             <li>${retailer.getName()}
             <div>
-                <form action="FetchInventoryServlet" method="post">
+                <form action="${pageContext.request.contextPath}/FetchInventoryServlet" method="post">
                     <input type="hidden" name="retailerId" value="${retailer.getId()}"/>
                     <input type="hidden" name="currentBal" value="${currentBal}"/>
                     <br>

@@ -98,7 +98,6 @@ public class RetailerInventoryWorker {
             return resultSet.next(); // If a row is found, it means the product exists for the retailer
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the exception appropriately, such as logging or throwing it
         }
         return false;
     }
@@ -155,7 +154,6 @@ public class RetailerInventoryWorker {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the exception appropriately, such as logging or throwing it
         }
         return inventory;
     }
@@ -177,16 +175,15 @@ public class RetailerInventoryWorker {
                 "WHERE ri.users_id = ? AND i.name = ? AND ri.batch = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setInt(1, newQuantity); // the new quantity you want to set
+            pstmt.setInt(1, newQuantity); // new quantity to update with
             pstmt.setBoolean(2, sale);
             pstmt.setBoolean(3, donation);
-            pstmt.setInt(4, retailerId); // the retailer's ID
-            pstmt.setString(5, itemName); // the name of the item
-            pstmt.setInt(6, batchNum); // the batch number
+            pstmt.setInt(4, retailerId);
+            pstmt.setString(5, itemName);
+            pstmt.setInt(6, batchNum);
 
             pstmt.executeUpdate(); // Execute the update without storing the affected rows
         } catch (SQLException e) {
-            // Handle any SQL exceptions
             e.printStackTrace();
         }
     }
