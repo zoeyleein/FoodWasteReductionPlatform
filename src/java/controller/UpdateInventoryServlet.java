@@ -14,12 +14,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * This servlet is used to update the inventory of a retailer
+ */
 @WebServlet(name = "UpdateInventoryServlet", urlPatterns = {"/UpdateInventoryServlet"})
 public class UpdateInventoryServlet extends HttpServlet {
     RetailerInventoryWorker worker = new RetailerInventoryWorker();
     DataSource dataSource;
 
-
+    /**
+     * Initializes the servlet. used throughout most servlets to instantiate the datasource
+     * @throws ServletException if there is a servlet error
+     */
     @Override
     public void init() throws ServletException {
         super.init();

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>Checkout Summary</h2>
-<form action="PaymentServlet" method="post">
+<form action="${pageContext.request.contextPath}/PaymentServlet" method="post">
     <table border="1">
         <thead>
         <tr>

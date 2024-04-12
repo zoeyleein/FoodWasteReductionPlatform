@@ -9,19 +9,19 @@
 <html>
 <head>
     <title>Charity Transaction View</title>
-    <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
         <div class="logoblack-container">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo"></a>
+            <a href="${pageContext.request.contextPath}/">
+            <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
     <!-- menu icon -->
     <li class="top-menu">
         <div class="cart-icon">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart">
+            <img src="${pageContext.request.contextPath}/image/cart-icon.png" alt="Shopping Cart">
         </div>
     </li>
 </ul>
@@ -57,7 +57,7 @@
     </tbody>
 </table>
 
-<a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CharityTransactionConfirmView.jsp">
+<a href="${pageContext.request.contextPath}/views/transaction/CharityTransactionConfirmView.jsp">
     <button class="confirm-button">Confirm</button></a>
 
 </body>

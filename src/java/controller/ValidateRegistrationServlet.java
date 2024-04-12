@@ -18,7 +18,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
 
-
+/**
+ * ValidateRegistrationServlet is a controller that handles the validation of user registration.
+ */
 @WebServlet(name = "ValidateRegistrationServlet", urlPatterns = {"/ValidateRegistrationServlet"})
 public class ValidateRegistrationServlet extends HttpServlet {
     String name = null;
@@ -30,12 +32,15 @@ public class ValidateRegistrationServlet extends HttpServlet {
     String preference;
     Boolean subscribeToPhone;
     Boolean subscribeToEmail;
-    //TODO we need to figure out what we're doing for all the registration forms and how we are going to validate them
     DTOBuilder builder = new DTOBuilder();
     DataSource dataSource;
     UserBusinessLogic userBusinessLogic;
     UserRegistration registration = new UserRegistration();
 
+    /**
+     * Initializes the servlet. used throughout most servlets to instantiate the datasource
+     * @throws ServletException if there is a servlet error
+     */
     @Override
     public void init() throws ServletException {
         super.init();
@@ -55,30 +60,26 @@ public class ValidateRegistrationServlet extends HttpServlet {
         subscribeToPhone = Boolean.parseBoolean(request.getParameter("subscribeToPhone"));
         subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToMail"));
 
-
         if(Objects.equals(role, "Customer") || Objects.equals(role, "Charity")) {
             location = request.getParameter("selectedValue");
         } else{
             location = request.getParameter("location");
         }
-        // TODO add subscription parameters here
         try (Connection connection = dataSource.getConnection()) {
-
             if (registration.userExists(name, connection)) {
                 request.setAttribute("errorMessage", "Username already exists, please choose another username");
                 request.getRequestDispatcher(registration.registrationErrorRedirect(role)).forward(request, response);
-                //response.sendRedirect(registration.registrationErrorRedirect(role));
             }
             else if(registration.phoneValidation(phone) && Objects.equals(role, "Customer"))    {
                 request.setAttribute("errorMessage", "Phone number must be 10 digits");
                 request.getRequestDispatcher(registration.registrationErrorRedirect(role)).forward(request, response);
-                }
-            else{// at some point add 10 digit phone number validation if wanted
+            }
+            else{
                 // Create a new UserDTO object
                 UserDTO user = builder.userBuilder(name, password, role, email, phone, location, preference, subscribeToPhone, subscribeToEmail);
                 userBusinessLogic = new UserBusinessLogic(connection);
                 userBusinessLogic.addUser(user);
-                
+
                 response.sendRedirect("views/Signin.jsp");
             }
         } catch (SQLException e) {

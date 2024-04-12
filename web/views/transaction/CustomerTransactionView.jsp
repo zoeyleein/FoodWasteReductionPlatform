@@ -9,22 +9,22 @@
 <html>
 <head>
     <title>Customer Transaction View</title>
-    <link href="http://localhost:8080/FoodWasteReductionPlatform/style/style.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
         <div class="logoblack-container">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/logo_black.png" alt="Logo"></a>
+            <a href="${pageContext.request.contextPath}/">
+            <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
     <!-- menu icon -->
     <li class="top-menu">
         <div class="notification-icon">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/notification-icon.png" alt="Alerts">
+            <img src="${pageContext.request.contextPath}/image/notification-icon.png" alt="Alerts">
         </div>
         <div class="money-icon">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/money-icon.png" alt="Money">
+            <img src="${pageContext.request.contextPath}/image/money-icon.png" alt="Money">
             <span class="user-balance">$100</span>
         </div>
     </li>
@@ -71,7 +71,7 @@
     </tbody>
 </table>
 
-<a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CustomerTransactionConfirmView.jsp">
+<a href="${pageContext.request.contextPath}/views/transaction/CustomerTransactionConfirmView.jsp">
     <button class="confirm-button">Confirm</button></a>
 
 </body>

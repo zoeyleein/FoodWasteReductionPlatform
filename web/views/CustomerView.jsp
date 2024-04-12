@@ -13,7 +13,7 @@
 </head>
 <body>
         <div class="logoblack-container">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+            <a href="${pageContext.request.contextPath}/">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <ul class="menu">
@@ -21,15 +21,15 @@
 
     <li class="top-menu">
         <div class="notification-icon">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/notification-icon.png" alt="Alerts">
+            <img src="${pageContext.request.contextPath}/image/notification-icon.png" alt="Alerts">
         </div>
         <div class="cart-icon">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CustomerTransactionView.jsp">
-                <img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart">
+            <a href="${pageContext.request.contextPath}/views/transaction/CustomerTransactionView.jsp">
+                <img src="${pageContext.request.contextPath}/image/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
         <div class="money-icon">
-            <img src="http://localhost:8080/FoodWasteReductionPlatform/image/money-icon.png" alt="Money">
+            <img src="${pageContext.request.contextPath}/image/money-icon.png" alt="Money">
             <span class="user-balance">$${sessionScope.userBalance}</span>
             <form action="${pageContext.request.contextPath}/AddMoneyServlet" method="POST">
                 <input type="hidden" name="userId" value="${sessionScope.userId}">

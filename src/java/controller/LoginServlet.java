@@ -7,7 +7,6 @@ import model.LogInValidation;
 import transferobjects.InventoryItemDTO;
 import transferobjects.UserAccountDTO;
 import transferobjects.UserDTO;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +22,16 @@ import java.util.Objects;
 
 /**
  * @author aaronthomp
+ * This servlet is used to log in a user
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
     DataSource dataSource;
 
+    /**
+     * Initializes the servlet. used throughout most servlets to instantiate the datasource
+     * @throws ServletException if there is a servlet error
+     */
     @Override
     public void init() throws ServletException {
         super.init();
