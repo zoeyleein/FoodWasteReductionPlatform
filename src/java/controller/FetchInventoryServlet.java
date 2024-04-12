@@ -41,13 +41,15 @@ public class FetchInventoryServlet extends HttpServlet {
                     int retailerInventoryid = inventoryDTO.getId();
                     list.add(retailerInventoryid);
                     inventoryItemsMap.put(item.getName()+","+inventoryDTO.getBatch(), inventoryDTO);
+//                    Must enter batch number or the key shall not account for different batches
+//                            or expiry dates
                 });
             }
 
             request.setAttribute("inventoryItemsMap", inventoryItemsMap);
             request.setAttribute("currentBal", currentBal);
         } catch (SQLException e) {
-            e.printStackTrace(); // Consider more graceful error handling
+            e.printStackTrace();
         }
 
         request.getRequestDispatcher("views/inventoryDisplay.jsp").forward(request, response);
