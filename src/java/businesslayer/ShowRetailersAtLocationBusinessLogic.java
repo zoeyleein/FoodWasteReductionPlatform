@@ -15,7 +15,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Provides business logic for handling operations related to retailers and their inventories based on location.
+ */
 public class ShowRetailersAtLocationBusinessLogic {
+    /**
+     * Retrieves a list of retailer users based on their location.
+     *
+     * @param location The location to filter the retailers by.
+     * @param context  The servlet context, used for database connection setup.
+     * @return An ArrayList of UserDTO objects representing retailers at the specified location.
+     * @throws SQLException If a database access error occurs.
+     */
     public ArrayList<UserDTO> getRetailersAtLocations(String location, ServletContext context) throws SQLException {
         ArrayList<UserDTO> userDTOS = new ArrayList<>();
         DataSource dataSource = new DataSource(context);
@@ -48,6 +60,14 @@ public class ShowRetailersAtLocationBusinessLogic {
 //        return items;
 //    }
 
+    /**
+     * Retrieves inventory details for a specific retailer identified by userId.
+     *
+     * @param userId The ID of the retailer whose inventory is to be retrieved.
+     * @param context The servlet context, used for database connection setup.
+     * @return A Map where each key is an item ID and the corresponding value is the RetailerInventoryDTO detailing the inventory for that item.
+     * @throws SQLException If a database access error occurs or the connection operation fails.
+     */
     public Map<Integer, RetailerInventoryDTO> getInventory(int userId, ServletContext context) throws SQLException {
         Map<Integer, RetailerInventoryDTO> itemsMap = new HashMap<>();
         DataSource dataSource = new DataSource(context);
