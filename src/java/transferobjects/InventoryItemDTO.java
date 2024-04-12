@@ -65,7 +65,7 @@ public class InventoryItemDTO {
         this.finalPrice = finalPrice;
     }
 
-    public boolean isSale() {
+    public boolean getSale() {
         return sale;
     }
 
@@ -73,7 +73,7 @@ public class InventoryItemDTO {
         this.sale = sale;
     }
 
-    public boolean isDonation() {
+    public boolean getDonation() {
         return donation;
     }
 

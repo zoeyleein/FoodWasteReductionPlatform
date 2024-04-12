@@ -65,9 +65,17 @@
                         <option value="Downtown">Downtown</option>
 
                 </select><br><br>
-                <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone">
+                <label for="preference">Select your prefered category</label><br>
+                <select id="preference" name="preference">
+                    <option value="Fruit">Fruit</option>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Dairy & Eggs">Dairy & Eggs</option>
+                </select><br>
+                <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone" value="true">
                 <label for="subscribeToPhone">Get notifications by Phone</label><br>
-                <input type="checkbox" id="subscribeToMail" name="subscribeToMail">
+                <input type="checkbox" id="subscribeToMail" name="subscribeToMail" value="true">
                 <label for="subscribeToMail">Get notifications by Mail</label><br>
 
                 <div style="text-align: right; background-color: white;">

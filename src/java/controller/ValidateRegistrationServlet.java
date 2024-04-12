@@ -27,6 +27,9 @@ public class ValidateRegistrationServlet extends HttpServlet {
     String phone;
     String location;
     String role;
+    String preference;
+    Boolean subscribeToPhone;
+    Boolean subscribeToEmail;
     //TODO we need to figure out what we're doing for all the registration forms and how we are going to validate them
     DTOBuilder builder = new DTOBuilder();
     DataSource dataSource;
@@ -48,6 +51,10 @@ public class ValidateRegistrationServlet extends HttpServlet {
         email = request.getParameter("email");
         password = request.getParameter("password");
         phone = request.getParameter("phone");
+        preference = request.getParameter("preference");
+        subscribeToPhone = Boolean.parseBoolean(request.getParameter("subscribeToPhone"));
+        subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToMail"));
+
 
         if(Objects.equals(role, "Customer") || Objects.equals(role, "Charity")) {
             location = request.getParameter("selectedValue");
@@ -68,7 +75,7 @@ public class ValidateRegistrationServlet extends HttpServlet {
                 }
             else{// at some point add 10 digit phone number validation if wanted
                 // Create a new UserDTO object
-                UserDTO user = builder.userBuilder(name, password, role, email, phone, location);
+                UserDTO user = builder.userBuilder(name, password, role, email, phone, location, preference, subscribeToPhone, subscribeToEmail);
                 userBusinessLogic = new UserBusinessLogic(connection);
                 userBusinessLogic.addUser(user);
                 
