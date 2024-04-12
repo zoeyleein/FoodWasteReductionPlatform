@@ -23,7 +23,7 @@ public class ProcessCheckoutServlet extends HttpServlet {
                 throw new IllegalArgumentException("No items found in the request.");
             }
 
-            int itemsPerEntry = 7; // Updated for additional retailerInventoryID parameter
+            int itemsPerEntry = 7;
             for (int i = 0; i < itemParams.length; i += itemsPerEntry) {
                 String itemName = itemParams[i];
                 String expiryDate = itemParams[i + 2];
@@ -36,7 +36,7 @@ public class ProcessCheckoutServlet extends HttpServlet {
                 Item item = new Item(itemName, expiryDate, onSale, unitPrice, quantityPurchased, cost, retailerInventoryID);
                 items.add(item);
 
-                totalCost += cost; // Aggregate total cost
+                totalCost += cost;
             }
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
@@ -44,7 +44,7 @@ public class ProcessCheckoutServlet extends HttpServlet {
             return;
         }
 
-        // Set attributes for forwarding to JSP
+
         request.setAttribute("items", items);
         request.setAttribute("totalCost", totalCost);
 
@@ -61,8 +61,10 @@ public class ProcessCheckoutServlet extends HttpServlet {
         private double unitPrice;
         private int quantityPurchased;
         private double totalCost;
-        private int retailerInventoryID; // New field
+        private int retailerInventoryID;
 
+
+//        Need this item class to display selective details in the checkout page
         public Item(String itemName, String expiryDate, boolean onSale, double unitPrice, int quantityPurchased, double totalCost, int retailerInventoryID) {
             this.itemName = itemName;
             this.expiryDate = expiryDate;
@@ -70,10 +72,10 @@ public class ProcessCheckoutServlet extends HttpServlet {
             this.unitPrice = unitPrice;
             this.quantityPurchased = quantityPurchased;
             this.totalCost = totalCost;
-            this.retailerInventoryID = retailerInventoryID; // Initialize the new field
+            this.retailerInventoryID = retailerInventoryID;
         }
 
-        // Getters for all fields
+
         public String getItemName() { return itemName; }
         public String getExpiryDate() { return expiryDate; }
         public boolean isOnSale() { return onSale; }

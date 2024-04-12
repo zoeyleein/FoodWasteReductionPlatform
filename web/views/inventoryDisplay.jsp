@@ -66,11 +66,11 @@
 
             document.querySelectorAll('tbody tr').forEach((row) => {
                 let cells = row.querySelectorAll('td');
-                let retailerInventoryIDElement = row.querySelector('.retailerInventoryID'); // Getting the element
+                let retailerInventoryIDElement = row.querySelector('.retailerInventoryID');
                 let retailerInventoryID = retailerInventoryIDElement ? retailerInventoryIDElement.value : 'Error: ID Not Found'; // Using the element's value if it exists
                 let itemData = {
                     itemName: cells[0].textContent.split(',')[0],
-                    retailerInventoryID: retailerInventoryID, // Now this should properly get the value
+                    retailerInventoryID: retailerInventoryID,
                     expiryDate: cells[2].textContent,
                     onSale: cells[3].textContent === 'Yes',
                     unitPrice: parseFloat(cells[5].textContent.replace('$', '')),
@@ -80,7 +80,7 @@
                 rowsData.push(itemData);
             });
 
-            return rowsData; // Return the structured data
+            return rowsData;
         };
 
     </script>
@@ -100,7 +100,7 @@
 <h1>Inventory</h1>
 <p id="totalCostLimit" style="display:none;">${currentBal}</p>
 <c:if test="${not empty inventoryItemsMap}">
-    <table border="1">
+    <table>
         <thead>
         <tr>
             <th>Item</th>
@@ -117,6 +117,7 @@
         <tbody>
         <c:forEach items="${inventoryItemsMap}" var="entry">
             <tr>
+<%--                To only display the item name--%>
                 <td>${fn:split(entry.key, ',')[0]}</td>
                 <td>${entry.value.id}</td>
                 <td>${entry.value.expiryDate}</td>
