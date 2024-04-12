@@ -23,6 +23,10 @@
         <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
     </div>
 
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+    </ul>
+
 <div class="container">
 <h1>Retailers at Selected Location</h1>
 <h4>Current Balance: $${currentBal}</h4>
