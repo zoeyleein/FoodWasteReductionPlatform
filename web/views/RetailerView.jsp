@@ -70,13 +70,14 @@
     <label for="price" >Unit Price: </label><br>
     <input type="number" id="price" name="price" step="0.01" min="0" required><br>
     </fieldset>
+    <div style = "text-align: right;">
     <br>
     <input type="submit" name="action" value="Add Item">
     <br><br>
     <input type="submit" name="action" value="Update Item" onclick="removeRequired()"><br>
     <br>
     <input type="submit" name="action" value="View Inventory" onclick="removeRequired()">
-
+    </div>
 </form>
 <script>
     function removeRequired() {
