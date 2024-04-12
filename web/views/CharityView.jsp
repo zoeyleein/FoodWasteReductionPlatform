@@ -12,24 +12,18 @@
     <title>Charity View</title>
     <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body class = "registration">
         <div class="logoblack-container">
             <a href="http://localhost:8080/FoodWasteReductionPlatform/">
             <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
-    <!-- menu icon -->
-    <li class="top-menu">
-        <div class="cart-icon">
-            <a href="${pageContext.request.contextPath}/views/transaction/CharityTransactionView.jsp"><img src="${pageContext.request.contextPath}/image/cart-icon.png" alt="Shopping Cart"></a>
-        </div>
-    </li>
 </ul>
-
+<div class="inventory">
 <h1>Transaction</h1>
         <c:if test="${not empty sessionScope.message}">
-            <div class="success">
+            <div class="success" style="text-align: center;">
                 <p>${sessionScope.message}</p>
             </div>
             <c:set var="message" scope="session" value=""/>
@@ -48,6 +42,7 @@
             <th>Category</th>
             <th>Expiry Date</th>
             <th>Quantity</th>
+            <th>Claim Quantity</th>
         </tr>
     </thead>
     <tbody>
@@ -57,21 +52,28 @@
             <td>${item.category}</td>
             <td>${item.expiryDate}</td>
             <td>${item.quantity}</td>
-            <td>
-                <form action="${pageContext.request.contextPath}/CharityClaimsServlet" method="post">
+            <td class ="claim-form">
+                <form class = "form-group" action="${pageContext.request.contextPath}/CharityClaimsServlet" method="post">
+
                     <input type="hidden" name="itemId" value="${item.id}">
-                    <label for="claimedQuantity${item.id}">Quantity to claim:</label>
-                    <select name="claimedQuantity" id="claimedQuantity${item.id}">
+                    <label for="claimedQuantity${item.id}"></label>
+                    <select class = "claimedSelect" name="claimedQuantity" id="claimedQuantity${item.id}">
                         <c:forEach begin="1" end="${item.quantity}" var="num">
                             <option value="${num}">${num}</option>
                         </c:forEach>
-                    </select><br>
+                    </select>
+
                     <input type="submit" value="Claim">
                 </form>
-            </td>
+             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+</div>
 </body>
 </html>
+
+
+
+
