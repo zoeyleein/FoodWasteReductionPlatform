@@ -56,7 +56,7 @@ public class ValidateRegistrationServlet extends HttpServlet {
         password = request.getParameter("password");
         phone = request.getParameter("phone");
         subscribeToPhone = Boolean.parseBoolean(request.getParameter("subscribeToPhone"));
-        subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToEmail"));
+        subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToMail"));
 
 
         if(Objects.equals(role, "Customer") || Objects.equals(role, "Charity")) {
@@ -79,10 +79,17 @@ public class ValidateRegistrationServlet extends HttpServlet {
                     NotificationObserver observer = new NotificationObserver();
                     NotificationService notificationService = new NotificationService();
                     notificationService.registerObserver(observer, user.getPhone());
+
+                    // Notifications
+
                 }
 
-
-
+                if (subscribeToEmail){
+                    // Register observer
+                    NotificationObserver observer = new NotificationObserver();
+                    NotificationService notificationService = new NotificationService();
+                    notificationService.registerObserver(observer, user.getMail());
+                }
                 response.sendRedirect("views/Signin.jsp");
             }
         } catch (SQLException e) {

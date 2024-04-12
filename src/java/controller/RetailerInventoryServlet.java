@@ -4,6 +4,7 @@ import businesslayer.RetailerInventoryBusinessLogic;
 import dataaccesslayer.DataSource;
 import model.DTOBuilder;
 import model.RetailerInventoryWorker;
+import notifications.NotificationService;
 import transferobjects.InventoryItemDTO;
 import transferobjects.ItemDTO;
 import transferobjects.RetailerInventoryDTO;
@@ -100,10 +101,17 @@ public class RetailerInventoryServlet extends HttpServlet {
                 RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate, rInventorysale, rInventoryDonation);
                 RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
                 retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
+                if (rInventorysale || rInventoryDonation) {
+                    NotificationService notificationService = new NotificationService();
+                    notificationService.notifyObservers(retailInventory);
+                }
 
                 if(setSurplusFlag){
+                        NotificationService notificationService = new NotificationService();
+                        notificationService.notifyObservers(retailInventory);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("views/SurplusItemChoice.jsp");
                     dispatcher.forward(request, response);
+
                 }
                 response.sendRedirect("views/RetailerView.jsp");
             }

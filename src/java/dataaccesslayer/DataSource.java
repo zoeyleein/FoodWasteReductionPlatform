@@ -90,5 +90,16 @@ public class DataSource {
         return connection;
     }
 
+    public Connection createNewConnection() throws SQLException {
+        Connection newConnection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            newConnection = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return newConnection;
+    }
+
 
 }

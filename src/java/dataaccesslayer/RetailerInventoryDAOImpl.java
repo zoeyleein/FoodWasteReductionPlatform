@@ -1,5 +1,6 @@
 package dataaccesslayer;
 
+import notifications.NotificationService;
 import notifications.Observer;
 import transferobjects.RetailerInventoryDTO;
 import java.sql.Connection;
@@ -38,7 +39,8 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO{
             pstmt.executeUpdate();
             // Check if sale or donation flag is true
             if (retailerInventory.getSale() || retailerInventory.getDonation()) {
-//                notifyObservers(); // Notify observers
+                NotificationService notificationService = new NotificationService();
+                notificationService.notifyObservers(retailerInventory);
             }
         }
     }
