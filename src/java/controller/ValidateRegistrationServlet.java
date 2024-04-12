@@ -1,3 +1,6 @@
+/**
+ * This servlet handles the validation of user registration for the web application.
+ */
 package controller;
 
 import businesslayer.UserBusinessLogic;
@@ -36,6 +39,11 @@ public class ValidateRegistrationServlet extends HttpServlet {
     UserBusinessLogic userBusinessLogic;
     UserRegistration registration = new UserRegistration();
 
+    /**
+     * Initializes the servlet by setting up the data source.
+     *
+     * @throws ServletException if an error occurs during initialization
+     */
     @Override
     public void init() throws ServletException {
         super.init();
@@ -43,6 +51,14 @@ public class ValidateRegistrationServlet extends HttpServlet {
         dataSource = new DataSource(context);
     }
 
+    /**
+     * Handles HTTP POST requests for validating user registration.
+     *
+     * @param request  the {@link HttpServletRequest} object
+     * @param response the {@link HttpServletResponse} object
+     * @throws ServletException if an error occurs while handling the request
+     * @throws IOException      if an I/O error occurs
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false); // false means don't create a session if it doesn't exist
