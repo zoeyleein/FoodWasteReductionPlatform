@@ -41,6 +41,8 @@ public class FetchInventoryServlet extends HttpServlet {
                     int retailerInventoryid = inventoryDTO.getId();
                     list.add(retailerInventoryid);
                     inventoryItemsMap.put(item.getName()+","+inventoryDTO.getBatch(), inventoryDTO);
+//                    Must enter batch number or the key shall not account for different batches
+//                            or expiry dates
                 });
             }
 
