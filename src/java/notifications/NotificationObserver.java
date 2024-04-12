@@ -21,32 +21,28 @@ public class NotificationObserver implements Observer {
 
     @Override
     public void update(RetailerInventoryDTO retailerInventory, Connection connection) {
-        String inventoryItemQuery = "SELECT " +
-                "i.name AS item_name, " +
-                "i.category AS item_category, " +
-                "u.phone AS user_phone, " +
-                "u.mail AS user_email " +
+        String userQuery = "SELECT " +
+                "u.name AS user_name, " +
+                "u.mail AS user_email, " +
+                "u.phone AS user_phone " +
                 "FROM " +
-                "retailer_inventory ri " +
-                "JOIN item i ON ri.item_id = i.id " +
-                "JOIN users u ON ri.users_id = u.id " +
+                "users u " +
                 "WHERE " +
-                "u.subscribeToPhone = 1 OR u.subscribeToEmail = 1";
+                "u.preference = 'Fruit' " +
+                "AND (u.subscribeToPhone = 1 OR u.subscribeToEmail = 1)";
 
         try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(inventoryItemQuery)) {
+             ResultSet rs = stmt.executeQuery(userQuery)) {
 
             while (rs.next()) {
-                String itemName = rs.getString("item_name");
-                String itemCategory = rs.getString("item_category");
-                String userPhone = rs.getString("user_phone");
+                String userName = rs.getString("user_name");
                 String userEmail = rs.getString("user_email");
+                String userPhone = rs.getString("user_phone");
 
                 // Print the information
-                System.out.println("Item Name: " + itemName);
-                System.out.println("Item Category: " + itemCategory);
-                System.out.println("User Phone: " + userPhone);
+                System.out.println("User Name: " + userName);
                 System.out.println("User Email: " + userEmail);
+                System.out.println("User Phone: " + userPhone);
                 System.out.println();
             }
         } catch (SQLException e) {
