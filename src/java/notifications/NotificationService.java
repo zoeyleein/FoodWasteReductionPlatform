@@ -14,6 +14,9 @@ import java.util.List;
 
 public class NotificationService implements Subject{
     private final List<Observer> observers = new ArrayList<>();
+    String itemName;
+    String itemCategory;
+
 
     @Override
     public void registerObserver(Observer observer, String phone) {
@@ -28,38 +31,55 @@ public class NotificationService implements Subject{
 
     }
 
+
     @Override
     public void notifyObservers(RetailerInventoryDTO retailerInventory, Connection connection) {
-        for (Observer observer : observers) {};
-        int itemId = retailerInventory.getId();
+        int itemId = retailerInventory.getItemId();
+
         String inventoryItemQuery = "SELECT " +
-                "i.name AS item_name, " +
-                "i.category AS item_category, " +
-                "u.phone AS user_phone, " +
-                "u.mail AS user_email " +
-                "FROM " +
-                "retailer_inventory ri " +
-                "JOIN item i ON ri.item_id = i.id " +
-                "JOIN users u ON ri.users_id = u.id " +
-                "WHERE " +
-                "ri.item_id = " + itemId + " AND " + // Filter by itemId
-                "(u.subscribeToPhone = 1 OR u.subscribeToEmail = 1)";
+                "name " + // Select only the name of the item
+                "FROM item " +
+                "WHERE id = "+itemId; // Filter by the specified ID
 
         try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(inventoryItemQuery)) {
+             ResultSet rs1 = stmt.executeQuery(inventoryItemQuery)) {
+
+            while (rs1.next()) {
+                itemName = rs1.getString("name"); // Retrieve the name directly
+             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String userQuery = "SELECT " +
+                "u.name AS user_name, " +
+                "u.mail AS user_email, " +
+                "u.phone AS user_phone, " +
+                "u.subscribeToPhone, " + // Include subscribeToPhone column
+                "u.subscribeToEmail " + // Include subscribeToEmail column
+                "FROM " +
+                "users u " +
+                "WHERE " +
+                "u.preference = 'Fruit' " +
+                "AND (u.subscribeToPhone = 1 OR u.subscribeToEmail = 1)";
+
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(userQuery)) {
 
             while (rs.next()) {
-                String itemName = rs.getString("item_name");
-                String itemCategory = rs.getString("item_category");
-                String userPhone = rs.getString("user_phone");
+                String userName = rs.getString("user_name");
                 String userEmail = rs.getString("user_email");
+                String userPhone = rs.getString("user_phone");
+                Boolean subscribeToPhone = rs.getBoolean("subscribeToPhone");
+                Boolean subscribeToMail = rs.getBoolean("subscribeToEmail");
 
                 // Print the information
-                System.out.println("Item Name: " + itemName);
-                System.out.println("Item Category: " + itemCategory);
-                System.out.println("User Phone: " + userPhone);
-                System.out.println("User Email: " + userEmail);
-                System.out.println();
+                if (subscribeToPhone){
+                    System.out.println("The item "+itemName+ " has been notified to the user : "+userName+" at the phone number "+userPhone);
+                }
+                if (subscribeToMail){
+                    System.out.println("The item "+itemName+ " has been notified to the user : "+userName+" at the Mail "+userEmail);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
