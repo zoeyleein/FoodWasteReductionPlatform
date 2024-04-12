@@ -4,6 +4,7 @@ import businesslayer.RetailerInventoryBusinessLogic;
 import dataaccesslayer.DataSource;
 import model.DTOBuilder;
 import model.RetailerInventoryWorker;
+import notifications.NotificationService;
 import transferobjects.InventoryItemDTO;
 import transferobjects.ItemDTO;
 import transferobjects.RetailerInventoryDTO;
@@ -18,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -100,10 +103,15 @@ public class RetailerInventoryServlet extends HttpServlet {
                 RetailerInventoryDTO retailInventory = builder.retailerInventoryBuilder(retailId, itemId, rInventoryBatchNum, rInventoryQuantity, rInventoryUnitPrice, rInventoryFinalPrice, rInventoryExpDate, rInventorysale, rInventoryDonation);
                 RetailerInventoryBusinessLogic retailerInventoryBusinessLogic = new RetailerInventoryBusinessLogic(connection);
                 retailerInventoryBusinessLogic.addRetailerInventory(retailInventory);
+                NotificationService notificationService = new NotificationService();
+                notificationService.notifyObservers(retailInventory, connection);
 
                 if(setSurplusFlag){
                     RequestDispatcher dispatcher = request.getRequestDispatcher("views/SurplusItemChoice.jsp");
                     dispatcher.forward(request, response);
+                    //Notifications
+
+
                 }
                 response.sendRedirect("views/RetailerView.jsp");
             }
@@ -125,5 +133,6 @@ public class RetailerInventoryServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
     }
 }

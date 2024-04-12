@@ -1,37 +1,26 @@
 package notifications;
 
+import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import transferobjects.RetailerInventoryDTO;
 import transferobjects.UserDTO;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.sql.*;
 
-public class NotificationService implements Subject{
-    private final List<Observer> observers = new ArrayList<>();
+public class NotificationObserver implements Observer {
+    private String userEmail;
+    private String userPhone;
+    UserBusinessLogic userBusinessLogic;
+    DataSource dataSource;
 
     @Override
-    public void registerObserver(Observer observer, String phone) {
-        observer.setUserPreferences(phone);
-        observers.add(observer);
-
+    public void setUserPreferences(String phone) {
+        this.userPhone = phone;
     }
 
     @Override
-    public void removeObserver(Observer observer) {
-        observers.remove(observer);
-
-    }
-
-    @Override
-    public void notifyObservers(RetailerInventoryDTO retailerInventory, Connection connection) {
-        for (Observer observer : observers) {};
-        int itemId = retailerInventory.getId();
+    public void update(RetailerInventoryDTO retailerInventory, Connection connection) {
         String inventoryItemQuery = "SELECT " +
                 "i.name AS item_name, " +
                 "i.category AS item_category, " +
@@ -42,8 +31,7 @@ public class NotificationService implements Subject{
                 "JOIN item i ON ri.item_id = i.id " +
                 "JOIN users u ON ri.users_id = u.id " +
                 "WHERE " +
-                "ri.item_id = " + itemId + " AND " + // Filter by itemId
-                "(u.subscribeToPhone = 1 OR u.subscribeToEmail = 1)";
+                "u.subscribeToPhone = 1 OR u.subscribeToEmail = 1";
 
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(inventoryItemQuery)) {
