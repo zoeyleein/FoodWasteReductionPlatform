@@ -18,7 +18,6 @@
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
-
 </ul>
 
             <p class="balance">Balance :<span class="span">$${sessionScope.userBalance}</span></p>
