@@ -104,12 +104,12 @@
         <thead>
         <tr>
             <th>Item</th>
+            <th>Batch</th>
             <th>Expiry Date</th>
             <th>On Sale</th>
-            <th>Available Quantity</th>
-            <th>Unit Price</th>
-            <th>Discounted price</th>
             <th>Quantity</th>
+            <th>Price per unit</th>
+            <th>Units Purchased</th>
             <th>Cost</th>
             <th></th>
         </tr>
@@ -117,7 +117,7 @@
         <tbody>
         <c:forEach items="${inventoryItemsMap}" var="entry">
             <tr>
-                <td>${entry.key}</td>
+                <td>${fn:split(entry.key, ',')[0]}</td>
                 <td>${entry.value.id}</td>
                 <td>${entry.value.expiryDate}</td>
                 <td>${entry.value.sale ? 'Yes' : 'No'}</td>

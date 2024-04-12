@@ -47,7 +47,7 @@ public class FetchInventoryServlet extends HttpServlet {
             request.setAttribute("inventoryItemsMap", inventoryItemsMap);
             request.setAttribute("currentBal", currentBal);
         } catch (SQLException e) {
-            e.printStackTrace(); // Consider more graceful error handling
+            e.printStackTrace();
         }
 
         request.getRequestDispatcher("views/inventoryDisplay.jsp").forward(request, response);
