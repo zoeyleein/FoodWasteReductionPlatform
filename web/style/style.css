@@ -154,11 +154,42 @@ ul li div form {
     font-size: 1rem;
 }
 
+/* span */
+.balance {
+    padding-top: 30px;
+    padding-bottom: 5px;
+    margin-left: 40px;
+    font-size: 20px;
+}
+.span {
+    padding-top: 30px;
+    margin-left: 10px;
+}
+
+#add-money-btn {
+    width: 150px;
+    margin-left: 40px;
+    background-color: transparent;
+    color: #3A7877;
+    border: 2px solid #3A7877;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#add-money-btn:hover {
+    background-color: #3A7877;
+    color: #FFF;
+}
+
+/* menu */
 .menu {
     position: absolute;
     top: 35px;
     right: 10px;
     list-style: none;
+    margin-bottom: 50px;
 }
 
 .menu li {
@@ -508,3 +539,21 @@ input[type="checkbox"] + label {
     size: 20px;
     margin-right: 30px;
 }
+
+/* user balance */
+#user-balance {
+    font-size: 24px;
+    color: #3A7877;
+}
+
+/* table */
+table {
+    border: none;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: none;
+    padding: 8px;
+}
+

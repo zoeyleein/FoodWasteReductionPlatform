@@ -47,8 +47,8 @@
         </tbody>
         <tfoot>
         <tr>
-            <th colspan="5">Grand Total Cost</th>
-            <th>$${totalCost}</th>
+            <th colspan="5" style="background-color: #b0b0b0;">Grand Total Cost</th>
+            <th style="background-color: #b0b0b0;">$${totalCost}</th>
         </tr>
         </tfoot>
     </table>

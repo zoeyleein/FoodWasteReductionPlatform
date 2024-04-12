@@ -18,21 +18,16 @@
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+</ul>
 
-    <li class="top-menu">
-
-            <span class="user-balance">$${sessionScope.userBalance}</span>
+            <p class="balance">Balance :<span class="span">$${sessionScope.userBalance}</span></p>
             <form action="${pageContext.request.contextPath}/AddMoneyServlet" method="POST">
                 <input type="hidden" name="userId" value="${sessionScope.userId}">
                 <input type="hidden" name="currentBal" value="${sessionScope.userBalance}">
-                <div class ="add_money">
-                <button type="submit">Add money</button>
-                </div>
+
+                <button id="add-money-btn" type="submit">Add money</button>
             </form>
 
-    </li>
-
-</ul>
 <div class="container">
 <h1>Food items</h1>
         <form action="${pageContext.request.contextPath}/FetchRetailersServlet" method="post">

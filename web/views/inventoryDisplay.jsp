@@ -104,13 +104,14 @@
         <thead>
         <tr>
             <th>Item</th>
-
             <th>Expiry Date</th>
             <th>On Sale</th>
             <th>Available Quantity</th>
             <th>Unit Price</th>
-            <th>Qty</th>
+            <th>Discounted price</th>
+            <th>Quantity</th>
             <th>Cost</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -131,11 +132,11 @@
                 <td>
                     <input type="hidden" class="retailerInventoryID" value="${entry.value.id}">
                 </td>
-
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
     <br>
     <p id="totalCost">Total Cost: $0.00</p>
     <br>
