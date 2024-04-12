@@ -74,7 +74,7 @@ public class PaymentServlet extends HttpServlet {
                     transactionDTO.setQuantity(qty);
                     transactionDTO.setUsersId(customerId);
                     transactionDTO.setUserInventoryId(id);
-                    transactionDTO.setTransactionId(String.valueOf(2));
+
                     transactionBusinessLogic.addTransaction(transactionDTO);
 
                 }
