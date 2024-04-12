@@ -1,3 +1,7 @@
+/**
+ * This class represents a notification service responsible for registering observers,
+ * removing observers, and notifying observers about updates in retailer inventory.
+ */
 package notifications;
 
 import dataaccesslayer.DataSource;
@@ -18,6 +22,12 @@ public class NotificationService implements Subject{
     String itemCategory;
 
 
+    /**
+     * Registers an observer with the specified phone number.
+     *
+     * @param observer the observer to be registered
+     * @param phone    the phone number of the user associated with the observer
+     */
     @Override
     public void registerObserver(Observer observer, String phone) {
         observer.setUserPreferences(phone);
@@ -25,6 +35,11 @@ public class NotificationService implements Subject{
 
     }
 
+    /**
+     * Removes an observer from the list of registered observers.
+     *
+     * @param observer the observer to be removed
+     */
     @Override
     public void removeObserver(Observer observer) {
         observers.remove(observer);
@@ -32,6 +47,12 @@ public class NotificationService implements Subject{
     }
 
 
+    /**
+     * Notifies all registered observers about updates in retailer inventory.
+     *
+     * @param retailerInventory the retailer inventory DTO object containing the updated information
+     * @param connection        the database connection
+     */
     @Override
     public void notifyObservers(RetailerInventoryDTO retailerInventory, Connection connection) {
         int itemId = retailerInventory.getItemId();

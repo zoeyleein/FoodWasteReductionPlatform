@@ -1,3 +1,7 @@
+/**
+ * This class represents an observer that receives notifications about updates in retailer inventory
+ * and notifies users based on their preferences.
+ */
 package notifications;
 
 import businesslayer.UserBusinessLogic;
@@ -14,11 +18,22 @@ public class NotificationObserver implements Observer {
     UserBusinessLogic userBusinessLogic;
     DataSource dataSource;
 
+    /**
+     * Sets the user's preferred phone number.
+     *
+     * @param phone the user's phone number
+     */
     @Override
     public void setUserPreferences(String phone) {
         this.userPhone = phone;
     }
 
+    /**
+     * Receives updates from the subject (RetailerInventoryDTO) and notifies users based on their preferences.
+     *
+     * @param retailerInventory the retailer inventory DTO object containing the updated information
+     * @param connection        the database connection
+     */
     @Override
     public void update(RetailerInventoryDTO retailerInventory, Connection connection) {
         String userQuery = "SELECT " +

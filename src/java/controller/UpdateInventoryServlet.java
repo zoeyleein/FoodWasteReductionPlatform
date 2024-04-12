@@ -1,5 +1,7 @@
+/**
+ * This servlet handles the updating of inventory for a retailer.
+ */
 package controller;
-
 
 import dataaccesslayer.DataSource;
 import model.RetailerInventoryWorker;
@@ -20,6 +22,11 @@ public class UpdateInventoryServlet extends HttpServlet {
     DataSource dataSource;
 
 
+    /**
+     * Initializes the servlet by setting up the data source.
+     *
+     * @throws ServletException if an error occurs during initialization
+     */
     @Override
     public void init() throws ServletException {
         super.init();
@@ -27,7 +34,14 @@ public class UpdateInventoryServlet extends HttpServlet {
         dataSource = new DataSource(context);
     }
 
-
+    /**
+     * Handles HTTP POST requests for updating inventory.
+     *
+     * @param request  the {@link HttpServletRequest} object
+     * @param response the {@link HttpServletResponse} object
+     * @throws ServletException if an error occurs while handling the request
+     * @throws IOException      if an I/O error occurs
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
