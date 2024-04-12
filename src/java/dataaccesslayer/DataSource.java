@@ -13,8 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 /**
- * DataSource is a singleton class to connect to MySQL database.
- *
+ * DataSource is a class to connect to MySQL database.
  */
 public class DataSource {
     private static Properties dbProperties = new Properties();
@@ -83,6 +82,11 @@ public class DataSource {
 
     }
 
+    /**
+     * Returns the connection object.
+     * @return connection object
+     * @throws SQLException if a database access error occurs
+     */
     public Connection getConnection() throws SQLException {
         if(connection == null || connection.isClosed()) {
             createConnection();

@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * ProcessAddMoneyServlet class is a servlet that processes the addition of money to the user's account.
+ */
 @WebServlet(name = "ProcessAddMoneyServlet", urlPatterns = {"/ProcessAddMoneyServlet"})
 public class ProcessAddMoneyServlet extends HttpServlet {
     @Override

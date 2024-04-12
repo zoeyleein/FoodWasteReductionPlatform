@@ -12,6 +12,10 @@ import transferobjects.UserDTO;
 
 import java.sql.*;
 
+/**
+ * This class represents an observer that receives notifications about updates in retailer inventory
+ * and notifies users based on their preferences.
+ */
 public class NotificationObserver implements Observer {
     private String userEmail;
     private String userPhone;

@@ -1,5 +1,8 @@
 package transferobjects;
 
+/**
+ * This class is to create a data transfer object for the transaction table in the database
+ */
 public class TransactionDTO {
     private String transactionId;
     private int userInventoryId;

@@ -8,14 +8,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * UserAccountDAOImpl class for UserAccountDAO
+ */
 public class UserAccountDAOImpl implements UserAccountDAO {
 
     Connection con;
 
+    /**
+     * Constructor for UserAccountDAOImpl
+     * @param con Connection object
+     */
     public UserAccountDAOImpl(Connection con) {
         this.con = con;
     }
 
+    /**
+     * Method to insert user account
+     * @param userAccount UserAccountDTO object
+     * @throws SQLException throws SQLException
+     */
     @Override
     public void insertUserAccount(UserAccountDTO userAccount) throws SQLException {
         String sql = "INSERT INTO userAccount ( balance, users_id) VALUES (?, ?)";
@@ -27,6 +39,11 @@ public class UserAccountDAOImpl implements UserAccountDAO {
         }
     }
 
+    /**
+     * Method to get user account by id
+     * @param accountId int object
+     * @return UserAccountDTO object
+     */
     @Override
     public UserAccountDTO getUserAccountById(int accountId) {
         String sql = "SELECT * FROM userAccount WHERE users_id = ?";
@@ -46,6 +63,10 @@ public class UserAccountDAOImpl implements UserAccountDAO {
         return account;
     }
 
+    /**
+     * Method to get all user accounts
+     * @return List of UserAccountDTO objects
+     */
     @Override
     public List<UserAccountDTO> getAllUserAccounts() {
         List<UserAccountDTO> accounts = new ArrayList<>();
@@ -65,6 +86,10 @@ public class UserAccountDAOImpl implements UserAccountDAO {
         return accounts;
     }
 
+    /**
+     * Method to update user account
+     * @param userAccount UserAccountDTO object
+     */
     @Override
     public void updateUserAccount(UserAccountDTO userAccount) {
         String sql = "UPDATE userAccount SET balance = ?, users_id = ? WHERE id = ?";
@@ -78,6 +103,10 @@ public class UserAccountDAOImpl implements UserAccountDAO {
         }
     }
 
+    /**
+     * Method to delete user account
+     * @param accountId int object
+     */
     @Override
     public void deleteUserAccount(int accountId) {
         String sql = "DELETE FROM userAccount WHERE id = ?";

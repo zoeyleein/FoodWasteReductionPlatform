@@ -8,14 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 import transferobjects.ItemDTO;
 
+/**
+ * ItemDAOImpl class implements ItemDAO interface
+ */
 public class ItemDAOImpl implements ItemDAO {
 
     Connection con;
 
+    /**
+     * Constructs a new {@code ItemDAOImpl} object with the specified database connection.
+     * @param con the database connection
+     */
     public ItemDAOImpl(Connection con) {
         this.con = con;
     }
-
+    /**
+     * Inserts a new item record into the database.
+     * @param item the item DTO object to be inserted
+     * @throws SQLException if a database access error occurs
+     */
     @Override
     public void insertItem(ItemDTO item) throws SQLException {
         String sql = "INSERT INTO item (id, name, category) VALUES (?, ?, ?)";
@@ -31,6 +42,11 @@ public class ItemDAOImpl implements ItemDAO {
         }
     }
 
+    /**
+     * Retrieves an item record from the database by its ID.
+     * @param itemId the ID of the item record
+     * @return the item DTO object if found, otherwise null
+     */
     @Override
     public ItemDTO getItemById(int itemId) {
         String sql = "SELECT * FROM item WHERE id = ?";
@@ -51,6 +67,10 @@ public class ItemDAOImpl implements ItemDAO {
         return item;
     }
 
+    /**
+     * Retrieves all item records from the database.
+     * @return a list of item DTO objects
+     */
     @Override
     public List<ItemDTO> getAllItems() {
         List<ItemDTO> items = new ArrayList<>();
@@ -70,6 +90,10 @@ public class ItemDAOImpl implements ItemDAO {
         return items;
     }
 
+    /**
+     * Updates an item record in the database.
+     * @param item the item DTO object to be updated
+     */
     @Override
     public void updateItem(ItemDTO item) {
         String sql = "UPDATE item SET name = ?, category = ? WHERE id = ?";
@@ -84,6 +108,10 @@ public class ItemDAOImpl implements ItemDAO {
         }
     }
 
+    /**
+     * Deletes an item record from the database by its ID.
+     * @param itemId the ID of the item record
+     */
     @Override
     public void deleteItem(int itemId) {
         String sql = "DELETE FROM item WHERE id = ?";

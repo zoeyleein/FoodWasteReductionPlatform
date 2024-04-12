@@ -8,14 +8,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RetailerInventoryDAOImpl class implements RetailerInventoryDAO interface
+ */
 public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
 
     Connection con;
 
+    /**
+     * Constructs a new {@code RetailerInventoryDAOImpl} object with the specified database connection.
+     * @param con the database connection
+     */
     public RetailerInventoryDAOImpl(Connection con){
         this.con = con;
     }
 
+    /**
+     * Inserts a new retailer inventory record into the database.
+     * @param retailerInventory the retailer inventory DTO object to be inserted
+     * @throws SQLException if a database access error occurs
+     */
     @Override
     public void insertRetailerInventory(RetailerInventoryDTO retailerInventory) throws SQLException {
         String sql = "INSERT INTO retailer_inventory (id, users_id, item_id, batch, expiry_date, quantity, unit_price, final_price, sale, donation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -34,6 +46,11 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
         }
     }
 
+    /**
+     * Retrieves a retailer inventory record from the database by its ID.
+     * @param inventoryId the ID of the retailer inventory record
+     * @return the retailer inventory DTO object if found, otherwise null
+     */
     @Override
     public RetailerInventoryDTO getRetailerInventoryById(int inventoryId) {
         String sql = "SELECT * FROM retailer_inventory WHERE id = ?";
@@ -60,6 +77,10 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
         return inventory;
     }
 
+    /**
+     * Retrieves all retailer inventory records from the database.
+     * @return a list of retailer inventory DTO objects
+     */
     @Override
     public List<RetailerInventoryDTO> getAllRetailerInventories() {
         List<RetailerInventoryDTO> inventories = new ArrayList<>();
@@ -86,6 +107,10 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
         return inventories;
     }
 
+    /**
+     * Updates a retailer inventory record in the database.
+     * @param retailerInventory the retailer inventory DTO object containing updated information
+     */
     @Override
     public void updateRetailerInventory(RetailerInventoryDTO retailerInventory) {
         String sql = "UPDATE retailer_inventory SET users_id = ?, item_id = ?, batch = ?, expiry_date = ?, quantity = ?, unit_price = ?, final_price = ?, sale = ?, donation = ? WHERE id = ?";
@@ -106,6 +131,10 @@ public class RetailerInventoryDAOImpl implements RetailerInventoryDAO {
         }
     }
 
+    /**
+     * Deletes a retailer inventory record from the database.
+     * @param inventoryId the ID of the retailer inventory record
+     */
     @Override
     public void deleteRetailerInventory(int inventoryId) {
         String sql = "DELETE FROM retailer_inventory WHERE id = ?";

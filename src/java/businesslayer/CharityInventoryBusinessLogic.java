@@ -6,6 +6,10 @@ import transferobjects.CharityInventoryDTO;
 import java.sql.Connection;
 import java.util.List;
 
+
+/**
+ * Business logic for the CharityInventory table.
+ */
 public class CharityInventoryBusinessLogic {
 
     private CharityInventoryDAO charityInventoryDao;

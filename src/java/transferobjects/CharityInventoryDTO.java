@@ -1,5 +1,8 @@
 package transferobjects;
 
+/**
+ * CharityInventoryDTO is a data transfer object to hold the data for the CharityInventory table.
+ */
 public class CharityInventoryDTO {
     private int id;
     private int usersId;

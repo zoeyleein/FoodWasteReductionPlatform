@@ -15,7 +15,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This class represents a notification service responsible for registering observers,
+ * removing observers, and notifying observers about updates in retailer inventory.
+ */
 public class NotificationService implements Subject{
     private final List<Observer> observers = new ArrayList<>();
     String itemName;
