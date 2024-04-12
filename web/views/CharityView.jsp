@@ -42,6 +42,7 @@
             <th>Category</th>
             <th>Expiry Date</th>
             <th>Quantity</th>
+            <th>Claim Quantity</th>
         </tr>
     </thead>
     <tbody>
@@ -51,22 +52,20 @@
             <td>${item.category}</td>
             <td>${item.expiryDate}</td>
             <td>${item.quantity}</td>
-            <td>
-                <form action="${pageContext.request.contextPath}/CharityClaimsServlet" method="post">
-                <div class="form-group">
+            <td class ="claim-form">
+                <form class = "form-group" action="${pageContext.request.contextPath}/CharityClaimsServlet" method="post">
+
                     <input type="hidden" name="itemId" value="${item.id}">
-                    <label for="claimedQuantity${item.id}">Quantity to claim:</label>
-                    <select name="claimedQuantity" id="claimedQuantity${item.id}">
+                    <label for="claimedQuantity${item.id}"></label>
+                    <select class = "claimedSelect" name="claimedQuantity" id="claimedQuantity${item.id}">
                         <c:forEach begin="1" end="${item.quantity}" var="num">
                             <option value="${num}">${num}</option>
                         </c:forEach>
-                    </select><br>
-                    </div>
-                    <div class="form-group">
+                    </select>
+
                     <input type="submit" value="Claim">
-                    </div>
                 </form>
-            </td>
+             </td>
         </tr>
     </c:forEach>
     </tbody>
@@ -74,3 +73,7 @@
 </div>
 </body>
 </html>
+
+
+
+

@@ -477,11 +477,15 @@ input[type="checkbox"] + label {
     color: #3A7877; /* Link color on hover */
 }
 
-.claim-form {
-    display: flex;
-    align-items: center;
+/* claim */
+
+.claim-form .form-group .claimedSelect {
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 60px;
 }
 
-.form-group {
-    margin-right: 10px;
+.claimedSelect {
+    size: 20px;
+    margin-right: 30px;
 }
