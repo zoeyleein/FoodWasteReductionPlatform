@@ -71,6 +71,14 @@
                 <input type="email" id="email" name="email" hidden>
                 <label for="phone" hidden>*Phone :</label>
                 <input type="text" id="phone" name="phone" hidden>
+                <label for="preference">Select your prefered category</label><br>
+                <select id="preference" name="preference">
+                    <option value="Fruit">Fruit</option>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Dairy & Eggs">Dairy & Eggs</option>
+                </select><br>
                 <input type="checkbox" id="subscribeToPhone" name="subscribeToPhone" hidden>
                 <label for="subscribeToPhone" hidden>Get notifications by Phone</label>
                 <input type="checkbox" id="subscribeToMail" name="subscribeToMail" hidden>
