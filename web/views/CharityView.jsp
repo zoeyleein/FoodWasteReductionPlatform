@@ -19,14 +19,11 @@
         </div>
 <ul class="menu">
     <li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
-    <!-- menu icon -->
-    <li class="top-menu">
-    </li>
 </ul>
 <div class="inventory">
 <h1>Transaction</h1>
         <c:if test="${not empty sessionScope.message}">
-            <div class="success">
+            <div class="success" style="text-align: center;">
                 <p>${sessionScope.message}</p>
             </div>
             <c:set var="message" scope="session" value=""/>
@@ -56,6 +53,7 @@
             <td>${item.quantity}</td>
             <td>
                 <form action="${pageContext.request.contextPath}/CharityClaimsServlet" method="post">
+                <div class="form-group">
                     <input type="hidden" name="itemId" value="${item.id}">
                     <label for="claimedQuantity${item.id}">Quantity to claim:</label>
                     <select name="claimedQuantity" id="claimedQuantity${item.id}">
@@ -63,7 +61,10 @@
                             <option value="${num}">${num}</option>
                         </c:forEach>
                     </select><br>
+                    </div>
+                    <div class="form-group">
                     <input type="submit" value="Claim">
+                    </div>
                 </form>
             </td>
         </tr>

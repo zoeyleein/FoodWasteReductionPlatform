@@ -476,3 +476,12 @@ input[type="checkbox"] + label {
 .menu a:hover {
     color: #3A7877; /* Link color on hover */
 }
+
+.claim-form {
+    display: flex;
+    align-items: center;
+}
+
+.form-group {
+    margin-right: 10px;
+}
