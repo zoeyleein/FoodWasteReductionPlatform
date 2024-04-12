@@ -9,7 +9,8 @@ public class NotificationService implements Subject{
     private final List<Observer> observers = new ArrayList<>();
 
     @Override
-    public void registerObserver(Observer observer) {
+    public void registerObserver(Observer observer, String phone) {
+        observer.setUserPreferences(phone);
         observers.add(observer);
 
     }
@@ -24,6 +25,7 @@ public class NotificationService implements Subject{
     public void notifyObservers() {
         for (Observer observer : observers) {
             observer.update();
+            //send updates
         }
     }
 }

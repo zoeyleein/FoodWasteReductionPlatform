@@ -55,8 +55,9 @@ public class ValidateRegistrationServlet extends HttpServlet {
         email = request.getParameter("email");
         password = request.getParameter("password");
         phone = request.getParameter("phone");
-        subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToEmail"));
         subscribeToPhone = Boolean.parseBoolean(request.getParameter("subscribeToPhone"));
+        subscribeToEmail = Boolean.parseBoolean(request.getParameter("subscribeToEmail"));
+
 
         if(Objects.equals(role, "Customer") || Objects.equals(role, "Charity")) {
             location = request.getParameter("selectedValue");
@@ -70,13 +71,16 @@ public class ValidateRegistrationServlet extends HttpServlet {
                 response.sendRedirect(registration.registrationErrorRedirect(role));
             } else{// at some point add 10 digit phone number validation if wanted
                 // Create a new UserDTO object
-                UserDTO user = builder.userBuilder(name, password, role, email, phone, location);
+                UserDTO user = builder.userBuilder(name, password, role, email, phone, location, subscribeToPhone, subscribeToEmail);
                 userBusinessLogic = new UserBusinessLogic(connection);
                 userBusinessLogic.addUser(user);
-                // Register observer
-                NotificationObserver observer = new NotificationObserver();
-                NotificationService notificationService = new NotificationService();
-                notificationService.registerObserver(observer);
+                if (subscribeToPhone){
+                    // Register observer
+                    NotificationObserver observer = new NotificationObserver();
+                    NotificationService notificationService = new NotificationService();
+                    notificationService.registerObserver(observer, user.getPhone());
+                }
+
 
 
                 response.sendRedirect("views/Signin.jsp");

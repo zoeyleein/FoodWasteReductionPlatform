@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class DTOBuilder {
 
-    public UserDTO userBuilder(String name, String password, String role, String email, String phone, String location){
+    public UserDTO userBuilder(String name, String password, String role, String email, String phone, String location, Boolean subscribeToPhone, Boolean subscribeToEmail){
         UserDTO user = new UserDTO();
         user.setName(name);
         user.setPassword(password);
@@ -20,6 +20,8 @@ public class DTOBuilder {
         user.setMail(email);
         user.setPhone(phone);
         user.setLocation(location);
+        user.setSubscribeToEmail(subscribeToEmail);
+        user.setSubscribeToPhone(subscribeToPhone);
         return user;
     }
 
