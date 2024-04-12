@@ -15,12 +15,14 @@
 </head>
 <body>
 <h2>Retailers at Selected Location</h2>
+<p>Current Balance: $${currentBal}</p>
 <c:if test="${not empty retailerNames}">
     <ul>
         <c:forEach items="${retailerNames}" var="retailer">
             <li>${retailer.getName()}
                 <form action="FetchInventoryServlet" method="post">
                     <input type="hidden" name="retailerId" value="${retailer.getId()}"/>
+                    <input type="hidden" name="currentBal" value="${currentBal}"/>
                     <button type="submit">Shop</button>
                 </form>
             </li>

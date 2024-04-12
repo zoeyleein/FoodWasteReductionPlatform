@@ -28,7 +28,7 @@ public class FetchInventoryServlet extends HttpServlet {
         int retailerId = Integer.parseInt(request.getParameter("retailerId"));
         ServletContext context = getServletContext();
         ShowRetailersAtLocationBusinessLogic logic = new ShowRetailersAtLocationBusinessLogic();
-
+        double currentBal = Double.parseDouble(request.getParameter("currentBal"));
         try {
             Map<Integer, RetailerInventoryDTO> inventoryById = logic.getInventory(retailerId, context);
             Map<String, RetailerInventoryDTO> inventoryItemsMap = new HashMap<>();
@@ -45,7 +45,7 @@ public class FetchInventoryServlet extends HttpServlet {
             }
 
             request.setAttribute("inventoryItemsMap", inventoryItemsMap);
-
+            request.setAttribute("currentBal", currentBal);
         } catch (SQLException e) {
             e.printStackTrace(); // Consider more graceful error handling
         }
