@@ -53,7 +53,9 @@
         </tfoot>
     </table>
     <input type="hidden" name="totalCost" value="${totalCost}" />
-    <button type="submit">Pay now</button>
+    <div class="button-container">
+    <button type="submit" class="pay-now-button">Pay now</button>
+    </div>
 </form>
 </div>
 </body>
