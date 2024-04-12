@@ -214,7 +214,7 @@ input[type="submit"],
 button[type="submit"] {
     font-family: 'Overpass', sans-serif;
     width: 200px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -244,7 +244,7 @@ label[for="userType"] {
 .select-dropdown {
     font-family: 'Overpass', sans-serif;
     width: 220px;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: white;
