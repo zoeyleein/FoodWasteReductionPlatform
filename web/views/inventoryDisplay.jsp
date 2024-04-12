@@ -23,8 +23,9 @@
                 totalCost += parseFloat(item.innerText);
             });
 
-            if (totalCost > 100) {
-                alert('Total cost cannot exceed 100 dollars. Adjusting quantity...');
+            let maxTotalCost = parseFloat(document.getElementById('totalCostLimit').textContent);
+            if (totalCost > maxTotalCost) {
+                alert('Total cost cannot exceed ' + maxTotalCost.toFixed(2) + ' dollars. Adjusting quantity...');
                 element.value = 0;
                 costElement.innerText = '0.00';
                 totalCost = 0;
@@ -85,6 +86,7 @@
 </head>
 <body>
 <h2>Inventory</h2>
+<p id="totalCostLimit" style="display:none;">${currentBal}</p>
 <c:if test="${not empty inventoryItemsMap}">
     <table border="1">
         <thead>

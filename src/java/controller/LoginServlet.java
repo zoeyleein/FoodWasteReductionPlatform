@@ -57,6 +57,9 @@ public class LoginServlet extends HttpServlet {
                         userAccountDTO.setBalance(100);
                         userAccountBusinessLogic.addUserAccount(userAccountDTO);
                     }
+                    UserAccountDTO userAccountDTO = userAccountBusinessLogic.getUserAccountById(user.getId());
+                    double balance = userAccountDTO.getBalance();
+                    session.setAttribute("userBalance", balance);
                 }
                 if (user.getRole().equals("Retailer")) {
                     session = request.getSession();

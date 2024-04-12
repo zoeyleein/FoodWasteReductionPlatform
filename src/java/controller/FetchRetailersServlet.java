@@ -23,6 +23,7 @@ public class FetchRetailersServlet extends HttpServlet {
         String location = request.getParameter("location").toLowerCase();
         System.out.println(location);
         ShowRetailersAtLocationBusinessLogic logic = new ShowRetailersAtLocationBusinessLogic();
+        double currentBal = Double.parseDouble(request.getParameter("currentBal2"));
 
         try {
             ServletContext context = getServletContext();
@@ -31,6 +32,7 @@ public class FetchRetailersServlet extends HttpServlet {
                 System.out.println(users.getLocation());
             }
             request.setAttribute("retailerNames", retailerNames);
+            request.setAttribute("currentBal", currentBal);
         } catch (SQLException e) {
             e.printStackTrace();
             // Handle error

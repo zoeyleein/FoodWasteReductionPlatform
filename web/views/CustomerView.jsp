@@ -24,13 +24,21 @@
             <img src="http://localhost:8080/FoodWasteReductionPlatform/image/notification-icon.png" alt="Alerts">
         </div>
         <div class="cart-icon">
-            <a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CustomerTransactionView.jsp"><img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart"></a>
+            <a href="http://localhost:8080/FoodWasteReductionPlatform/views/transaction/CustomerTransactionView.jsp">
+                <img src="http://localhost:8080/FoodWasteReductionPlatform/image/cart-icon.png" alt="Shopping Cart">
+            </a>
         </div>
         <div class="money-icon">
             <img src="http://localhost:8080/FoodWasteReductionPlatform/image/money-icon.png" alt="Money">
-            <span class="user-balance">$100</span>
+            <span class="user-balance">$${sessionScope.userBalance}</span>
+            <form action="${pageContext.request.contextPath}/AddMoneyServlet" method="POST">
+                <input type="hidden" name="userId" value="${sessionScope.userId}">
+                <input type="hidden" name="currentBal" value="${sessionScope.userBalance}">
+                <button type="submit">Add money</button>
+            </form>
         </div>
     </li>
+
 </ul>
 
 <h1>Food items</h1>
@@ -44,6 +52,7 @@
                 <option value="Barrhaven">Barrhaven</option>
                 <option value="Downtown">Downtown</option>
             </select>
+            <input type="hidden" name="currentBal2" value="${sessionScope.userBalance}">
             <button type="submit">OK</button>
         </form>
 
