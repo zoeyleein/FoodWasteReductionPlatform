@@ -37,9 +37,9 @@
 %>
 <form action="${pageContext.request.contextPath}/RetailerInventoryServlet" method="post">
     <fieldset id="inventoryFields">
-    <label for="productName" >Product Name: </label><br>
+    <label for="productName" >Product Name :</label><br>
     <input type="text" id="productName" name="productName" required><br>
-    <label for="category" >Product Category: </label><br>
+    <label for="category" >Product Category :</label><br>
     <select id="category" name="category">
         <option value="Fruit">Fruit</option>
         <option value="Vegetable">Vegetable</option>
@@ -47,11 +47,11 @@
         <option value="Seafood">Seafood</option>
         <option value="Dairy & Eggs">Dairy & Eggs</option>
     </select><br>
-    <label for="batch" >Batch Number: </label><br>
-    <input type="number" id="batch" name="batch" required><br>
-    <label for="quantity" >Quantity: </label><br>
-    <input type="number" id="quantity" name="quantity" min="0" required><br>
-    <label for="expiryDate">Expiry Date:</label><br>
+    <label for="batch" >Batch Number :</label><br>
+    <input type="number" id="batch" name="batch" required><br></br>
+    <label for="quantity" >Quantity :</label><br>
+    <input type="number" id="quantity" name="quantity" min="0" required><br></br>
+    <label for="expiryDate">Expiry Date :</label><br>
     <input type="datetime-local" id="expiryDate" name="expiryDate" onchange="validateExpiryDate()"><br>
     <span id="expiryDateError" style="color: red;"></span>
     <script>
@@ -94,5 +94,6 @@
         }
     }
 </script>
+</div>
 </body>
 </html>

@@ -208,6 +208,8 @@ ul li div form {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="number"],
+input[type="datetime-local"],
 input[type="submit"],
 button[type="submit"] {
     font-family: 'Overpass', sans-serif;
@@ -218,7 +220,7 @@ button[type="submit"] {
 }
 
 input[type="submit"],
- button[type="submit"] {
+button[type="submit"] {
     background-color: #6BB082;
     padding: 10px;
     color: white;
@@ -231,6 +233,13 @@ label[for="userType"] {
     font-size: 20px;
     letter-spacing: 1px;
 }
+
+.container input[type="password"],
+           input[type="number"],
+           input[type="datetime-local"] {
+
+           width: 100%;
+           }
 
 .select-dropdown {
     font-family: 'Overpass', sans-serif;
