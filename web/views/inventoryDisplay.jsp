@@ -6,6 +6,7 @@
 <html>
 <head>
     <title>Inventory List</title>
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
     <script>
         function updateCostAndValidate(element, availableQty, unitPrice) {
             let qtyInput = parseInt(element.value, 10);
@@ -84,8 +85,19 @@
 
     </script>
 </head>
-<body>
-<h2>Inventory</h2>
+<body class = "registration">
+
+    <div class="logoblack-container">
+        <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
+
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a></li>
+    </ul>
+
+<div class="inventory">
+<h1>Inventory</h1>
 <p id="totalCostLimit" style="display:none;">${currentBal}</p>
 <c:if test="${not empty inventoryItemsMap}">
     <table border="1">
@@ -124,11 +136,14 @@
         </c:forEach>
         </tbody>
     </table>
+    <br>
     <p id="totalCost">Total Cost: $0.00</p>
-    <button onclick="checkout()">Checkout</button>
+    <br>
+    <button type="submit" onclick="checkout()">Checkout</button>
 </c:if>
 <c:if test="${empty inventoryItemsMap}">
     <p>No inventory items found.</p>
 </c:if>
+</div>
 </body>
 </html>

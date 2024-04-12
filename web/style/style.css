@@ -25,7 +25,7 @@ body {
 
 h1 {
     letter-spacing: 1.5px;
-    font-weight: 700;
+    font-weight: 600;
     color: #3A7877;
     font-size: 50px;
     text-align: center;
@@ -49,6 +49,23 @@ p {
     color: #666;
 }
 
+/* show location */
+ul {
+    padding-left: 30px;
+    font-size: 30px;
+}
+
+ul li div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+ul li div form {
+    margin-left: auto;
+    margin-right: 20px;
+}
 
 .container {
     width: 100%;
@@ -160,7 +177,8 @@ p {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
     font-family: 'Overpass', sans-serif;
     width: 200px;
     padding: 5px;
@@ -168,7 +186,8 @@ input[type="submit"] {
     border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type="submit"],
+ button[type="submit"] {
     background-color: #6BB082;
     padding: 10px;
     color: white;
@@ -285,7 +304,7 @@ footer p {
  }
 
  .content p,label {
-      font-weight: 1000;
+      font-weight: 600;
       font-size: 20px;
       text-align: left;
       color: black;

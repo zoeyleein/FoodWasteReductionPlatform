@@ -12,19 +12,33 @@
 <html>
 <head>
     <title>Retailers List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-<h2>Retailers at Selected Location</h2>
-<p>Current Balance: $${currentBal}</p>
+<body class = "registration">
+
+    <div class="logoblack-container">
+        <a href="${pageContext.request.contextPath}">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
+
+<div class="container">
+<h1>Retailers at Selected Location</h1>
+<h4>Current Balance: $${currentBal}</h4>
+<br>
 <c:if test="${not empty retailerNames}">
     <ul>
         <c:forEach items="${retailerNames}" var="retailer">
             <li>${retailer.getName()}
+            <div>
                 <form action="FetchInventoryServlet" method="post">
                     <input type="hidden" name="retailerId" value="${retailer.getId()}"/>
                     <input type="hidden" name="currentBal" value="${currentBal}"/>
+                    <br>
                     <button type="submit">Shop</button>
                 </form>
+            </div>
             </li>
         </c:forEach>
     </ul>
@@ -32,5 +46,6 @@
 <c:if test="${empty retailerNames}">
     <p>No retailers found for the selected location.</p>
 </c:if>
+</div>
 </body>
 </html>
