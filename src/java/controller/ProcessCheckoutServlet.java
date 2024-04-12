@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The Servlet shows the summary of items that user wants to buy and checkout.
+ */
 @WebServlet(name = "ProcessCheckoutServlet", value = "/ProcessCheckoutServlet")
 public class ProcessCheckoutServlet extends HttpServlet {
     @Override

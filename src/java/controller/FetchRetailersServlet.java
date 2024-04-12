@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Servlet gets retailers at a specific location.
+ */
 @WebServlet(name = "FetchRetailersServlet", urlPatterns = {"/FetchRetailersServlet"})
 public class FetchRetailersServlet extends HttpServlet {
     @Override

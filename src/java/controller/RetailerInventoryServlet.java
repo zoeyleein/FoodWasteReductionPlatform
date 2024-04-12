@@ -27,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+
+
 @WebServlet(name = "RetailerInventoryServlet", urlPatterns = {"/RetailerInventoryServlet"})
 public class RetailerInventoryServlet extends HttpServlet {
     int AUTO_SALE = 1;

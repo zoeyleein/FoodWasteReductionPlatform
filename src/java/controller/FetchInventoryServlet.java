@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The Servlet gets retailer inventory and displays it.
+ */
 @WebServlet(name = "FetchInventoryServlet", urlPatterns = {"/FetchInventoryServlet"})
 public class FetchInventoryServlet extends HttpServlet {
     @Override
