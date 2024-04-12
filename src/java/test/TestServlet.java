@@ -18,7 +18,10 @@ import javax.servlet.http.HttpServlet;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
+/**
+ * This class contains test cases for the UserBusinessLogic, UserAccountBusinessLogic, and ItemBusinessLogic classes.
+ * The tests verify the functionality of adding, updating, and retrieving user, user account, and item information.
+ */
 @WebServlet(name = "TestServlet", urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
     ServletContext context = getServletContext();

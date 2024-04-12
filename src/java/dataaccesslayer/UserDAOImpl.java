@@ -8,14 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 import transferobjects.UserDTO;
 
+/**
+ * UserDAOImpl class for UserDAO
+ */
 public class UserDAOImpl implements UserDAO {
     private Connection con;
     List<UserDTO> users = new ArrayList<>();
 
+    /**
+     * Constructor for UserDAOImpl
+     * @param con Connection object
+     */
     public UserDAOImpl(Connection con) {
         this.con = con;
     }
 
+    /**
+     * Method to insert user
+     * @param user UserDTO object
+     * @throws SQLException throws SQLException
+     */
     @Override
     public void insertUser(UserDTO user) throws SQLException {
         String sql = "INSERT INTO users (id, name, password, subscribeToPhone, subscribeToEmail, location, role, phone, mail, preference) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -39,6 +51,11 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    /**
+     * Method to get user by id
+     * @param userId int object
+     * @return UserDTO object
+     */
     @Override
     public UserDTO getUserById(int userId) {
         String sql = "SELECT * FROM users WHERE id = ?";
@@ -66,6 +83,10 @@ public class UserDAOImpl implements UserDAO {
         return null;
     }
 
+    /**
+     * Method to get all users
+     * @return List of UserDTO objects
+     */
     @Override
     public List<UserDTO> getAllUsers() {
 
@@ -92,6 +113,10 @@ public class UserDAOImpl implements UserDAO {
         return users;
     }
 
+    /**
+     * Method to update user
+     * @param user UserDTO object
+     */
     @Override
     public void updateUser(UserDTO user) {
         String sql = "UPDATE users SET name = ?, password = ?, subscribeToPhone = ?, subscribeToEmail = ?, location = ?, role = ?, phone = ?, mail = ?, preference = ? WHERE id = ?";
@@ -112,6 +137,10 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    /**
+     * Method to delete user
+     * @param userId int object
+     */
     @Override
     public void deleteUser(int userId) {
         String sql = "DELETE FROM users WHERE id = ?";

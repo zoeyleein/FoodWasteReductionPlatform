@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Business logic for the Item table.
+ */
 public class ItemBusinessLogic {
 
     private ItemDAO itemDao;

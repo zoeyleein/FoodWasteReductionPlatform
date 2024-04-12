@@ -8,14 +8,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TransactionDAOImpl class for TransactionDAO
+ */
 public class TransactionDAOImpl implements TransactionDAO {
 
     Connection con;
 
+    /**
+     * Constructor for TransactionDAOImpl
+     * @param con Connection object
+     */
     public TransactionDAOImpl(Connection con) {
         this.con = con;
     }
 
+    /**
+     * Method to insert transaction
+     * @param transaction TransactionDTO object
+     * @throws SQLException throws SQLException
+     */
     @Override
     public void insertTransaction(TransactionDTO transaction) throws SQLException {
         String sql = "INSERT INTO transaction (transaction_id, userInventory_id, users_id, quantity) VALUES (?, ?, ?, ?)";
@@ -28,6 +40,11 @@ public class TransactionDAOImpl implements TransactionDAO {
         }
     }
 
+    /**
+     * Method to get transaction by id
+     * @param transactionId String object
+     * @return TransactionDTO object
+     */
     @Override
     public TransactionDTO getTransactionById(String transactionId) {
         String sql = "SELECT * FROM transaction WHERE transaction_id = ?";
@@ -48,6 +65,10 @@ public class TransactionDAOImpl implements TransactionDAO {
         return transaction;
     }
 
+    /**
+     * Method to get all transactions
+     * @return List of TransactionDTO objects
+     */
     @Override
     public List<TransactionDTO> getAllTransactions() {
         List<TransactionDTO> transactions = new ArrayList<>();
@@ -68,6 +89,10 @@ public class TransactionDAOImpl implements TransactionDAO {
         return transactions;
     }
 
+    /**
+     * Method to update transaction
+     * @param transaction TransactionDTO object
+     */
     @Override
     public void updateTransaction(TransactionDTO transaction) {
         String sql = "UPDATE transaction SET userInventory_id = ?, users_id = ?, quantity = ? WHERE transaction_id = ?";
@@ -82,6 +107,10 @@ public class TransactionDAOImpl implements TransactionDAO {
         }
     }
 
+    /**
+     * Method to delete transaction
+     * @param transactionId String object
+     */
     @Override
     public void deleteTransaction(String transactionId) {
         String sql = "DELETE FROM transaction WHERE transaction_id = ?";

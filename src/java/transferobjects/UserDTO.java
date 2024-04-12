@@ -1,5 +1,8 @@
 package transferobjects;
 
+/**
+ * This class is to create a data transfer object for the user table in the database
+ */
 public class UserDTO {
     private int id;
     private String name;

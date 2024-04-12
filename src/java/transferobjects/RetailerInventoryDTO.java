@@ -2,6 +2,9 @@ package transferobjects;
 
 import java.util.Date;
 
+/**
+ * This class is to create a data transfer object for the retailer_inventory table in the database
+ */
 public class RetailerInventoryDTO {
     private int id;
     private int usersId;
