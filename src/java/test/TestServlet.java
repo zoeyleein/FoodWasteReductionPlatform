@@ -5,24 +5,16 @@ import businesslayer.UserAccountBusinessLogic;
 import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import dataaccesslayer.ItemDAOImpl;
-import dataaccesslayer.UserAccountDAO;
 import dataaccesslayer.UserAccountDAOImpl;
 import model.DTOBuilder;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import transferobjects.ItemDTO;
 import transferobjects.UserAccountDTO;
 import transferobjects.UserDTO;
-
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -44,7 +36,7 @@ public class TestServlet extends HttpServlet {
     @Test
     void addUser() throws SQLException {
         UserBusinessLogic userBusinessLogic = new UserBusinessLogic(connection);
-        UserDTO user = builder.userBuilder("Aaron", "Pass","Customer", "Aaron@mail.com", "1234567890", "Barrhaven");
+        UserDTO user = builder.userBuilder("Aaron", "Pass","Customer", "Aaron@mail.com", "1234567890", "Barrhaven", "Fruits", false, false);
         user.setId(999);
         userBusinessLogic.addUser(user);
         UserDTO test = userBusinessLogic.getUserById(999);
@@ -61,7 +53,7 @@ public class TestServlet extends HttpServlet {
     @Test
     void updateUser() throws SQLException {
         UserBusinessLogic userBusinessLogic = new UserBusinessLogic(connection);
-        UserDTO user = builder.userBuilder("Aaron", "Pass","Customer", "Aaron@mail.com", "1234567890", "Barrhaven");
+        UserDTO user = builder.userBuilder("Aaron", "Pass","Customer", "Aaron@mail.com", "1234567890", "Barrhaven", "Fruits", false, false);
         user.setId(998);
         userBusinessLogic.addUser(user);
         UserDTO test = userBusinessLogic.getUserById(998);
@@ -81,7 +73,7 @@ public class TestServlet extends HttpServlet {
     @Test
     void testUserAccount() throws SQLException {
         UserBusinessLogic userBusinessLogic = new UserBusinessLogic(connection);
-        UserDTO user = builder.userBuilder("Aaron", "Pass","Customer", "Aaron@mail.com", "1234567890", "Barrhaven");
+        UserDTO user = builder.userBuilder("Aaron", "Pass","Customer", "Aaron@mail.com", "1234567890", "Barrhaven", "Fruits", false, false);
         user.setId(997);
         userBusinessLogic.addUser(user);
         UserAccountBusinessLogic userAccountBusinessLogic = new UserAccountBusinessLogic(connection);
