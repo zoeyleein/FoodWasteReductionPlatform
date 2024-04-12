@@ -17,15 +17,19 @@ public class DTOBuilder {
 
     /**
      * Builds a user data transfer object
-     * @param name takes in the name for the users
-     * @param password takes in the users password
-     * @param role takes in the users role
-     * @param email takes in the users email
-     * @param phone takes in the users phone
-     * @param location takes in the users location
+     *
+     * @param name             takes in the name for the users
+     * @param password         takes in the users password
+     * @param role             takes in the users role
+     * @param email            takes in the users email
+     * @param phone            takes in the users phone
+     * @param location         takes in the users location
+     * @param preference
+     * @param subscribeToPhone
+     * @param subscribeToEmail
      * @return the user data transfer object
      */
-    public UserDTO userBuilder(String name, String password, String role, String email, String phone, String location){
+    public UserDTO userBuilder(String name, String password, String role, String email, String phone, String location, String preference, Boolean subscribeToPhone, Boolean subscribeToEmail){
         UserDTO user = new UserDTO();
         user.setName(name);
         user.setPassword(password);
@@ -33,6 +37,9 @@ public class DTOBuilder {
         user.setMail(email);
         user.setPhone(phone);
         user.setLocation(location);
+        user.setPreference(preference);
+        user.setSubscribeToEmail(subscribeToEmail);
+        user.setSubscribeToPhone(subscribeToPhone);
         return user;
     }
 
