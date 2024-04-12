@@ -35,7 +35,7 @@ public class FetchRetailersServlet extends HttpServlet {
             request.setAttribute("currentBal", currentBal);
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle error
+
         }
 
         // Forward to a JSP page to display the retailer names
