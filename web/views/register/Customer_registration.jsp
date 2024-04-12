@@ -45,7 +45,7 @@
             <form action="${pageContext.request.contextPath}/ValidateRegistrationServlet" method="post">
     <div class="hidden">
         <label for="role" hidden>Role:</label>
-        <input type="text" id="role" value="Retailer" hidden>
+        <input type="text" id="role" value="Customer" hidden>
     </div>
                 <label for="name">*Name :</label><br>
                 <input type="text" id="name" name="name" required><br>
