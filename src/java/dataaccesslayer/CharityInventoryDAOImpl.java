@@ -1,3 +1,7 @@
+/**
+ * This class provides an implementation of the {@link CharityInventoryDAO} interface to perform CRUD operations
+ * related to charity inventory in the database.
+ */
 package dataaccesslayer;
 
 import transferobjects.CharityInventoryDTO;
@@ -12,10 +16,21 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
 
     Connection con;
 
+    /**
+     * Constructs a new {@code CharityInventoryDAOImpl} object with the specified database connection.
+     *
+     * @param con the database connection
+     */
     public CharityInventoryDAOImpl(Connection con) {
         this.con = con;
     }
 
+    /**
+     * Inserts a new charity inventory record into the database.
+     *
+     * @param charityInventory the charity inventory DTO object to be inserted
+     * @throws SQLException if a database access error occurs
+     */
     @Override
     public void insertCharityInventory(CharityInventoryDTO charityInventory) throws SQLException {
         String sql = "INSERT INTO charity_inventory (id, users_id, quantity, userInventory_id) VALUES (?, ?, ?, ?)";
@@ -28,6 +43,12 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
         }
     }
 
+    /**
+     * Retrieves a charity inventory record from the database by its ID.
+     *
+     * @param inventoryId the ID of the charity inventory record
+     * @return the charity inventory DTO object if found, otherwise null
+     */
     @Override
     public CharityInventoryDTO getCharityInventoryById(int inventoryId) {
         String sql = "SELECT * FROM charity_inventory WHERE id = ?";
@@ -48,6 +69,11 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
         return inventory;
     }
 
+    /**
+     * Retrieves all charity inventory records from the database.
+     *
+     * @return a list of charity inventory DTO objects
+     */
     @Override
     public List<CharityInventoryDTO> getAllCharityInventories() {
         List<CharityInventoryDTO> inventories = new ArrayList<>();
@@ -68,6 +94,11 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
         return inventories;
     }
 
+    /**
+     * Updates a charity inventory record in the database.
+     *
+     * @param charityInventory the charity inventory DTO object containing updated information
+     */
     @Override
     public void updateCharityInventory(CharityInventoryDTO charityInventory) {
         String sql = "UPDATE charity_inventory SET users_id = ?, quantity = ?, userInventory_id = ? WHERE id = ?";
@@ -82,6 +113,11 @@ public class CharityInventoryDAOImpl implements CharityInventoryDAO {
         }
     }
 
+    /**
+     * Deletes a charity inventory record from the database by its ID.
+     *
+     * @param inventoryId the ID of the charity inventory record to be deleted
+     */
     @Override
     public void deleteCharityInventory(int inventoryId) {
         String sql = "DELETE FROM charity_inventory WHERE id = ?";

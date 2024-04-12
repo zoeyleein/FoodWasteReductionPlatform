@@ -32,15 +32,12 @@ public class ValidateRegistrationServlet extends HttpServlet {
     String preference;
     Boolean subscribeToPhone;
     Boolean subscribeToEmail;
+    //TODO we need to figure out what we're doing for all the registration forms and how we are going to validate them
     DTOBuilder builder = new DTOBuilder();
     DataSource dataSource;
     UserBusinessLogic userBusinessLogic;
     UserRegistration registration = new UserRegistration();
 
-    /**
-     * Initializes the servlet. used throughout most servlets to instantiate the datasource
-     * @throws ServletException if there is a servlet error
-     */
     @Override
     public void init() throws ServletException {
         super.init();
