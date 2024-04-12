@@ -80,4 +80,10 @@ public class UserRegistration {
         }
     }
 
+    // need 10 digits phone validation below
+    public boolean phoneValidation(String phone) {
+
+        return !phone.matches("\\d{10}");
+    }
+
 }

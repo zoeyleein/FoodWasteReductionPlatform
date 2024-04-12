@@ -7,6 +7,7 @@
 <%@ page import="dataaccesslayer.DataSource" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.servlet.ServletContext" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
     // Instantiate DataSource
@@ -47,9 +48,11 @@
     <label for="role" hidden>Role :</label>
     <input type="text" id="role" value="Customer" hidden>
 </div>
+    <c:if test="${not empty errorMessage}">
+        <p style="color: red;">${errorMessage}</p>
+    </c:if>
     <label for="name">*Name :</label><br>
     <input type="text" id="name" name="name" required><br>
-    <p style="color: red;">Username already exists, please choose another username</p>
     <label for="email">*Email :</label><br>
     <input type="email" id="email" name="email" required><br>
     <label for="password">*Password :</label><br>
