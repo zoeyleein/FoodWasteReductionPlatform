@@ -69,7 +69,12 @@
         </tr>
     </c:forEach>
     </tbody>
+
 </table>
+<!--
+    <br>
+    <a href="${pageContext.request.contextPath}/transaction/CharityTransactionConfirmView.jsp">
+        <button type="submit">Confirm</button></a>-->
 </div>
 </body>
 </html>
