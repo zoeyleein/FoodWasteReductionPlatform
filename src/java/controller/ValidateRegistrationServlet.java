@@ -1,11 +1,9 @@
 package controller;
 
-import businesslayer.UserAccountBusinessLogic;
 import businesslayer.UserBusinessLogic;
 import dataaccesslayer.DataSource;
 import model.DTOBuilder;
 import model.UserRegistration;
-import transferobjects.UserAccountDTO;
 import transferobjects.UserDTO;
 
 import javax.servlet.ServletContext;
@@ -60,8 +58,15 @@ public class ValidateRegistrationServlet extends HttpServlet {
         try (Connection connection = dataSource.getConnection()) {
 
             if (registration.userExists(name, connection)) {
-                response.sendRedirect(registration.registrationErrorRedirect(role));
-            } else{// at some point add 10 digit phone number validation if wanted
+                request.setAttribute("errorMessage", "Username already exists, please choose another username");
+                request.getRequestDispatcher(registration.registrationErrorRedirect(role)).forward(request, response);
+                //response.sendRedirect(registration.registrationErrorRedirect(role));
+            }
+            else if(registration.phoneValidation(phone) && Objects.equals(role, "Customer"))    {
+                request.setAttribute("errorMessage", "Phone number must be 10 digits");
+                request.getRequestDispatcher(registration.registrationErrorRedirect(role)).forward(request, response);
+                }
+            else{// at some point add 10 digit phone number validation if wanted
                 // Create a new UserDTO object
                 UserDTO user = builder.userBuilder(name, password, role, email, phone, location);
                 userBusinessLogic = new UserBusinessLogic(connection);
