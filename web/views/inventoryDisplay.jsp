@@ -41,7 +41,7 @@
             const rowsData = getRowJsonData();
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = 'http://localhost:8080/FoodWasteReductionPlatform_Web_exploded/ProcessCheckoutServlet';
+            form.action = '${pageContext.request.contextPath}/ProcessCheckoutServlet';
             form.style.display = 'none';
 
             rowsData.forEach((item, index) => {

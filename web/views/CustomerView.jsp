@@ -44,7 +44,7 @@
 <h1>Food items</h1>
 
 
-        <form action="http://localhost:8080/FoodWasteReductionPlatform_Web_exploded/FetchRetailersServlet" method="post">
+        <form action="${pageContext.request.contextPath}/FetchRetailersServlet" method="post">
             <label for="location">Select a location:</label>
             <select id="location" name="location">
                 <option value="Nepean">Nepean</option>
