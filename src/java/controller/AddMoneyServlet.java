@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+
+
+/**
+ * This class has the logic to display the user balance.
+ */
 @WebServlet(name = "AddMoneyServlet", urlPatterns = {"/AddMoneyServlet"})
 public class AddMoneyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
