@@ -34,6 +34,7 @@ public class PaymentServlet extends HttpServlet {
         }
         ServletContext context = getServletContext();
         DataSource dataSource = new DataSource(context);
+
         try {
             Connection connection = dataSource.getConnection();
             Double totalCost = Double.valueOf(request.getParameter("totalCost"));
@@ -73,14 +74,15 @@ public class PaymentServlet extends HttpServlet {
                     transactionDTO.setQuantity(qty);
                     transactionDTO.setUsersId(customerId);
                     transactionDTO.setUserInventoryId(id);
-
+                    transactionDTO.setTransactionId(String.valueOf(2));
                     transactionBusinessLogic.addTransaction(transactionDTO);
 
                 }
             }
 
+            session.setAttribute("userBalance",newBalance);
 
-
+            session.setAttribute("userID",customerId);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/CustomerView.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException e) {

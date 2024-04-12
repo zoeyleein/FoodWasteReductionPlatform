@@ -57,7 +57,7 @@ public class ShowRetailersAtLocationBusinessLogic {
             List<RetailerInventoryDTO> allItems = retailerInventoryDAO.getAllRetailerInventories();
             ItemDAOImpl itemDAO = new ItemDAOImpl(connection);
             for (RetailerInventoryDTO retailer : allItems) {
-                if (retailer.getUsersId() == userId) {
+                if (retailer.getUsersId() == userId && retailer.getQuantity()>0) {
                     int itemId = retailer.getItemId();
                     itemsMap.put(itemId, retailer);
                 }
