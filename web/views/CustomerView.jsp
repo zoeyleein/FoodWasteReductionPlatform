@@ -21,13 +21,13 @@
 
     <li class="top-menu">
 
-        </div>
-
             <span class="user-balance">$${sessionScope.userBalance}</span>
             <form action="${pageContext.request.contextPath}/AddMoneyServlet" method="POST">
                 <input type="hidden" name="userId" value="${sessionScope.userId}">
                 <input type="hidden" name="currentBal" value="${sessionScope.userBalance}">
+                <div class ="add_money">
                 <button type="submit">Add money</button>
+                </div>
             </form>
 
     </li>
