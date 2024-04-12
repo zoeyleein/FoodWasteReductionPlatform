@@ -36,17 +36,34 @@ public class NotificationService implements Subject{
     public void notifyObservers(RetailerInventoryDTO retailerInventory, Connection connection) {
         int itemId = retailerInventory.getItemId();
 
+        // Retrieve the item category
         String inventoryItemQuery = "SELECT " +
+                "category " + // Select only the category of the item
+                "FROM item " +
+                "WHERE id = " + itemId; // Filter by the specified ID
+
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs2 = stmt.executeQuery(inventoryItemQuery)) {
+
+            if (rs2.next()) {
+                itemCategory = rs2.getString("category"); // Retrieve the category directly
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        String inventoryItemQuery2 = "SELECT " +
                 "name " + // Select only the name of the item
                 "FROM item " +
                 "WHERE id = "+itemId; // Filter by the specified ID
 
         try (Statement stmt = connection.createStatement();
-             ResultSet rs1 = stmt.executeQuery(inventoryItemQuery)) {
+             ResultSet rs1 = stmt.executeQuery(inventoryItemQuery2)) {
 
             while (rs1.next()) {
                 itemName = rs1.getString("name"); // Retrieve the name directly
-             }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,7 +77,7 @@ public class NotificationService implements Subject{
                 "FROM " +
                 "users u " +
                 "WHERE " +
-                "u.preference = 'Fruit' " +
+                "u.preference = '" + itemCategory + "' " + // Use itemCategory variable
                 "AND (u.subscribeToPhone = 1 OR u.subscribeToEmail = 1)";
 
         try (Statement stmt = connection.createStatement();
