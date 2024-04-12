@@ -557,3 +557,13 @@ th, td {
     padding: 8px;
 }
 
+/* pay */
+.button-container {
+    position: relative;
+}
+
+.pay-now-button {
+    position: absolute;
+    bottom: -140px;
+    right: 0px;
+}

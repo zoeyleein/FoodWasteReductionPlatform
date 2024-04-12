@@ -9,17 +9,29 @@
 <html>
 <head>
     <title>Surplus Item Choice</title>
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-<form action="${pageContext.request.contextPath}/SurplusChoiceServlet" method="POST">
+<body class = "registration">
+
+    <div class="logoblack-container">
+        <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
+
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a></li>
+    </ul>
+
+<div class="container">
+<form action="${pageContext.request.contextPath}/SurplusChoiceServlet" method="POST" style = "text-align: center;">
     <input type="submit" name="action" value="Sale">
 </form>
 <br>
-<form action="${pageContext.request.contextPath}/SurplusChoiceServlet" method="POST">
+<form action="${pageContext.request.contextPath}/SurplusChoiceServlet" method="POST" style = "text-align: center;">
     <input type="submit" name="action" value="Donation">
 </form>
 <br>
-<form action="${pageContext.request.contextPath}/SurplusChoiceServlet" method="POST">
+<form action="${pageContext.request.contextPath}/SurplusChoiceServlet" method="POST" style = "text-align: center;">
     <input type="submit" name="action" value="Both">
 </form>
 </body>
