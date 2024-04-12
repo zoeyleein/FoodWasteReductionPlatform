@@ -546,4 +546,14 @@ input[type="checkbox"] + label {
     color: #3A7877;
 }
 
+/* table */
+table {
+    border: none;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: none;
+    padding: 8px;
+}
 
