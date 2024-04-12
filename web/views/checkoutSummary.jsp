@@ -5,9 +5,20 @@
 <html>
 <head>
     <title>Checkout Summary</title>
+    <link href="${pageContext.request.contextPath}/style/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-<h2>Checkout Summary</h2>
+<body class = "registration">
+
+    <div class="logoblack-container">
+        <a href="http://localhost:8080/FoodWasteReductionPlatform/">
+        <img src="${pageContext.request.contextPath}/image/logo_black.png" alt="Logo"></a>
+    </div>
+
+    <ul class="menu">
+        <li><a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a></li>
+    </ul>
+<div class="inventory">
+<h1>Checkout Summary</h1>
 <form action="PaymentServlet" method="post">
     <table border="1">
         <thead>
@@ -44,5 +55,6 @@
     <input type="hidden" name="totalCost" value="${totalCost}" />
     <button type="submit">Pay now</button>
 </form>
+</div>
 </body>
 </html>
