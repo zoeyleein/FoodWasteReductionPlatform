@@ -52,10 +52,10 @@ SQL statements are prepared using preparedStatement() so that users cannot SQL i
 Users will only interact with the GUI and won’t have any interaction with the JAVA code. 
 
 <h2>Created By</h2> 
-<ul>Mayank Arora (041114685)</ul>
-<ul>Andres Porras (student number)</ul>
-<ul>JingYi Li (041091658)</ul>
-<ul>Aaron Thompson (041058950)</ul>
+<ul>Mayank Arora</ul>
+<ul>Andres Porras</ul>
+<ul>JingYi Li</ul>
+<ul>Aaron Thompson</ul>
 
 High Level Design : 
 https://docs.google.com/document/d/1SkjawkOkLsN35J8bnhqSzhr_HtTyTBvO67HUS49Nnhg/edit?usp=sharing
