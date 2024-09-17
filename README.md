@@ -11,16 +11,31 @@ This project involves the development of a Food Waste Reduction Platform, built 
 </ul>
 The project encourages collaboration between individuals, businesses, and non-profit organizations to combat food waste while improving community support.
 
-
 <h2>Introduction</h2>
 The Food Waste Reduction Platform is an innovative web-based solution aimed at addressing the global issue of food waste. This platform connects individuals and organizations with excess food to those in need, helping to minimize waste while promoting sustainability and food security. It provides a seamless and user-friendly interface where users can donate, request, and track food supplies, fostering a community-driven approach to waste reduction.
 
 <h2>Functional requirements</h2>
 
-A user can register at the home page by providing their details along with their subscription preferences. 
-Every retailer has an inventory which contains details about products, product price, batch number, quantity, expiry date, and excess demand. A retailer can cycle through surplus items and decide whether to offer them for donations or at a discount. 
-A charity can claim surplus food items that have been put up for donation and add them to their inventory. 
-Consumers can purchase items from retailers in both scenarios, at a discount and at normal prices. They can browse through items across different retailers and can also view inventory across different retailers. Users who have subscribed to alerts shall receive messages on their phone and/or email based on their location. 
+<h3>FR – 01: Users Registration:</h3>
+<ul><strong>Registration:</strong>Users must have the ability to create accounts on the platform by providing their name, email, password, and selecting the user type (i.e., retailers, consumers, or charitable organizations).</ul>
+<ul><strong>Authentication</strong>The platform must have to login/logout of the functionality</ul>
+
+<h3>FR – 02: Retailers:</h3>
+<ul><strong>Inventory Management: </strong>Retailers must have the capability to manage their inventory of food items, including adding new items, updating quantities, and setting expiration dates for each item.</ul>
+<ul><strong>Surplus Food Identification: </strong>Retailers should be able to identify and flag surplus food items that are nearing expiration or are in excess of demand. Surplus items are those with expiry dates within the next one week.</ul>
+<ul><strong>Listing Surplus Food Items: </strong>Retailers must have the functionality to list surplus food items on the platform for donation or sale at a discounted price. An item is up for Donation or for sale at a reduced price is determined by the Retailer.</ul>
+
+<h3>FR- 03: Charitable Organization:</h3>
+<ul><strong>Claim Food: </strong>Charitable organizations such as Food Banks/Missions should be able to claim the food item listed by retailers available for donation.</ul>
+<ul><strong>Update Inventory: </strong>The retailer inventory must be updated accordingly once a particular food item is claimed by a Charitable Organization.</ul>
+
+<h3>FR-04: Consumers:</h3>
+<ul><strong>a. Purchase: </strong>Consumers of the platform should be able to purchase (not real transaction) the items listed by the retailers at a given discount rate.</ul>
+<ul><strong>Update Inventory: </strong>The retailer inventory must be updated accordingly once a particular food item is purchased by a consumer.</ul>
+
+<h3>FR-05: Surplus Food Alert:</h3>
+<ul><strong>User Subscription: </strong>Users can subscribe to receive surplus food alerts based on their location, communication method (email or phone) and food preferences</ul>
+<ul><strong>Automatic Notifications: </strong>Whenever retailers list surplus food items on the platform, users subscribed to alerts receive automatic notifications via email or phone</ul>
 
 <h2>Application Architecture</h2>
 
