@@ -1,6 +1,18 @@
 <h1> Food Waste Reduction Platform </h1>
 
-<h2>Introduction<h2>
+<h2>Summary</h2>
+This project involves the development of a Food Waste Reduction Platform, built using modern web technologies, with features such as:
+
+<ul>
+  <li>Donation and Request System: Users can donate surplus food or request food supplies based on availability.</li>
+  <li>Inventory Tracking: Helps both donors and recipients manage the food items, reducing unnecessary waste.</li>
+  <li>User Authentication: Secure login and user management to facilitate trusted interactions.</li>
+  <li>Notifications: Automated alerts for available food and requests.</li>
+</ul>
+The project encourages collaboration between individuals, businesses, and non-profit organizations to combat food waste while improving community support.
+
+
+<h2>Introduction</h2>
 The Food Waste Reduction Platform is an innovative web-based solution aimed at addressing the global issue of food waste. This platform connects individuals and organizations with excess food to those in need, helping to minimize waste while promoting sustainability and food security. It provides a seamless and user-friendly interface where users can donate, request, and track food supplies, fostering a community-driven approach to waste reduction.
 
 <h2>Functional requirements</h2>
