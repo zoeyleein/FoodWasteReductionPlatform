@@ -9,6 +9,8 @@ Consumers can purchase items from retailers in both scenarios, at a discount and
 
 <h2>Application Architecture</h2>
 
+![Food Waste Reduction Platform](https://raw.githubusercontent.com/zoeyleein/FoodWasteReductionPlatform/master/README/Diagram02.jpg)
+
 <h3>Front-end (Presentation Layer)</h3>
 The front-end of the FWRP comprises JSP (JavaServer Pages) for dynamic web page generation and user interaction.
 JSP pages provide the user interface for registration, login/logout, browsing surplus food items, and managing user subscriptions.
@@ -31,31 +33,58 @@ JSP pages communicate with Servlets using HTTP protocols, exchanging data and tr
 Servlets interact with the database using JDBC (Java Database Connectivity), executing SQL queries to retrieve, update, and manipulate data.
 
 <h2>Business Architecture</h2>
+
+![Food Waste Reduction Platform](https://raw.githubusercontent.com/zoeyleein/FoodWasteReductionPlatform/master/README/Diagram01.jpg)
+
 Registration:
-<ol>Retailers: Retailers play a crucial role in our platform by managing surplus food items. They have the ability to add new items, update quantities, set expiration dates, and specify whether the items are available for donation or sale at a reduced price. Additionally, retailers can easily flag surplus food items that are nearing expiration or are in excess of demand. Once flagged, these surplus items can be promptly listed on the platform for donation or sale. </ol>
-<ol>Charitable Organization: Charitable organizations are empowered to seamlessly claim surplus food items listed by retailers and promptly update their inventory accordingly. By simply selecting the desired items, charitable organizations can efficiently claim the available surplus food, ensuring that it reaches those in need.</ol>
-<ol>Consumers: Consumers have the opportunity to purchase surplus food items at discounted prices through this system. By browsing the available listings, consumers can easily identify and select items they wish to purchase at reduced rates.</ol>
+<ol>
+  <li><strong>Retailers:</strong> Retailers play a crucial role in our platform by managing surplus food items. They have the ability to add new items, update quantities, set expiration dates, and specify whether the items are available for donation or sale at a reduced price. Additionally, retailers can easily flag surplus food items that are nearing expiration or are in excess of demand. Once flagged, these surplus items can be promptly listed on the platform for donation or sale.</li>
+  <li><strong>Charitable Organization:</strong> Charitable organizations are empowered to seamlessly claim surplus food items listed by retailers and promptly update their inventory accordingly. By simply selecting the desired items, charitable organizations can efficiently claim the available surplus food, ensuring that it reaches those in need.</li>
+  <li><strong>Consumers:</strong> Consumers have the opportunity to purchase surplus food items at discounted prices through this system. By browsing the available listings, consumers can easily identify and select items they wish to purchase at reduced rates.</li>
+</ol>
 
 <h3>Database Structure</h3>
-Our database shall have 5 tables.
-<ul>Users: This table has general user details like name, email, phone, location, and password along with the user type (charity, consumer, retailer), and user preferences for subscription. </ul>
-<ul>Item: This table has details about food items and their category (poultry, dairy, etc.).</ul>
-<ul>User_inventory: This table contains the details about retailer’s inventory. It has details regarding batch number, batch expiry date, quantity, unit price, and final price.</ul>
-<ul>Transaction: This table shall concern the transactions that take place once a consumer buys from a retailer. The quantity purchased shall be decreased from the retailer’s inventory.</ul>
-<ul>Charity inventory: This table shall contain details of the stock held by charities to be given as donation. </ul>
-<ul>userAccount: This table contains details about the account balance of customers.</ul>
+
+![Food Waste Reduction Platform](https://raw.githubusercontent.com/zoeyleein/FoodWasteReductionPlatform/master/README/Diagram03.jpg)
+
+Our database shall have 6 tables
+<ol>
+    <li><strong>Users:</strong> This table has general user details like name, email, phone, location, and password along with the user type (charity, consumer, retailer), and user preferences for subscription.</li> 
+    <li><strong>Item:</strong>This table has details about food items and their category (poultry, dairy, etc.).</li>
+    <li><strong>User_inventory:</strong> This table contains the details about retailer’s inventory. It has details regarding batch number, batch expiry date, quantity, unit price, and final price.</li>
+    <li><strong>Transaction: </strong>This table shall concern the transactions that take place once a consumer buys from a retailer. The quantity purchased shall be decreased from the retailer’s inventory.</li>
+    <li><strong>Charity inventory:</strong>This table shall contain details of the stock held by charities to be given as donation.</li>
+    <li><strong>UserAccount</strong>This table contains details about the account balance of customers.</li>
+</ol>
 
 <h2>Security Architecture </h2>
-Users will have an account with a balance, we will perform validity checks on their stored, store credit to make sure that purchases are valid.
-The passwords are stored in a plain text format in the database. Ideally, they should be encoded to safeguard user information. However, outsiders can’t access our database without credentials. 
-SQL statements are prepared using preparedStatement() so that users cannot SQL inject to pry at, or manipulate our database
-Users will only interact with the GUI and won’t have any interaction with the JAVA code. 
+<ul>
+  <li>Users will have an account with a balance, we will perform validity checks on their stored, store credit to make sure that purchases are valid.</li>
+  <li>The passwords are stored in a plain text format in the database. Ideally, they should be encoded to safeguard user information. However, outsiders can’t access our database without credentials.</li>
+  <li>SQL statements are prepared using preparedStatement() so that users cannot SQL inject to pry at, or manipulate our database.</li>
+  <li>Users will only interact with the GUI and won’t have any interaction with the JAVA code.</li>
+</ul>
+
+<h2>Deployment Architecture</h2>
+
+![Food Waste Reduction Platform](https://raw.githubusercontent.com/zoeyleein/FoodWasteReductionPlatform/master/README/Diagram04.jpg)
+
+<ul>
+  <li>Laptop with Java: A device running a Java application.</li>
+  <li>Web Server with a Website: A server hosting a website, which can be accessed by the user client.</li>
+  <li>DB Server with MySQL DB: The database server running MySQL, which stores and manages data for the website.</li>
+  <li>User Client with an HTML Browser: A user’s device with a web browser, used to access the website hosted on the web server.</li>
+</ul>
+
+
 
 <h2>Created By</h2> 
-<ul>Mayank Arora</ul>
-<ul>Andres Porras</ul>
-<ul>JingYi Li</ul>
-<ul>Aaron Thompson</ul>
+<ul>
+  <li>Mayank Arora</li>
+  <li>Andres Porras</li>
+  <li>JingYi Li</li>
+  <li>Aaron Thompson</li>
+</ul>
 
 High Level Design : 
 https://docs.google.com/document/d/1SkjawkOkLsN35J8bnhqSzhr_HtTyTBvO67HUS49Nnhg/edit?usp=sharing
